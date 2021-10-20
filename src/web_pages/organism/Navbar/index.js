@@ -6,7 +6,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { MenuData } from './menuData';
 import './style.scss';
 
-import mainLogo  from '../../atoms/logo_blue.svg'
+import LOGO_BLUE  from '../../atoms/logo_blue.svg'
 
 const Navbar = () => {
 
@@ -19,7 +19,7 @@ const Navbar = () => {
         <div className='navbar'>
 
             <div className='logo'>
-                <img alt='' src={ mainLogo }/>
+                <img alt='' src={ LOGO_BLUE }/>
             </div>
 
             <div className='navbar-buttons'>

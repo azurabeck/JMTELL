@@ -1,0 +1,15 @@
+.btn-orange { 
+    display: flex; 
+    align-items: center; justify-content: center;
+    background: #FAA916; color: #fff;
+    border-radius: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #f39e05;
+        box-shadow: 2px 2px 4px #4e4e4e;
+    }
+}
+
