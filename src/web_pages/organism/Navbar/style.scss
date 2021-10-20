@@ -1,0 +1,57 @@
+.navbar { 
+          display: flex; flex-direction: row; 
+          align-items: center; justify-content: space-between;
+          width: calc(100% - 20px); height: 80px; 
+          padding: 0 10px;
+          background-color: #fff; color: #323030;
+          box-shadow: 0px 4px 7px rgba(158, 154, 154, 0.25);  
+          font-weight: normal; font-size: 16px;
+          
+          .navbar-buttons { display: flex; flex-direction: row; 
+             .nav-bar { display: flex; }
+
+             .mob-nav-menu {
+                              position: fixed; 
+                              top: 80px; bottom: 0;
+                              right: 0;
+                              width: 400px;
+                              max-width: 100%;
+                              background-color: #fff;
+                              box-shadow: 0px 4px 7px rgba(158, 154, 154, 0.25);  
+                              font-weight: normal; font-size: 16px;     
+                              
+                              a { 
+                                    display: flex; 
+                                    align-items: center;
+                                    height: 50px;
+                                    padding: 0 20px;
+                                    color: #323030;
+                              }
+
+                              a:hover { color: #FAA916; cursor: pointer; }
+                              a.active { color: #FAA916; }   
+             }
+
+            //  LINKS HIDDEN ON MOBILE
+             a { display: none; }
+          } 
+           
+}
+
+@media screen and (min-width: '700px') {
+      .navbar {  width: calc(100% - 140px); padding: 0 70px; 
+            .nav-bar { display: none !important; }
+      
+            a {   
+                  display: flex !important;                  
+                  margin-left: 30px;
+                  color: #323030;
+                  font-size: 16px;
+                  text-transform: uppercase;
+             }
+  
+             a:hover { color: #FAA916; cursor: pointer; }
+             a.active { font-weight: 500; color: #000; border-bottom: 2px solid #FAA916; }   
+      
+      }
+}
