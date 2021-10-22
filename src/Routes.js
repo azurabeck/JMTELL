@@ -4,6 +4,8 @@ import { Switch, Route } from 'react-router-dom';
 
 // IMPORT ORGANISM
 import Navbar from './web_pages/organism/Navbar'
+import Footer from './web_pages/organism/Footer'
+
 
 // IMPORT PUBLIC PAGES
 import Home from './web_pages/templates/home'
@@ -32,6 +34,8 @@ function Routes() {
 
                 </Switch>
           </div>
+
+          <Footer/>
       </>
     )
 }

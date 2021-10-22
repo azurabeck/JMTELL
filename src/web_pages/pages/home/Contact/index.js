@@ -19,7 +19,7 @@ const Header = () => {
                     </div>
                     <input placeholder='Email' name='email' id='email' className='home-form-email' />
                     <div className='text-btn-area'>
-                        <textarea placeholder='Deixe sua mensagem aqui.' name='msg' id='msg' className='home-form-msg' />
+                        <textarea placeholder='Deixe sua mensagem aqui.' maxlength='650' name='msg' id='msg' className='home-form-msg' />
                         <ButtonOrangeSquare 
                                 WIDTH='250px'
                                 HEIGHT='95px'

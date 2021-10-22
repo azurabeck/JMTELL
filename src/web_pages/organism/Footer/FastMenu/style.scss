@@ -1,0 +1,26 @@
+.fast-menu {
+    display: flex; flex-direction: column;
+    align-items: center;
+    width: 1260px;
+    margin-bottom: 76px;
+
+    .title { margin-bottom: 25px; font-size: 20px; color: #FFFFFF; text-align: left; width: 100%; }
+    .link-group { display: flex; flex-direction: row; 
+                  justify-content: space-between;
+                  width: 100%;
+                  max-width: 1260px;  
+        .group {
+            display: flex; flex-direction: row;
+            justify-content: space-between;
+            width: 520px;
+            padding-bottom: 25px;    
+
+            .column {
+                display: flex; flex-direction: column;
+
+                a { color: #E5E5E5; font-size: 16px; font-weight: 300; }
+                a:hover { color: #FAA916; }
+            }
+        }
+    }
+}
