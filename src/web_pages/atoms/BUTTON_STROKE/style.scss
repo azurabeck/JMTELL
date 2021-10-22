@@ -1,0 +1,12 @@
+.btn-stroke { 
+    display: flex; 
+    align-items: center; justify-content: center;
+    color: #000000;
+    border-radius: 50px; border: 1px solid #000000;
+
+    &:hover {
+        cursor: pointer;
+        border: 1px solid #f39e05;
+    }
+}
+

@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.scss';
-import LOGO_WHITE  from '../../atoms/logo_white.svg'
-import ButtonOrange from '../../atoms/BUTTON_ORANGE' 
+import LOGO_WHITE  from '../../../atoms/logo_white.svg'
+import ButtonOrange from '../../../atoms/BUTTON_ORANGE'
 
 
 const Header = () => {
