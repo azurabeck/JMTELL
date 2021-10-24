@@ -6,13 +6,24 @@
     padding-top: 36px; padding-bottom: 46px;
     background-color: #0B5072;
 
+    
+    &:before{
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        position: absolute;
+        left: calc(50% - 125px);
+        border-left: 125px solid transparent;
+        border-right: 125px solid transparent;
+        border-bottom: 57px solid #0b5072;
+        top: -57px;
+        z-index: 999;
+    }
+
     .slogan { 
         margin-top: 16px; margin-bottom: 48px;
         color: #fff;
         font-size: 16px; font-weight: 500;
     }
-
-
-
-    
 }

@@ -1,0 +1,30 @@
+.company {
+    .header {
+            position: relative;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            height: 390px;
+            z-index: -1;
+        
+            .bg-img {
+                position: absolute;  z-index: -1;
+                top: 0; bottom: 0;
+                left: 0; right: 0;
+                background-image: 
+                // tint
+                linear-gradient( rgba(75, 147, 190),  rgba(75, 147, 190) ),
+                /* your image */
+                url('https://i.pinimg.com/originals/67/e1/f7/67e1f728b09c8834f33e5f8ea0ed0fe4.jpg');
+                background-position: center; background-repeat: no-repeat;
+                background-size: cover; background-blend-mode: multiply;
+                opacity: 75%;
+            }
+        
+            .title { 
+                    max-width: 650px; 
+                    font-weight: 600; font-size: 36px;        
+                    color: #FFFFFF; text-align: center;
+                    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            }
+        }
+}

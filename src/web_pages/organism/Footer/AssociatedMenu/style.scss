@@ -3,6 +3,8 @@
     align-items: center;
     width: 1260px;
     margin-bottom: 76px;
+    max-width: 100%;
+    flex-wrap: wrap;
 
     .link-group { display: flex; flex-direction: row; 
                   justify-content: space-between;

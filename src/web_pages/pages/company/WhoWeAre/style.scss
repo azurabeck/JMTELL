@@ -1,0 +1,30 @@
+.company {
+    .who-we-are {
+
+        display: flex; flex-direction: column;
+        align-items: center;
+        margin-top: 100px; margin-bottom: 150px;
+
+        .title {  width: 850px; max-width: 100%;
+                  margin-bottom: 30px;
+                  font-weight: 500; font-size: 22px;
+                  text-align: center; color: #7C7C7C;
+                }
+
+        .group { display: flex; flex-direction: row;
+                 align-items: flex-start; justify-content: space-between;
+                 max-width: 100%; width: 1000px;
+                 margin-top: 80px;
+                 
+            .what-we-do { display: flex; flex-direction: column; 
+                          align-items: center;
+                          font-weight: 500; font-size: 20px;
+                          text-align: center; color: #7C7C7C;
+                          max-width: 380px;
+            
+                svg { height: 140px; margin-bottom: 20px;}
+            }
+        }
+        
+    }
+}

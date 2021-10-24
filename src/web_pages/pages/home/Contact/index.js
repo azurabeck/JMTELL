@@ -1,5 +1,7 @@
 import React from 'react'
 import ButtonOrangeSquare from '../../../atoms/BUTTON_ORANGE_SQUARE';
+import BUSSINESS_MAN from '../../../atoms/BUSSINESS_MAN.png';
+
 import './style.scss';
 
 
@@ -7,11 +9,11 @@ const Header = () => {
 
     return (
         <div className='contact'>
-            <div className='bg-img'></div>
             <div className='title'>Faça seu orçamento</div>
             <div className='line'></div>
-            <div className='form-area'>
 
+            <div className='form-area'>
+                <img className='bussiness-man-img' alt='' src={BUSSINESS_MAN}/>
                 <form>
                     <div className='form-horizontal-row'>
                         <input placeholder='Nome Completo' name='name' id='name' className='home-form-name' />

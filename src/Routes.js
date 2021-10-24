@@ -12,6 +12,8 @@ import Home from './web_pages/templates/home'
 import Company from './web_pages/templates/company'
 import Contact from './web_pages/templates/contact'
 import Products from './web_pages/templates/products'
+import Blog from './web_pages/templates/blog'
+
 
 // IMPORT ADMIN PAGES
 import Login from './web_admin/login'
@@ -27,6 +29,7 @@ function Routes() {
                     <Route exact path='/empresa' component={Company}></Route>
                     <Route exact path='/contato' component={Contact}></Route>
                     <Route exact path='/produtos' component={Products}></Route>
+                    <Route exact path='/blog' component={Blog}></Route>
 
 
                     {/* ADMIN AREA */}

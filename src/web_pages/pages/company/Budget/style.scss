@@ -1,0 +1,13 @@
+.company {
+    .budget { display: flex; flex-direction: column;
+              align-items: center; justify-content: center;
+              height: 670px; margin-top: 30px;
+              background-color: #2C3A41; 
+              
+              .desc {  font-weight: 500; font-size: 22px; 
+                       color: #FFFFFF; margin-bottom: 115px;
+                       width: 850px; }
+
+               .btn-orange { border-radius: 0; }
+    }
+}
