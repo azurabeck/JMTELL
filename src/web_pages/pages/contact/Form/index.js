@@ -1,26 +1,30 @@
 import React , { useState } from 'react'
-import BUTTON_ORANGE from '../../../atoms/BUTTON_ORANGE'
 import { SUCCESS_MSG } from '../../../atoms/SVG/_index'
+import { createClient } from '../../../../web_config/actions/clientActions'
+import { connect } from 'react-redux'
 
 import './style.scss'
 
-const Form = () => {
+const Form = (props) => {
 
-    const [ CLIENT_REQUEST_SUCCESS , sendData ] = useState(null) 
     const [ subject , getSubject ] = useState(null)
     const [ formData, getForm ] = useState({
-        subject_type: '',
         name: '',
-        phone: '',
         email: '',
+        telephone: '',
         msg: '',
-        return_type: null,
+        returnType: null,
+        client_subject: subject,
+        msg: ''
     })
 
-    const handleSubmit = (formData) => {
-        if(formData) { sendData('SUCCESS') }
-        else { sendData('ERROR') }
+
+    const handleSubmit = (e) => {       
+        e.preventDefault()        
+        props.createClient(formData)
     }
+
+    const MSG_SENT = props.MSG_SENT
 
     return (
         <div className='form'>
@@ -28,10 +32,10 @@ const Form = () => {
             <div className='steps-group'>
                 <div className='step active' />
                 <div className={ subject ? 'step active' : 'step' } />
-                <div className={ CLIENT_REQUEST_SUCCESS ? 'step active' : 'step' } />
+                <div className={ MSG_SENT ? 'step active' : 'step' } />
             </div>
 
-            { !subject && !CLIENT_REQUEST_SUCCESS &&
+            { !subject && !MSG_SENT &&
             
                 <div className='buttons'>
                     <div className='buttons-title'>Para melhor atende-lo(a), selecione com o assunto para qual você precisa de ajuda, e deixe sua mensagem em seguida.</div>
@@ -47,7 +51,7 @@ const Form = () => {
             
             }
 
-            { subject && !CLIENT_REQUEST_SUCCESS &&
+            { subject && !MSG_SENT &&
             
                 <div className='contact-form'>
                     <div className='contact-form-title'>
@@ -55,10 +59,10 @@ const Form = () => {
                         <span className='subject-display'> {subject} </span>
                     </div>
 
-                    <form className='contact-form-group'>
+                    <form className='contact-form-group' onSubmit={(e) => handleSubmit(e)}>
                         <div className='group-1'>
-                            <input placeholder='Nome e Sobrenome' required onChange={(e) => getForm({...formData, name: e.target.value , subject_type: subject})} ></input>
-                            <input placeholder='Telefone' required onChange={(e) => getForm({...formData, phone: e.target.value})}></input>
+                            <input placeholder='Nome e Sobrenome' required onChange={(e) => getForm({...formData, name: e.target.value , client_subject: subject})} ></input>
+                            <input placeholder='Telefone' required onChange={(e) => getForm({...formData, telephone: e.target.value})}></input>
                         </div>
                         <div className='group-2'>
                             <input placeholder='Email' required onChange={(e) => getForm({...formData, email: e.target.value})}></input> 
@@ -68,27 +72,19 @@ const Form = () => {
                             <div className='radio-group'>
                             Responder via: 
                             <div className='radio-btn'>
-                                <input type="radio" id="phone" name="fav-resp" value="PHONE" onChange={(e) => getForm({...formData, return_type: 1})}/>
+                                <input type="radio" id="phone" name="fav-resp" value="PHONE" onChange={(e) => getForm({...formData, returnType: 1})}/>
                                 <label for="phone">Ligação</label>
                             </div>
                             <div className='radio-btn'>
-                                <input type="radio" id="whatsapp" name="fav-resp" value="WHATSAPP" onChange={(e) => getForm({...formData, return_type: 2})}/>
+                                <input type="radio" id="whatsapp" name="fav-resp" value="WHATSAPP" onChange={(e) => getForm({...formData, returnType: 2})}/>
                                 <label for="whatsapp">Whatsapp</label>
                             </div>
                             <div className='radio-btn'>
-                                <input type="radio" id="email" name="fav-resp" value="EMAIL" onChange={(e) => getForm({...formData, return_type: 3})}/>
+                                <input type="radio" id="email" name="fav-resp" value="EMAIL" onChange={(e) => getForm({...formData, returnType: 3})}/>
                                 <label for="email">Email</label>
                             </div>
                             </div>
-                            <BUTTON_ORANGE  
-                                TEXT='ENVIAR MENSAGEM'
-                                WIDTH='233px'
-                                HEIGHT='36px'
-                                FONT_SIZE='14px'
-                                BTN_TYPE={1}
-                                TO={() => handleSubmit(formData)}
-                            />
-
+                            <button className='btn-orange-square' type='submit'>entrar</button>
                         </div>
                     </form>
 
@@ -98,7 +94,7 @@ const Form = () => {
 
 
             {
-                CLIENT_REQUEST_SUCCESS && <div className='feedback'>
+                MSG_SENT && <div className='feedback'>
                     <div className='feedback-title'> MENSAGEM ENVIADA </div>
                     <div className='feedback-desc'> AGORA É SÓ ESPERAR QUE NOSSA EQUIPE ENTRARÁ EM CONTATO COM VOCÊ NA PLATAFORMA ESCOLHIDA </div>
                     <SUCCESS_MSG />
@@ -112,4 +108,17 @@ const Form = () => {
     )
 }
 
-export default Form
+    const mapStateToProps = (state) => {
+        return {
+            MSG_SENT: state.client.MSG_SENT
+        }
+    }
+
+
+  const mapDispatchToProps = (dispatch) => {
+    return {
+        createClient: (client) => dispatch(createClient(client))
+    }
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Form)
