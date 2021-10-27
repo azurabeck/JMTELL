@@ -1,7 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom';
 
-
 // IMPORT ORGANISM
 import Navbar from './web_pages/organism/Navbar'
 import Footer from './web_pages/organism/Footer'
@@ -19,11 +18,14 @@ import Blog from './web_pages/templates/blog'
 import Login from './web_admin/login'
 
 function Routes() {
-    return (
-      <>
-          <Navbar/>
 
-          <div className='content'>
+    const location = window.location.pathname
+
+    return (
+        <>
+     
+            { location.indexOf("/admin") !== 0 &&  <Navbar/> }
+            <div className={ location.indexOf("/admin") !== 0 && 'content'}>
                 <Switch>
                     <Route exact path='/' component={Home}></Route>
                     <Route exact path='/empresa' component={Company}></Route>
@@ -31,15 +33,13 @@ function Routes() {
                     <Route exact path='/produtos' component={Products}></Route>
                     <Route exact path='/blog' component={Blog}></Route>
 
-
                     {/* ADMIN AREA */}
-                    <Route exact path='/login' component={Login}></Route>
-
+                    <Route exact path='/admin' component={Login}></Route>
                 </Switch>
-          </div>
+            </div>
+            { location.indexOf("/admin") !== 0 &&  <Footer/> }
 
-          <Footer/>
-      </>
+        </>
     )
 }
 

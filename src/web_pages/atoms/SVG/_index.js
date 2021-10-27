@@ -10,6 +10,8 @@ import WHATSAPP_CIRCLE_ICON from './whatsapp_circle.svg'
 
 import NETWORK_ICON from './network.svg'
 import SECURITY_ICON from './security.svg'
+import SUCCESS_MSG_ICON from './success_msg.svg'
+
 
 import CLIENTS_ICON from './clients.svg'
 import SUPPORT_ICON from './support.svg'
@@ -29,3 +31,4 @@ export const SECURITY = () => (<Samy path={SECURITY_ICON}/>)
 export const CLIENTS = () => (<Samy path={CLIENTS_ICON}/>)
 export const SUPPORT = () => (<Samy path={SUPPORT_ICON}/>)
 
+export const SUCCESS_MSG = () => (<Samy path={SUCCESS_MSG_ICON}/>)

@@ -5,7 +5,7 @@ export const MenuData = [
         blockItem: false,
         iconClosed: null,
         iconOpened: null,
-        subNav: null,
+        externalLink: false,
     },
     {
         title: 'Empresa',
@@ -13,7 +13,7 @@ export const MenuData = [
         blockItem: true,
         iconClosed: null,
         iconOpened: null,
-        subNav: null,
+        externalLink: false,
     },
     {
         title: 'Produtos',
@@ -21,7 +21,15 @@ export const MenuData = [
         blockItem: true,
         iconClosed: null,
         iconOpened: null,
-        subNav: null,
+        externalLink: false,
+    },
+    {
+        title: 'Treinamento',
+        path: 'http://www.globo.com',
+        blockItem: true,
+        iconClosed: null,
+        iconOpened: null,
+        externalLink: true,
     },
     {
         title: 'Contato',
@@ -29,7 +37,7 @@ export const MenuData = [
         blockItem: true,
         iconClosed: null,
         iconOpened: null,
-        subNav: null,
+        externalLink: false,
     },
     {
         title: 'Blog',
@@ -37,6 +45,6 @@ export const MenuData = [
         blockItem: true,
         iconClosed: null,
         iconOpened: null,
-        subNav: null,
+        externalLink: false,
     }
 ]

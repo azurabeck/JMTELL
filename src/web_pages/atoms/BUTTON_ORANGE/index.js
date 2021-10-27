@@ -21,7 +21,7 @@ const ButtonOrange = ({ TEXT , WIDTH , HEIGHT , FONT_SIZE , BTN_TYPE , TO}) => {
 
     return (
         <>
-            { BTN_TYPE === 1 && <div onClic={TO} className='btn-orange' style={CUSTOM_STYLE}> {TEXT} </div> }
+            { BTN_TYPE === 1 && <div onClick={TO} className='btn-orange' style={CUSTOM_STYLE}> {TEXT} </div> }
             { BTN_TYPE === 2 && <a href={TO} className='btn-orange' style={CUSTOM_STYLE}> {TEXT} </a> }
             { BTN_TYPE === 3 && <Link to={TO} className='btn-orange' style={CUSTOM_STYLE}> {TEXT} </Link> }
         </>

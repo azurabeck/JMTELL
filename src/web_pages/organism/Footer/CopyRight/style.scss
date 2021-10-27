@@ -6,7 +6,12 @@
         max-width: 100%;
         flex-wrap: wrap;
 
-        .social-networks { border-bottom: 1px solid #94B2C1; width: 500px; padding-bottom: 16px; margin-bottom: 5px;
+        .social-networks { 
+            display: flex; justify-content: center; align-items: center;
+            border-bottom: 1px solid #94B2C1; width: 500px; padding-bottom: 16px; margin-bottom: 5px;
+            .logout-admin { font-size: 10px; padding: 4px 7px; border: 1px solid #fff; border-radius: 30px; margin-left: 10px; color: #fff; }
+            .logout-admin:hover { border: 1px solid #FAA916; color: #FAA916; cursor: pointer; }
+
             svg { height: 24px;
                 &:first-child { margin-right: 8px; }
             }

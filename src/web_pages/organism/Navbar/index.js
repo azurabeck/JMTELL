@@ -30,7 +30,9 @@ const Navbar = () => {
                         <div className='mob-nav-menu'>
                             
                             { MENU_DATA && MENU_DATA.map((route, index) => (
-                                <Link to={route.path} key={index} className={path === route.path && 'active'} >{route.title}</Link>
+                                route.externalLink === true ?
+                                 <a href={route.path} key={index} className={path === route.path && 'active'} >{route.title}</a>
+                                : <Link to={route.path} key={index} className={path === route.path && 'active'} >{route.title}</Link>
                             )) }
                             
                         </div>

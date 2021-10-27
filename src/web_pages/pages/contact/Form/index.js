@@ -1,9 +1,12 @@
 import React , { useState } from 'react'
 import BUTTON_ORANGE from '../../../atoms/BUTTON_ORANGE'
+import { SUCCESS_MSG } from '../../../atoms/SVG/_index'
+
 import './style.scss'
 
 const Form = () => {
 
+    const [ CLIENT_REQUEST_SUCCESS , sendData ] = useState(null) 
     const [ subject , getSubject ] = useState(null)
     const [ formData, getForm ] = useState({
         subject_type: '',
@@ -14,18 +17,21 @@ const Form = () => {
         return_type: null,
     })
 
-    console.log(formData)
+    const handleSubmit = (formData) => {
+        if(formData) { sendData('SUCCESS') }
+        else { sendData('ERROR') }
+    }
 
     return (
         <div className='form'>
 
             <div className='steps-group'>
                 <div className='step active' />
-                <div className='step' />
-                <div className='step' />
+                <div className={ subject ? 'step active' : 'step' } />
+                <div className={ CLIENT_REQUEST_SUCCESS ? 'step active' : 'step' } />
             </div>
 
-            { !subject &&
+            { !subject && !CLIENT_REQUEST_SUCCESS &&
             
                 <div className='buttons'>
                     <div className='buttons-title'>Para melhor atende-lo(a), selecione com o assunto para qual você precisa de ajuda, e deixe sua mensagem em seguida.</div>
@@ -41,7 +47,7 @@ const Form = () => {
             
             }
 
-            { subject &&
+            { subject && !CLIENT_REQUEST_SUCCESS &&
             
                 <div className='contact-form'>
                     <div className='contact-form-title'>
@@ -80,7 +86,7 @@ const Form = () => {
                                 HEIGHT='36px'
                                 FONT_SIZE='14px'
                                 BTN_TYPE={1}
-                                TO=''
+                                TO={() => handleSubmit(formData)}
                             />
 
                         </div>
@@ -91,8 +97,15 @@ const Form = () => {
             }
 
 
+            {
+                CLIENT_REQUEST_SUCCESS && <div className='feedback'>
+                    <div className='feedback-title'> MENSAGEM ENVIADA </div>
+                    <div className='feedback-desc'> AGORA É SÓ ESPERAR QUE NOSSA EQUIPE ENTRARÁ EM CONTATO COM VOCÊ NA PLATAFORMA ESCOLHIDA </div>
+                    <SUCCESS_MSG />
+                </div>
+            }
 
-            <div className='feedback'></div>
+            
 
 
         </div>
