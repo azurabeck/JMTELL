@@ -55,11 +55,20 @@
     
                 .text-btn-area { margin-bottom: 80px;
                     .btn-orange-square { position: absolute;
-                                            bottom: 40px;
-                                            right: 0px; 
-                                            width: calc(220px - 40px) !important; height: calc(85px - 40px) !important;
-                                            padding: 20px;
-                                            font-size: 16px;                                
+                                         bottom: 40px; right: 0px; 
+                                         width:250px; height: 95px;
+                                         padding: 20px;
+                                         font-size: 22px; font-weight: 600;                                          
+                                         background: #FAA916; color: #fff;                                             
+                                         border: none;
+                                         text-transform: uppercase;
+                                    
+                                        &:hover {
+                                            cursor: pointer;
+                                            background-color: #f39e05;
+                                            box-shadow: 2px 2px 4px #4e4e4e;
+                                        }
+                                        
                     }
                 }
             } //END FORM

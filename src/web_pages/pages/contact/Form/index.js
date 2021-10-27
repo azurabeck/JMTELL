@@ -84,7 +84,7 @@ const Form = (props) => {
                                 <label for="email">Email</label>
                             </div>
                             </div>
-                            <button className='btn-orange-square' type='submit'>entrar</button>
+                            <button className='btn-orange-square' type='submit'>Enviar</button>
                         </div>
                     </form>
 
