@@ -17,7 +17,7 @@ const Login = (props) => {
     }
     
     const { authError, auth } = props
-    if(auth.uid) { return <Redirect to='/' /> }
+    if(auth.uid) { return <Redirect to='/admin/clients' /> }
 
 
     return (

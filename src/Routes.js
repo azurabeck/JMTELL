@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 // IMPORT ORGANISM
 import Navbar from './web_pages/organism/Navbar'
 import Footer from './web_pages/organism/Footer'
+import Sidebar from './web_pages/organism/Sidebar'
 
 
 // IMPORT PUBLIC PAGES
@@ -15,7 +16,11 @@ import Blog from './web_pages/templates/blog'
 
 
 // IMPORT ADMIN PAGES
-import Login from './web_admin/login'
+import LOGIN from './web_admin/login'
+import MANAGER_CLIENTS from './web_admin/clients'
+import MANAGER_PRODUCTS from './web_admin/product'
+
+
 
 function Routes() {
 
@@ -25,7 +30,9 @@ function Routes() {
         <>
      
             { location.indexOf("/admin") !== 0 &&  <Navbar/> }
-            <div className={ location.indexOf("/admin") !== 0 && 'content'}>
+            { location.indexOf("/admin/") === 0 &&  <Sidebar/> }
+
+            <div className={ location.indexOf("/admin") !== 0 ? 'content' : 'content-admin'}>
                 <Switch>
                     <Route exact path='/' component={Home}></Route>
                     <Route exact path='/empresa' component={Company}></Route>
@@ -34,7 +41,11 @@ function Routes() {
                     <Route exact path='/blog' component={Blog}></Route>
 
                     {/* ADMIN AREA */}
-                    <Route exact path='/admin' component={Login}></Route>
+                    <Route exact path='/admin' component={LOGIN}></Route>
+                    <Route exact path='/admin/clientes' component={MANAGER_CLIENTS}></Route>
+                    <Route exact path='/admin/produtos' component={MANAGER_PRODUCTS}></Route>
+
+
                 </Switch>
             </div>
             { location.indexOf("/admin") !== 0 &&  <Footer/> }
