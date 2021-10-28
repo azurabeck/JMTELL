@@ -41,3 +41,17 @@ export const updateProcuct = (product) => {
         
     }
 }
+
+export const deleteProcuct = (product) => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        //make async call to database
+        const firestore = getFirestore();
+        firestore.collection('products').doc(product.id).delete()     
+        .then(() => {
+            dispatch({ type: 'PRODUCT_DELETE', product })
+        }).catch((err) => {
+            dispatch({type: 'PRODUCT_DELETE_ERRO', err})
+        })
+        
+    }
+}

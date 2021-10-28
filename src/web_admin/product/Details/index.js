@@ -1,7 +1,7 @@
 import React , { useState , useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import { updateProcuct } from '../../../web_config/actions/productActions'
+import { updateProcuct , deleteProcuct } from '../../../web_config/actions/productActions'
 import { connect } from 'react-redux'
 import './style.scss'
 
@@ -21,6 +21,13 @@ const Details = (props) => {
         props.updateProcuct({...PRODUCT, spotlight})
     }
      
+    const handleDelete = (e) => {
+        e.preventDefault()
+        props.deleteProcuct({...PRODUCT})
+        CLICK()
+    }
+
+
     return (
         <div className='product-details'>
             <div className='title'> Detalhes do Produto <div className='btn-close' onClick={CLICK}><FontAwesomeIcon icon={faTimes} /></div> </div>
@@ -56,15 +63,13 @@ const Details = (props) => {
                         <li key={index}> {item.info_desc} </li>
                     ))
                 }
-            </ul>
-
-          
+            </ul>          
 
             { spotlightState && <div className='spotlight' onClick={(e) => handleSubmit(e , !spotlightState)}>Em Destaque</div> }
             { spotlightState === false && <div className='spotlight-off' onClick={(e) => handleSubmit(e, !spotlightState)}>Destacar</div> }
+
+            <div className='remove-btn' onClick={(e) => handleDelete(e)}>Deletar Produto</div>
            
-
-
         </div>
     )
 }
@@ -78,7 +83,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 return {
-    updateProcuct: (product) => dispatch(updateProcuct(product))
+    updateProcuct: (product) => dispatch(updateProcuct(product)),
+    deleteProcuct: (product) => dispatch(deleteProcuct(product))
 }
 }
 

@@ -118,5 +118,30 @@
             &:hover { background-color: #5AFF15; color: #3c5e1d; cursor: pointer; }
         }
 
+        .remove-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 8px;
+            background: #F24333;
+            color: #fff;
+            margin-top: 89px;
+            font-size: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            
+            &:hover { background-color: #be2f22; color: #efefef; cursor: pointer; }
+        }
+
     }
+}
+
+.product-details::-webkit-scrollbar {
+    width: 7px;
+}
+  
+.product-details::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 0px;
+    background: #B0BEC5; 
 }
