@@ -1,14 +1,29 @@
 import { faCaretRight, faMailBulk, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux'
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
 import './style.scss'
+import ADD_CLIENT from './AddInfo'
 
-const Clients = () => {
+const Clients = (props) => {
+
+    const CLIENTS_DB = props.clients
+    const [ registerDialog , handleRegister ] = useState(false)
+
     return (
         <div className='clients'>
+
+
+            { registerDialog && <ADD_CLIENT click={() => handleRegister(!registerDialog)}/> }
+
+
             <div className='fast-bar'> Clientes: 10  <FontAwesomeIcon icon={faMailBulk} /> </div>    
         
-            <div className='title'> Clientes </div>
+            <div className='title'> Clientes  <div className='button-orange' 
+                                                    onClick={() => handleRegister(!registerDialog)}> REGISTRAR NOVO CLIENT </div> 
+            </div>
 
             <div className='table'>
                 <div className='table-title'> 
@@ -24,22 +39,41 @@ const Clients = () => {
                     <div className='COL_SIZE_LARGE'> Telefone </div>
                     <div className='COL_SIZE_LARGE'> Mais detalhes </div>                
                 </div>
-                <div className='table-body'> 
-                    <div className='COL_SIZE_LARGE'> Rebecca Souza </div>
-                    <div className='COL_SIZE_LARGE'> rebeccagsouza@gmail.com </div>
-                    <div className='COL_SIZE_LARGE'> (21) 99758-03541 </div>
-                    <div className='COL_SIZE_LARGE'> <FontAwesomeIcon icon={faCaretRight} /> </div>
+
+                <div className='table-body'>
+                {
+                    CLIENTS_DB && CLIENTS_DB.map((item, index) => {
+                        return (
+
+                            <div className='table-row' key={index}> 
+                                <div className='COL_SIZE_LARGE'> {item.name} </div>
+                                <div className='COL_SIZE_LARGE'> {item.email} </div>
+                                <div className='COL_SIZE_LARGE'> {item.telephone} </div>
+                                <div className='COL_SIZE_LARGE'> <FontAwesomeIcon icon={faCaretRight} /> </div>                
+                            </div>
+                            
+                        )
+                    })
+                }
                 
                 </div>
 
 
 
-
             </div>
-
-
         </div>
     ) 
 }
 
-export default Clients;
+const mapStateToProps = (state) => {
+    return {
+      clients: state.firestore.ordered.clients
+    }
+  }
+  
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+        { collection: 'clients' }
+    ])
+)(Clients)

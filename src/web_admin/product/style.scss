@@ -11,8 +11,30 @@
     }
 
     .title {
+        display: flex; flex-direction: row;
+        align-items: center; justify-content: flex-start;
         font-size: 28px; font-weight: 500; color: #323030;
         margin-top: 50px; margin-bottom: 40px;
+
+        .button-orange { 
+            display: flex; 
+            align-items: center; justify-content: center;
+            background: #FAA916; color: #fff;
+            border-radius: 9px;
+            font-weight: 400;
+            text-transform: uppercase;
+            margin-left: 40px;
+            font-size: 14px;
+            width: 250px; height: 34px;
+            
+        
+            &:hover {
+                cursor: pointer;
+                background-color: #f39e05;
+                box-shadow: 2px 2px 4px #4e4e4e;
+            }
+        }
+        
     }
 
     .table { 
@@ -78,16 +100,19 @@
         }
 
         .table-body {
-            display: flex;
-            flex-direction: row;
-            background: #fff;
-            height: 50px;
-            align-items: center;
-            color: #484848;
-            margin-top: 8px;
-            font-weight: 400;
-            font-size: 14px;
-            max-width: 100%;
+
+            .table-row  {
+                display: flex;
+                flex-direction: row;
+                background: #fff;
+                height: 50px;
+                align-items: center;
+                color: #484848;
+                margin-top: 8px;
+                font-weight: 400;
+                font-size: 14px;
+                max-width: 100%;
+            }
         }
     }
 }

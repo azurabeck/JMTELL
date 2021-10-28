@@ -28,7 +28,19 @@
                  margin-top: 20px; width: 310px;   
 
                  .recover-password { font-size: 14px; color: #003d5c; }
-                 .btn-orange-square { width:150px; height: 40px; font-size: 14px; }
+                 .btn-orange-square { 
+                    display: flex; align-items: center; 
+                    justify-content: center;
+                    width:130px; height: 28px;
+                    font-size: 14px; font-weight: 400;                                          
+                    background: #FAA916; color: #fff;   
+                    border: none;               
+                   &:hover {
+                       cursor: pointer;
+                       background-color: #f39e05;
+                       box-shadow: 2px 2px 4px #4e4e4e;
+                   }
+                }
              }
 
         }

@@ -15,7 +15,6 @@ const Form = (props) => {
         msg: '',
         returnType: null,
         client_subject: subject,
-        msg: ''
     })
 
 
