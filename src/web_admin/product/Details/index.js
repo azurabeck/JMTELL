@@ -17,6 +17,7 @@ const Details = (props) => {
 
     const handleSubmit = (e , spotlight) => {
         e.preventDefault()
+        addSpotlight(spotlight)
         props.updateProcuct({...PRODUCT, spotlight})
     }
      
