@@ -10,6 +10,14 @@ const productReducer = (state = initState, action) => {
             return {
                 ...state, Error: null, PRODUCT_SENT: true
             }
+        case 'PRODUCT_UPDATE_ERROR': 
+            return {
+                ...state, Error: 'PRODUCT UPDATE FAILED' , PRODUCT_SENT: false 
+            }
+        case 'PRODUCT_UPDATE':
+            return {
+                ...state, Error: null, PRODUCT_SENT: true
+            }
         default:
             return state
     }

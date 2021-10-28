@@ -51,6 +51,11 @@
                                 flex-grow: 1;
                                 max-width: unset;
                                 display: flex;
+
+                                svg { font-size: 16px;
+                                    margin-top: 3px;
+                                    margin-left: 10px;
+                                }
                             }
                         }
 
@@ -112,6 +117,8 @@
                 font-weight: 400;
                 font-size: 14px;
                 max-width: 100%;
+
+                &:hover { background-color: #dbdbdb; cursor: pointer;}
             }
         }
     }

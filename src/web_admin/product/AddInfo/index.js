@@ -13,24 +13,34 @@ const AddClient = ( props ) => {
         name: '',
         description: '',
         details: [{ detail_name: "", detail_info : ""}],
-        aditional: '',
+        aditional: [{ info_desc: "" }],        
+        category: [{ cat_desc: "" }],
         model: '',
+        img: '',
+        spotlight: true,
     })
     const [formValues, setFormValues] = useState([{detail_name: "", detail_desc: ""}])
-    const [formInfoValues, setInfoFormValues] = useState([{info_name: "", info_desc: ""}])
+    const [formInfoValues, setInfoFormValues] = useState([{ info_desc: ""}])
+    const [formCatValues, setCatFormValues] = useState([{ cat_desc: "" }])
 
 
     let handleDetailsChange = (i, e) => {
         let newFormValues = [...formValues];
         newFormValues[i][e.target.name] = e.target.value;
         setFormValues(newFormValues);
-        getForm({...formData, details: formValues})
+        getForm({...formData, details: formValues })
      }
      let handleInfoChange = (i, e) => {
         let newFormValues = [...formInfoValues];
         newFormValues[i][e.target.name] = e.target.value;
         setInfoFormValues(newFormValues);
-        getForm({...formData, aditional: formInfoValues})
+        getForm({...formData, aditional: formInfoValues })
+     }
+     let handleCatChange = (i, e) => {
+        let newFormValues = [...formCatValues];
+        newFormValues[i][e.target.name] = e.target.value;
+        setCatFormValues(newFormValues);
+        getForm({...formData, category: formCatValues })
      }
 
         
@@ -38,7 +48,10 @@ const AddClient = ( props ) => {
         setFormValues([...formValues,{detail_name: "", detail_desc: "" }])
      }
      let addInfoFormFields = () => {
-        setInfoFormValues([...formInfoValues,{info_name: "", info_desc: "" }])
+        setInfoFormValues([...formInfoValues, { info_desc: "" }])
+     }
+     let addCatFormFields = () => {
+        setCatFormValues([...formCatValues, { cat_desc: "" }])
      }
 
 
@@ -52,6 +65,12 @@ const AddClient = ( props ) => {
         newFormValues.splice(i, 1);
         setInfoFormValues(newFormValues)
     }
+    let removeCatFormFields = (i) => {
+        let newFormValues = [...formCatValues];
+        newFormValues.splice(i, 1);
+        setCatFormValues(newFormValues)
+    }
+
 
     const handleSubmit = (e) => {       
         e.preventDefault()        
@@ -72,9 +91,10 @@ const AddClient = ( props ) => {
                         <input placeholder='Nome' required onChange={(e) => getForm({...formData, name: e.target.value })} ></input>
                         <textarea placeholder='Descrição do produto' required onChange={(e) => getForm({...formData, description: e.target.value})}></textarea>
                         <input placeholder='Modelo / Marca' required onChange={(e) => getForm({...formData, model: e.target.value})}></input>
+                        <input placeholder='Link da imagem' required onChange={(e) => getForm({...formData, img: e.target.value })} ></input>
 
                         <div className='details-group'>
-                            <div className='title'> Detalhes Tecnicos  <div className='add-details'  onClick={() => addDetailsFormFields()}>Adionar</div> </div>   
+                            <div className='title'> Detalhes Tecnicos  <div className='add-details'  onClick={() => addDetailsFormFields()}>Adicionar</div> </div>   
                             {formValues.map((element, index) => (
                                     <div className='details-field'>
                                         <input className='detail_name' name='detail_name' placeholder='Nome'onChange={e => handleDetailsChange(index, e)} />
@@ -93,11 +113,10 @@ const AddClient = ( props ) => {
                         
 
                         <div className='details-group'>
-                            <div className='title'> Informações Adicionais  <div className='add-details'  onClick={() => addInfoFormFields()}>Adionar</div> </div>   
+                            <div className='title'> Informações Adicionais  <div className='add-details'  onClick={() => addInfoFormFields()}>Adicionar</div> </div>   
                             {formInfoValues.map((element, index) => (
                                     <div className='details-field'>
-                                        <input className='detail_name' name='detail_name' placeholder='Nome'onChange={e => handleInfoChange(index, e)} />
-                                        <input className='detail_desc' name='detail_desc' placeholder='Descrição'  onChange={e => handleInfoChange(index, e)} />
+                                        <input className='cat_desc' name='info_desc' placeholder='Descrição'  onChange={e => handleInfoChange(index, e)} />
 
 
                                         {
@@ -108,7 +127,23 @@ const AddClient = ( props ) => {
                                     </div>
                                 ))
                             }
-                        </div>         
+                        </div>
+
+                            <div className='details-group'>
+                            <div className='title'> Categorias <div className='add-details'  onClick={() => addCatFormFields()}>Adicionar</div> </div>   
+                            {formCatValues.map((element, index) => (
+                                    <div className='details-field'>
+                                        <input className='cat_desc' name='cat_desc' placeholder='Nome' onChange={e => handleCatChange(index, e)} />
+
+                                        {
+                                            index ? 
+                                            <button type="button"  className="button remove" onClick={() => removeCatFormFields(index)}>x</button> 
+                                            : null
+                                        }
+                                    </div>
+                                ))
+                            }
+                        </div>                 
 
                         <div className='btn-area'> <button className='btn-orange-square' type='submit'>Registrar Produto</button> </div>
                         

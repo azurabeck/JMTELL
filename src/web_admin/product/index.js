@@ -6,18 +6,25 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import './style.scss'
 import ADD_CLIENT from './AddInfo'
+import DETAILS from './Details'
 
 const Products = (props) => {
 
     const PRODUCTS_DB = props.products
     const [ registerDialog , handleRegister ] = useState(false)
+    const [ openDetails , showDetails ] = useState(false)
+    const [ itemDetails , handleItems ] = useState(null)
+
+    const handleDetails = (item) => {
+        handleItems(item)    
+        showDetails(!openDetails)
+    }
 
     return (
-        <div className='products'>
+        <div className='products'>      
 
-
+            { openDetails && <DETAILS PRODUCT={itemDetails} CLICK={() => showDetails(false)} /> }    
             { registerDialog && <ADD_CLIENT click={() => handleRegister(!registerDialog)}/> }
-
 
             <div className='fast-bar'> Clientes: 10  <FontAwesomeIcon icon={faMailBulk} /> </div>    
         
@@ -34,32 +41,28 @@ const Products = (props) => {
                     </div>
                 </div>
                 <div className='table-header'>
-                    <div className='COL_SIZE_LARGE'> Nome </div>
-                    <div className='COL_SIZE_LARGE'> Email </div>
-                    <div className='COL_SIZE_LARGE'> Telefone </div>
-                    <div className='COL_SIZE_LARGE'> Mais detalhes </div>                
+                    <div className='COL_SIZE_LARGE'> Nome do Produto </div>
+                    <div className='COL_SIZE_LARGE'> Produto em Destaque </div>         
+                    <div className='COL_SIZE_LARGE'>  </div>              
+
                 </div>
 
                 <div className='table-body'>
                 {
                     PRODUCTS_DB && PRODUCTS_DB.map((item, index) => {
+                    
                         return (
 
-                            <div className='table-row' key={index}> 
+                            <div className='table-row' key={index} onClick={() => handleDetails(item)}> 
                                 <div className='COL_SIZE_LARGE'> {item.name} </div>
-                                <div className='COL_SIZE_LARGE'> {item.email} </div>
-                                <div className='COL_SIZE_LARGE'> {item.telephone} </div>
-                                <div className='COL_SIZE_LARGE'> <FontAwesomeIcon icon={faCaretRight} /> </div>                
+                                <div className='COL_SIZE_LARGE'> {item.spotlight ? 'Em detaque' : ''} </div>
+                                <div className='COL_SIZE_LARGE'> Exibir detalhes <FontAwesomeIcon icon={faCaretRight} /> </div>      
                             </div>
-                            
                         )
                     })
                 }
                 
                 </div>
-
-
-
             </div>
         </div>
     ) 
