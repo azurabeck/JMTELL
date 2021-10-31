@@ -47,7 +47,8 @@ function Routes() {
                     <Route exact path='/admin/clientes' component={MANAGER_CLIENTS}></Route>
                     <Route exact path='/admin/produtos' component={MANAGER_PRODUCTS}></Route>
                     <Route exact path='/admin/blog' component={MANAGER_BLOG}></Route>
-                    <Route exact path='/admin/blog/post' component={CREATE_POST}></Route>
+                    <Route exact path='/admin/blog/create-post' component={CREATE_POST}></Route>
+                    <Route exact path='/admin/blog/edit-post/:id' component={CREATE_POST}></Route>
 
 
 

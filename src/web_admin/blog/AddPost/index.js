@@ -7,7 +7,7 @@ import './style.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown, faChevronUp, faPen } from '@fortawesome/free-solid-svg-icons'
 
-const AddPost = () => {
+const AddPost = (props) => {
 
     const [ updateField , handleUpdate ] = useState(false)
     const [ coverShow , hideCover ] = useState(true)
@@ -24,12 +24,17 @@ const AddPost = () => {
     })
 
     const IS_EDITING = true
+    console.log(props.POST_DB)
 
     const handleUpdateField = (e) => {
         handlePostEdition({...post, [e.target.name]: e.target.value })
     }
 
-
+    const handleSubmit = (e) => {       
+        e.preventDefault()        
+        props.createPost(post)
+    }
+    
     return (
         <div className='blog'>
             
@@ -37,11 +42,11 @@ const AddPost = () => {
                 {IS_EDITING ? `Editando Post: ${post.id}` : 'Criar Post'}
             </div>
 
-            <form>          
+            <form  onSubmit={(e) => handleSubmit(e)}>          
 
                 <div className='cover'>
 
-                    <div className='block-title' onClick={() => hideCover(!coverShow)} > Editando Capa  <FontAwesomeIcon icon={coverShow ? faChevronUp : faChevronDown} />  </div>
+                    <div className='block-title' onClick={() => hideCover(!coverShow)} > Edição da Capa  <FontAwesomeIcon icon={coverShow ? faChevronUp : faChevronDown} />  </div>
 
                     { coverShow &&
                    
@@ -109,7 +114,7 @@ const AddPost = () => {
 
                 <div className='post'>
 
-                    <div className='block-title' onClick={() => hidePost(!postShow)} > Editando Post  <FontAwesomeIcon icon={postShow ? faChevronUp : faChevronDown} />  </div>
+                    <div className='block-title' onClick={() => hidePost(!postShow)} > Edição do Post  <FontAwesomeIcon icon={postShow ? faChevronUp : faChevronDown} />  </div>
                     
                     { postShow &&
                    
@@ -164,17 +169,17 @@ AddPost.modules = {
     'link' , 'image' , 'video' , 'code-block'
   ]
 
-const mapStateToProps = (state) => {
-    return {
-        POST_SENT: state.product.POST_SENT
-    }
-}
 
+  const mapStateToProps = (state) => {
+    return {
+        post: state.firestore.ordered.posts
+    }
+  }
 
 const mapDispatchToProps = (dispatch) => {
-return {
-    createPost: (post) => dispatch(createPost(post))
-}
+    return {
+        createPost: (post) => dispatch(createPost(post))
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddPost)
