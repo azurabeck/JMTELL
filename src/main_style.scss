@@ -24,7 +24,7 @@ body::-webkit-scrollbar-thumb {
 a { text-decoration: none; }
 
 .content { margin-top: 80px; }
-.content-admin { position: absolute; left: 240px; top: 0; bottom: 0; right: 0; padding: 15px 30px; background-color: #eceff1; }
+.content-admin { position: absolute; left: 240px; top: 0; bottom: 0; right: 0; padding: 15px 30px; background-color: #eceff1; overflow: auto; }
 
 
 input , textarea { 

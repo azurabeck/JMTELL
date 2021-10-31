@@ -1,0 +1,125 @@
+.blog { 
+
+    .fast-bar {
+        display: flex;
+        align-items: center; justify-content: flex-end;
+        color: #a59595;
+
+        svg { margin-left: 30px; }
+        svg:hover { color: rgba(247, 7, 7, 0.733); cursor: pointer; }
+
+    }
+
+    .title {
+        display: flex; flex-direction: row;
+        align-items: center; justify-content: flex-start;
+        font-size: 28px; font-weight: 500; color: #323030;
+        margin-top: 50px; margin-bottom: 40px;
+
+        .button-orange { 
+            display: flex; 
+            align-items: center; justify-content: center;
+            background: #FAA916; color: #fff;
+            border-radius: 9px;
+            font-weight: 400;
+            text-transform: uppercase;
+            margin-left: 40px;
+            font-size: 14px;
+            width: 250px; height: 34px;
+            
+        
+            &:hover {
+                cursor: pointer;
+                background-color: #f39e05;
+                box-shadow: 2px 2px 4px #4e4e4e;
+            }
+        }
+        
+    }
+
+    .table { 
+
+        .COL_SIZE_LARGE {   -webkit-flex-shrink: 0; flex-shrink: 0;
+                            -webkit-flex: 280px 1;
+                            flex: 280px 1;
+                            max-width: 280px;
+                            min-width: 280px;
+                            padding: 0 15px; 
+
+                            &:last-child { 
+                                justify-content: flex-end;
+                                flex-grow: 1;
+                                max-width: unset;
+                                display: flex;
+
+                                svg { font-size: 16px;
+                                    margin-top: 3px;
+                                    margin-left: 10px;
+                                }
+                            }
+                        }
+
+
+        .table-title {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-end;
+            width: calc(100% - 20px);
+            height: 46px;
+            background: #fff;
+            align-items: center;
+            padding: 0 10px;
+            font-size: 14px;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+
+            .search-round { 
+                display: flex; flex-direction: row;
+                align-items: center;
+                width: 345px; border: 1px solid #615e5e;
+                border-radius: 35px;
+
+                input { width: 225px; height: 30px; font-size: 13px; background-color: transparent; }
+                input::placeholder {font-size: 13px; }
+                .button-search { width: 25px; display: flex; align-items: center; justify-content: center;
+                    svg { font-size: 15px; color: #615e5e; }
+                }
+            }
+
+
+        }
+
+        .table-header {
+            display: flex;
+            flex-direction: row;
+            background: #1274c3;
+            height: 55px;
+            align-items: center;
+            color: #fff;
+            font-weight: 400;
+            font-size: 15px;
+            max-width: 100%;
+
+            .COL_SIZE_LARGE:last-child { justify-content: center; }
+        }
+
+        .table-body {
+
+            .table-row  {
+                display: flex;
+                flex-direction: row;
+                background: #fff;
+                height: 50px;
+                align-items: center;
+                color: #484848;
+                margin-top: 8px;
+                font-weight: 400;
+                font-size: 14px;
+                max-width: 100%;
+
+                &:hover { background-color: #dbdbdb; cursor: pointer;}
+            }
+        }
+    }
+}

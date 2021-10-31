@@ -78,9 +78,6 @@ const AddClient = ( props ) => {
         props.click()
     }
 
-
-    console.log(formData)
-
     return (
         <div className='add-info'>
 

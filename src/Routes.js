@@ -19,6 +19,8 @@ import Blog from './web_pages/templates/blog'
 import LOGIN from './web_admin/login'
 import MANAGER_CLIENTS from './web_admin/clients'
 import MANAGER_PRODUCTS from './web_admin/product'
+import MANAGER_BLOG from './web_admin/blog'
+import CREATE_POST from './web_admin/blog/AddPost'
 
 
 
@@ -44,6 +46,9 @@ function Routes() {
                     <Route exact path='/admin' component={LOGIN}></Route>
                     <Route exact path='/admin/clientes' component={MANAGER_CLIENTS}></Route>
                     <Route exact path='/admin/produtos' component={MANAGER_PRODUCTS}></Route>
+                    <Route exact path='/admin/blog' component={MANAGER_BLOG}></Route>
+                    <Route exact path='/admin/blog/post' component={CREATE_POST}></Route>
+
 
 
                 </Switch>
