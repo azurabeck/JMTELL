@@ -7,11 +7,10 @@ export const createPost = (post) => {
 
         firestore.collection('posts').add({
             ...post,
-            date: new Date()
+            date: new Date().toString() ,       
         }).then(function(docRef) {
             firestore.collection('posts').doc(docRef.id).update({
-                ...post,
-                id: docRef.id
+                id: docRef.id,
             })
         })
         .then(() => {
@@ -28,7 +27,7 @@ export const editPost = (post, firebaseId) => {
         //make async call to database
         const firestore = getFirestore();
 
-        firestore.collection('posts').doc(firebaseId).update({
+        firestore.collection('posts').doc(post.id).update({
             ...post
         }).then(() => {
             dispatch({ type: 'EDIT_POST', post })
@@ -39,14 +38,14 @@ export const editPost = (post, firebaseId) => {
     }
 }
 
-export const deletePost = (firebaseId  ) => {
+export const deletePost = (post) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         //make async call to database
         const firestore = getFirestore();
 
-        firestore.collection('posts').doc(firebaseId).delete()
+        firestore.collection('posts').doc(post.id).delete()
         .then(() => {
-            dispatch({ type: 'DELETE_POST', firebaseId  })
+            dispatch({ type: 'DELETE_POST', post  })
         }).catch((err) => {
             dispatch({type: 'DELETE_POST_ERROR', err})
         })

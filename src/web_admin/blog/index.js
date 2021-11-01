@@ -1,6 +1,6 @@
 import { faCaretRight, faMailBulk, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
@@ -29,7 +29,7 @@ const Blog = (props) => {
                     </div>
                 </div>
                 <div className='table-header'>
-                    <div className='COL_SIZE_FULL'> Título da matéroa </div>
+                    <div className='COL_SIZE_LARGE'> Título da matéroa </div>
                     <div className='COL_SIZE_LARGE'> Data de Publicação </div>         
                     <div className='COL_SIZE_LARGE'>  </div>              
 
@@ -41,8 +41,8 @@ const Blog = (props) => {
                     
                         return (
                             <Link className='table-row' to={'/admin/blog/edit-post/' + item.id} key={item.id} >
-                                <div className='COL_SIZE_FULL'> {item.cover_title} </div>
-                                <div className='COL_SIZE_LARGE'> {item.date} </div>
+                                <div className='COL_SIZE_LARGE'> {item.cover_title} </div>
+                                <div className='COL_SIZE_LARGE'> </div>
                                 <div className='COL_SIZE_LARGE'> Exibir detalhes <FontAwesomeIcon icon={faCaretRight} /> </div>      
                             </Link>
                         )

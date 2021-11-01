@@ -81,6 +81,8 @@
         }
     }
 
+    .btn-area  { display: flex; flex-direction: row; margin: 0 auto; }
+
     .btn-orange-square { 
         display: flex; 
         align-items: center; justify-content: center;
@@ -91,11 +93,30 @@
         border: none;
         width: 245px;
         height: 40px;
-        margin: 0 auto;
+        margin: 0 10px;
     
         &:hover {
             cursor: pointer;
             background-color: #f39e05;
+            box-shadow: 2px 2px 4px #4e4e4e;
+        }
+    }
+
+    .btn-red-square { 
+        display: flex; 
+        align-items: center; justify-content: center;
+        background: #ee3313; color: #fff;
+        border-radius: 0px;
+        font-weight: 600;
+        text-transform: uppercase;
+        border: none;
+        width: 245px;
+        height: 40px;
+        margin: 0 10px;
+    
+        &:hover {
+            cursor: pointer;
+            background-color: #c00d0d;
             box-shadow: 2px 2px 4px #4e4e4e;
         }
     }

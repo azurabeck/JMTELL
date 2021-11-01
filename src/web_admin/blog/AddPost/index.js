@@ -1,30 +1,32 @@
 import React , { useState } from 'react'
-import { createPost } from '../../../web_config/actions/postActions'
+import { createPost , editPost , deletePost} from '../../../web_config/actions/postActions'
 import { connect } from 'react-redux'
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import './style.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown, faChevronUp, faPen } from '@fortawesome/free-solid-svg-icons'
+import { Redirect } from 'react-router-dom'
 
 const AddPost = (props) => {
+
+    const IS_EDITING = props.match.url.indexOf('edit-post') !== -1;
+    const POST_DB = props.posts[0]
 
     const [ updateField , handleUpdate ] = useState(false)
     const [ coverShow , hideCover ] = useState(true)
     const [ postShow , hidePost ] = useState(true)
 
     const [ post , handlePostEdition] = useState({
-        id: '',
-        url: '',
-        cover_title: '',
-        date: '',
-        author: '',
-        content: '',
-            
+        id: IS_EDITING && POST_DB ? POST_DB.id : '',
+        url: IS_EDITING && POST_DB ? POST_DB.url : '',
+        cover_title: IS_EDITING && POST_DB ? POST_DB.cover_title : '',
+        date: IS_EDITING && POST_DB ? POST_DB.date : '',
+        author: IS_EDITING && POST_DB ? POST_DB.author : '',
+        content: IS_EDITING && POST_DB ? POST_DB.content : '',            
     })
-
-    const IS_EDITING = true
-    console.log(props.POST_DB)
 
     const handleUpdateField = (e) => {
         handlePostEdition({...post, [e.target.name]: e.target.value })
@@ -34,15 +36,25 @@ const AddPost = (props) => {
         e.preventDefault()        
         props.createPost(post)
     }
+
+    const handleSubmitUpdate = (e) => {
+        e.preventDefault()
+        props.editPost(post)
+    }
+
+    const handleDelete = (e) => {
+        e.preventDefault()
+        props.deletePost(post)
+    }
     
     return (
         <div className='blog'>
             
             <div className='title'>
-                {IS_EDITING ? `Editando Post: ${post.id}` : 'Criar Post'}
+                {IS_EDITING && POST_DB.id ? `Editando Post: ${POST_DB.id}` : 'Criar Post'}
             </div>
 
-            <form  onSubmit={(e) => handleSubmit(e)}>          
+            <form  onSubmit={ IS_EDITING ? (e) => handleSubmitUpdate(e) : (e) => handleSubmit(e)}>          
 
                 <div className='cover'>
 
@@ -125,7 +137,7 @@ const AddPost = (props) => {
                             </div>
                             <div className='post-author'>
                                 <div className='networks'>0</div>
-                                <div className='author'> Criado por: {post.author} - No dia: definido automáticamente na criação do post </div>
+                                <div className='author'> Criado por: {post.author} - No dia: {post.date ? post.date : 'definido automáticamente na criação do post'} </div>
                             </div>
 
                             {/* START RICH TEXT */}
@@ -143,6 +155,8 @@ const AddPost = (props) => {
                 </div>
 
                 <button className='btn-orange-square' type='submit'>{IS_EDITING ? 'Salvar alterações' : 'Criar Post'}</button>
+                { IS_EDITING && <button className='btn-red-square' onClick={(e) => handleDelete(e)}>Deletar post</button>
+}
                
             </form>
 
@@ -169,17 +183,30 @@ AddPost.modules = {
     'link' , 'image' , 'video' , 'code-block'
   ]
 
+  const mapStateToProps = (state, ownProps) => {      
+    const id = ownProps.match.params.id;
+    const posts = state.firestore.ordered.posts
+    const post = posts ? posts.filter(post => post.id === id) : null
 
-  const mapStateToProps = (state) => {
+    console.log(post)
     return {
-        post: state.firestore.ordered.posts
+        posts: post,
+        auth: state.firebase.auth
     }
   }
+  
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createPost: (post) => dispatch(createPost(post))
+        createPost: (post) => dispatch(createPost(post)),
+        editPost: (post) => dispatch(editPost(post)),
+        deletePost: (post) => dispatch(deletePost(post)),
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddPost)
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect([
+        { collection: 'posts' }
+    ])
+)(AddPost)
