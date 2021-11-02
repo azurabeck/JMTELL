@@ -1,7 +1,9 @@
 import React from 'react';
 import BLOG_BAR from '../../organism/Blog'
 import './style.scss'
-import SPOTLIGH from '../../pages/blog/spotlight'
+import SPOTLIGHT from '../../pages/blog/spotlight'
+import POST_LIST from '../../pages/blog/post'
+
 
 const Blog = () => {
     return (
@@ -9,7 +11,8 @@ const Blog = () => {
             <div className='blog'>
                 <BLOG_BAR />
                 <div className='blog-content'>
-                    <SPOTLIGH />
+                    <SPOTLIGHT />
+                    <POST_LIST />
                 </div>
             </div>
     ) 

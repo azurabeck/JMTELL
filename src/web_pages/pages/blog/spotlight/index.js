@@ -8,8 +8,6 @@ const Spotlight = (props) => {
 
     const POST = props.posts
 
-    console.log(POST)
-
     return (
         <div className='spotlight'>
             {
@@ -41,6 +39,7 @@ const mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect([
-        { collection: 'posts' }
+        { collection: 'posts' , orderBy: ["date", "desc"] }
+        
     ])
 )(Spotlight)
