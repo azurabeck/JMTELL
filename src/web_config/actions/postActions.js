@@ -14,7 +14,7 @@ export const createPost = (post) => {
             })
         })
         .then(() => {
-            dispatch({ type: 'CREATE_POST', post })
+            dispatch({ type: 'CREATE_POST', post })            
         }).catch((err) => {
             dispatch({type: 'CREATE_POST_ERROR', err})
         })

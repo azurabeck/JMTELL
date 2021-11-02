@@ -30,7 +30,7 @@ const Blog = (props) => {
                 </div>
                 <div className='table-header'>
                     <div className='COL_SIZE_LARGE'> Título da matéroa </div>
-                    <div className='COL_SIZE_LARGE'> Data de Publicação </div>         
+                    <div className='COL_SIZE_LARGE center'> Data de Publicação </div>         
                     <div className='COL_SIZE_LARGE'>  </div>              
 
                 </div>
@@ -42,7 +42,7 @@ const Blog = (props) => {
                         return (
                             <Link className='table-row' to={'/admin/blog/edit-post/' + item.id} key={item.id} >
                                 <div className='COL_SIZE_LARGE'> {item.cover_title} </div>
-                                <div className='COL_SIZE_LARGE'> </div>
+                                <div className='COL_SIZE_LARGE center'> </div>
                                 <div className='COL_SIZE_LARGE'> Exibir detalhes <FontAwesomeIcon icon={faCaretRight} /> </div>      
                             </Link>
                         )

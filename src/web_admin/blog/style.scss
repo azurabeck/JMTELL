@@ -39,12 +39,13 @@
 
     .table { 
 
-        .COL_SIZE_LARGE {   -webkit-flex-shrink: 0; flex-shrink: 0;
-                            -webkit-flex: 280px 1;
-                            flex: 280px 1;
-                            max-width: 280px;
-                            min-width: 280px;
+        .COL_SIZE_LARGE {   
+                            width: calc(100% / 3);
+                            max-width: calc(100% / 3);
                             padding: 0 15px; 
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                            white-space: nowrap;
 
                             &:last-child { 
                                 justify-content: flex-end;
@@ -58,6 +59,7 @@
                                 }
                             }
                         }
+        .COL_SIZE_LARGE.center { text-align: center; } 
 
 
         .table-title {
