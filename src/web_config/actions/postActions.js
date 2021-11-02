@@ -8,13 +8,14 @@ export const createPost = (post) => {
         firestore.collection('posts').add({
             ...post,
             date: new Date().toString() ,       
-        }).then(function(docRef) {
+        })
+        .then(function(docRef) {
             firestore.collection('posts').doc(docRef.id).update({
                 id: docRef.id,
             })
         })
         .then(() => {
-            dispatch({ type: 'CREATE_POST', post })            
+            dispatch({ type: 'CREATE_POST' })            
         }).catch((err) => {
             dispatch({type: 'CREATE_POST_ERROR', err})
         })
@@ -30,7 +31,7 @@ export const editPost = (post, firebaseId) => {
         firestore.collection('posts').doc(post.id).update({
             ...post
         }).then(() => {
-            dispatch({ type: 'EDIT_POST', post })
+            dispatch({ type: 'EDIT_POST' })
         }).catch((err) => {
             dispatch({type: 'EDIT_POST_ERROR', err})
         })
@@ -45,7 +46,7 @@ export const deletePost = (post) => {
 
         firestore.collection('posts').doc(post.id).delete()
         .then(() => {
-            dispatch({ type: 'DELETE_POST', post  })
+            dispatch({ type: 'DELETE_POST'  })
         }).catch((err) => {
             dispatch({type: 'DELETE_POST_ERROR', err})
         })

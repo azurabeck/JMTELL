@@ -20,7 +20,6 @@ const AddPost = (props) => {
         id: IS_EDITING ? false : true, 
         url: IS_EDITING ? false : true, 
         cover_title: IS_EDITING ? false : true,
-        date: IS_EDITING ? false : true, 
         author: IS_EDITING ? false : true, 
         content: IS_EDITING ? false : true, 
     } )
@@ -32,7 +31,6 @@ const AddPost = (props) => {
         id: IS_EDITING && POST_DB ? POST_DB.id : '',
         url: IS_EDITING && POST_DB ? POST_DB.url : '',
         cover_title: IS_EDITING && POST_DB ? POST_DB.cover_title : '',
-        date: IS_EDITING && POST_DB ? POST_DB.date : '',
         author: IS_EDITING && POST_DB ? POST_DB.author : '',
         content: IS_EDITING && POST_DB ? POST_DB.content : '',            
     })
@@ -50,7 +48,7 @@ const AddPost = (props) => {
     }
 
     const handleSubmit = (e) => {       
-        e.preventDefault()        
+        e.preventDefault()       
         props.createPost(post)
         handleRedirect(true)
     }
@@ -89,7 +87,7 @@ const AddPost = (props) => {
                                                     name='url'
                                                     value={post.url && post.url} 
                                                     onChange={(e) => handleUpdateField(e)} />  
-                                               <div className='btn-update' onClick={(e) => handleSave(e , 'url')}>Salvar alteração</div>                                  
+                                                { IS_EDITING &&   <div className='btn-update' onClick={(e) => handleSave(e , 'url')}>Salvar alteração</div>  }                             
                                             </div>
                                         }
                                         { post.url && !updateField.url &&
@@ -107,7 +105,7 @@ const AddPost = (props) => {
                                                     name='cover_title'
                                                     value={post.cover_title && post.cover_title} 
                                                     onChange={(e) => handleUpdateField(e)} />  
-                                            <div className='btn-update' onClick={(e) => handleSave(e, 'cover_title')}>Salvar alteração</div>                             
+                                            {IS_EDITING && <div className='btn-update' onClick={(e) => handleSave(e, 'cover_title')}>Salvar alteração</div>  }                           
                                         </div> 
                                     }                                        
                                     { post.cover_title && !updateField.cover_title &&   
@@ -124,7 +122,7 @@ const AddPost = (props) => {
                                                         name='author'
                                                         value={post.author && post.author} 
                                                         onChange={(e) => handleUpdateField(e)} />  
-                                                <div className='btn-update'onClick={(e) => handleSave(e, 'author')}>Salvar alteração</div>                                   
+                                                    {IS_EDITING &&   <div className='btn-update'onClick={(e) => handleSave(e, 'author')}>Salvar alteração</div>  }                                 
                                         </div>
                                     } 
                                     { post.author && !updateField.author &&     
