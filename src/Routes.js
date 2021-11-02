@@ -13,6 +13,7 @@ import Company from './web_pages/templates/company'
 import Contact from './web_pages/templates/contact'
 import Products from './web_pages/templates/products'
 import Blog from './web_pages/templates/blog'
+import Post from './web_pages/templates/post'
 
 
 // IMPORT ADMIN PAGES
@@ -41,6 +42,7 @@ function Routes() {
                     <Route exact path='/contato' component={Contact}></Route>
                     <Route exact path='/produtos' component={Products}></Route>
                     <Route exact path='/blog' component={Blog}></Route>
+                    <Route exact path='/blog/:id' component={Post}></Route>
 
                     {/* ADMIN AREA */}
                     <Route exact path='/admin' component={LOGIN}></Route>
