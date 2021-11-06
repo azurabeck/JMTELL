@@ -18,7 +18,7 @@ const AddCategorie = ( props ) => {
         subcategorie: null
     })
     const [formValues, setFormValues] = useState([ IS_EDITING ?
-        IS_EDITING.subcategorie.map(item => item)  : { sub_name: '' } ])
+        IS_EDITING.subcategorie  : { sub_name: '' } ])
 
     let handleCategorieChange = (i, e) => {
         let newFormValues = [...formValues];
