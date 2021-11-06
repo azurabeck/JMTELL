@@ -2,14 +2,14 @@
           display: flex; flex-direction: row; 
           align-items: center; justify-content: space-between;
           top: 0;
-          width: calc(100% - 20px); height: 80px; 
-          padding: 0 10px;
+          width: calc(100% - 100px); height: 80px; 
+          padding: 0 50px;
           background-color: #fff; color: #323030;
           box-shadow: 0px 4px 7px rgba(158, 154, 154, 0.25);  
           font-weight: normal; font-size: 16px;
           
           .navbar-buttons { display: flex; flex-direction: row; 
-             .nav-bar { display: flex; z-index: 999; }
+             .nav-bar { display: flex; z-index: 999; svg { font-size: 28px; } }
 
              .mob-nav-menu {
                               position: fixed; 
@@ -39,7 +39,7 @@
            
 }
 
-@media screen and (min-width: '700px') {
+@media screen and (min-width: '860px') {
       .navbar {  width: calc(100% - 140px); padding: 0 70px; 
             .nav-bar { display: none !important; }
       

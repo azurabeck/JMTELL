@@ -30,3 +30,15 @@
         }
     }
 }
+
+@media screen and (max-width: '860px') {
+    .home .header .title { max-width: calc(100% - 40px); }
+
+}
+
+
+@media screen and (max-width: 450px) {
+    .home .header .title { max-width: calc(100% - 40px); }
+    .home .header .btn-orange { max-width: calc(100% - 20px); }
+
+}
