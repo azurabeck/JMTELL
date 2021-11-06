@@ -1,4 +1,4 @@
-import React , { useState } from 'react'
+import React , { useState , useEffect } from 'react'
 import './style.scss';
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
@@ -10,9 +10,17 @@ import { faChevronDown , faChevronUp} from '@fortawesome/free-solid-svg-icons';
 const Sidebar = (props) => {
 
     const SIDEBAR_DATA = props.categories
-    const SIDEBAR_TOPICS = SIDEBAR_DATA && SIDEBAR_DATA.map(item =>  ( item.name ) )
-    const SIDEBAR_TOPICS_DISPLAY = SIDEBAR_TOPICS && SIDEBAR_TOPICS.reduce((a, v) => ({ ...a, [v]: true}) , {}) 
-    const [ displayMenu , handleMenu ] = useState( SIDEBAR_TOPICS_DISPLAY && SIDEBAR_TOPICS_DISPLAY )
+    const [ displayMenu , handleMenu ] = useState( null )
+
+   
+    useEffect(() => {
+        async function anyNameFunction() {
+            await SIDEBAR_DATA;
+            const SIDEBAR_TOPICS = await SIDEBAR_DATA && SIDEBAR_DATA.map(item =>  ( item.name ) )
+            handleMenu( SIDEBAR_TOPICS && SIDEBAR_TOPICS.reduce((a, v) => ({ ...a, [v]: true}) , {}) )
+        }
+        anyNameFunction();
+    }, [SIDEBAR_DATA]);
     
     return (
 

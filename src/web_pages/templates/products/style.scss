@@ -1,9 +1,9 @@
-.products { 
+.products { background-color:#fff;
     .products-content {
         display: flex; flex-direction: row;
-        align-items: center; justify-content: flex-start;
-        margin-top: 130px; 
+        align-items: flex-start; justify-content: flex-start;
+        margin-top: 130px;
 
-        .products-area { width: 100%; background-color:#FBFAFA; }
+        .products-area { width: calc(100% - 270px); background-color:#FBFAFA; padding-top: 100px; border-left: 2px solid #e1e1e1; }
     }
 }
