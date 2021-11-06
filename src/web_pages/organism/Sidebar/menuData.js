@@ -16,6 +16,14 @@ export const MenuData = [
         externalLink: false,
     },
     {
+        title: 'Categorias',
+        path: '/admin/categorias',
+        blockItem: true,
+        iconClosed: null,
+        iconOpened: null,
+        externalLink: false,
+    },
+    {
         title: 'Blog',
         path: '/admin/blog',
         blockItem: true,

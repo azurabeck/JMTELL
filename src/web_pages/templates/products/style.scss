@@ -1,6 +1,9 @@
 .products { 
     .products-content {
-        margin-top: 130px;
-    }
+        display: flex; flex-direction: row;
+        align-items: center; justify-content: flex-start;
+        margin-top: 130px; 
 
+        .products-area { width: 100%; background-color:#FBFAFA; }
+    }
 }

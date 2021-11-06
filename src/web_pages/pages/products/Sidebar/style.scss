@@ -1,0 +1,12 @@
+.products-sidebar { 
+    width: 330px; 
+    background-color: #fff;
+    min-height: 250px;
+    border-right: 2px solid #e1e1e1;
+
+    .sidebar-buttons { padding: 20px 15px; width: calc(100% - 30px); border-bottom: 2px solid #e1e1e1; 
+        font-style: normal; font-weight: 500; font-size: 16px;  text-align: center; color: #000000;   
+    }
+    .sidebar-sub-buttons { padding: 20px 15px; width: calc(100% - 30px); border-bottom: 2px solid #e1e1e1;
+        font-style: normal; font-weight: 500; font-size: 16px;  text-align: center; color: #000000;  }
+}

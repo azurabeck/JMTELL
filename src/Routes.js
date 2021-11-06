@@ -22,6 +22,7 @@ import MANAGER_CLIENTS from './web_admin/clients'
 import MANAGER_PRODUCTS from './web_admin/product'
 import MANAGER_BLOG from './web_admin/blog'
 import CREATE_POST from './web_admin/blog/AddPost'
+import CATEOGORIES from './web_admin/categories'
 
 
 
@@ -51,8 +52,7 @@ function Routes() {
                     <Route exact path='/admin/blog' component={MANAGER_BLOG}></Route>
                     <Route exact path='/admin/blog/create-post' component={CREATE_POST}></Route>
                     <Route exact path='/admin/blog/edit-post/:id' component={CREATE_POST}></Route>
-
-
+                    <Route exact path='/admin/categorias' component={CATEOGORIES}></Route>
 
                 </Switch>
             </div>

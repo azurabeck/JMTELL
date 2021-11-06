@@ -1,5 +1,9 @@
 import React from 'react';
 import PRODUCT_BAR from '../../organism/Products'
+import PRODUCT_SIDEBAR from '../../pages/products/Sidebar'
+import PRODUCT_LIST from '../../pages/products/ProductsList'
+import PRODUCT_SPOTLIGHT from '../../pages/products/Spotlight'
+
 import './style.scss'
 
 const Products = () => {
@@ -8,7 +12,11 @@ const Products = () => {
             <div className='products'>
                 <PRODUCT_BAR />
                 <div className='products-content'>
-                    Products
+                    <PRODUCT_SIDEBAR />
+                    <div className='products-area'>
+                        <PRODUCT_SPOTLIGHT/>              
+                        <PRODUCT_LIST/>                        
+                    </div>
                 </div>
             </div>
     ) 
