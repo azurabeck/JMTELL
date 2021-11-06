@@ -1,12 +1,23 @@
-.products-sidebar { 
-    width: 330px; 
+.products-sidebar {
+    display: flex; flex-direction: column;
+     
+    width: 270px; 
     background-color: #fff;
     min-height: 250px;
     border-right: 2px solid #e1e1e1;
 
-    .sidebar-buttons { padding: 20px 15px; width: calc(100% - 30px); border-bottom: 2px solid #e1e1e1; 
-        font-style: normal; font-weight: 500; font-size: 16px;  text-align: center; color: #000000;   
+    .sidebar-buttons { 
+        display: flex; flex-direction: row;
+        align-items: center; justify-content: space-between;
+        padding: 20px 15px; width: calc(100% - 30px); border-bottom: 2px solid #e1e1e1;
+        font-style: normal; font-weight: 500; font-size: 14px;  text-align: left; color: #2c3a41;   
+        // border-top: 2px solid #e1e1e1;
+
+        &:hover { cursor: pointer; svg { color: #FAA916; } }
     }
-    .sidebar-sub-buttons { padding: 20px 15px; width: calc(100% - 30px); border-bottom: 2px solid #e1e1e1;
-        font-style: normal; font-weight: 500; font-size: 16px;  text-align: center; color: #000000;  }
+    .sidebar-sub-buttons { padding: 16px; width: calc(100% - 32px);
+        font-style: normal; font-weight: 400; font-size: 12px;  text-align: left; color: #2c3a41;  
+        &:hover { background-color: #f5f5f5; cursor: pointer; border-right: 2px solid #FAA916; font-weight: 500;}
+        &:last-child { margin-bottom: 35px; }
+    }
 }
