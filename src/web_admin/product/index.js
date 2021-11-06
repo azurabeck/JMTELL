@@ -21,7 +21,7 @@ const Products = (props) => {
     }
 
     return (
-        <div className='products'>      
+        <div className='products-admin'>      
 
             { openDetails && <DETAILS PRODUCT={itemDetails} CLICK={() => showDetails(false)} /> }    
             { registerDialog && <ADD_CLIENT click={() => handleRegister(!registerDialog)}/> }
