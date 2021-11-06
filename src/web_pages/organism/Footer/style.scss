@@ -27,3 +27,24 @@
         font-size: 16px; font-weight: 500;
     }
 }
+
+@media screen and (max-width: '1300px') {
+    .footer .fast-menu { max-width: 1150px;} 
+    .footer .associated-menu { max-width: 1150px;}
+}
+
+@media screen and (max-width: '1200px') {
+    .footer .fast-menu { max-width: calc(100% - 20px); 
+        .link-group { flex-direction: column !important; justify-content: flex-start;
+                        .group .column { width: 300px; margin-right: 50px; }
+    
+    }} 
+    .footer .associated-menu { max-width: calc(100% - 20px); .link-group {flex-direction: column !important;}}
+    .footer .fast-menu , .footer .associated-menu  { width: unset; justify-content: center; }
+}
+@media screen and (max-width: 615px) {
+    .fast-menu .title { text-align: center !important; }
+    .associated-menu .link-group .group , .fast-menu .link-group .group , .copy-right , .copy-right .social-networks { max-width: calc(100% - 40px) !important; margin: 0 auto; }
+    .associated-menu .link-group .group .title { width: 100%; text-align: center !important; }
+    .associated-menu .link-group .group .group-columns { flex-direction: column !important; .column.row { margin-top: 20px; } }
+}
