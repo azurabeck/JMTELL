@@ -3,8 +3,7 @@ import './style.scss';
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown , faChevronUp} from '@fortawesome/free-solid-svg-icons';
+import BG from '../../../atoms/SVG/spotlight_bg.svg'
 
 
 const Spotlight = (props) => {
@@ -26,7 +25,21 @@ const Spotlight = (props) => {
             {
                 SPOTLIGHT &&  <div className='products-spotlight-area'>
                     Produtos em Destaque
-                    <div className='products-spotlight'>  Spotlight  </div>
+
+                    {
+                        SPOTLIGHT && SPOTLIGHT.slice(0,1).map((item, index) => {
+                            return (
+                                <div className='products-spotlight'>  
+                                        <div className='ps-title'> {item.model} <br/> <span>{item.name}</span> </div>     
+                                        <div className='ps-img' style={{background: `url(${BG})`}}> 
+                                            <img src={item.img} alt=''/>
+                                        </div>     
+                                </div>
+                            )
+                        })
+                    }
+
+
                 </div> 
             }
         </>
