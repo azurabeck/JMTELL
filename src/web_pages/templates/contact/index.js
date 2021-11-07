@@ -12,10 +12,10 @@ const Contact = (props) => {
     return (
             
             <div className='contact'>
-                { !IS_EDITING && <PRODUCT_BAR /> }
+                { !IS_EDITING && <PRODUCT_BAR  /> }
                 <div className='contact-content'>
-                    <FORM />
-                    <CONTACT />
+                    <FORM IS_EDITING={IS_EDITING ? IS_EDITING : null} />
+                    <CONTACT IS_EDITING={IS_EDITING ? IS_EDITING : null} />
                 </div>
             </div>
     ) 

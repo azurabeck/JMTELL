@@ -94,12 +94,7 @@ const PostList = (props) => {
 
 
                 </div>
-
-
-
             </div>
-
-
         </div>
     )
 }

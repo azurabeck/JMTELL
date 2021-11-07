@@ -12,7 +12,7 @@ import COMPANY from '../../web_pages/templates/company'
 import CONTACT from '../../web_pages/templates/contact'
 import BLOG from '../../web_pages/templates/blog'
 
-const Text = (props) => {
+const Text = () => {
 
     const [textEdition , handleTextEdtion] = useState()
 

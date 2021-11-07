@@ -1,4 +1,4 @@
-.text-admin { 
+.text-admin {
     .fast-bar {
         display: flex;
         align-items: center; justify-content: flex-end;
@@ -38,6 +38,7 @@
     }
 
     .edtion-area {
+        position: relative;
         background: #fff;
         padding: 10px;
         margin-top: 50px;
