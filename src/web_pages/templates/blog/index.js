@@ -5,11 +5,12 @@ import SPOTLIGHT from '../../pages/blog/spotlight'
 import POST_LIST from '../../pages/blog/post'
 
 
-const Blog = () => {
+const Blog = (props) => {
+    const IS_EDITING = props.isEditing
     return (
             
             <div className='blog'>
-                <BLOG_BAR />
+                {!IS_EDITING && <BLOG_BAR />}
                 <div className='blog-content'>
                     <SPOTLIGHT />
                     <POST_LIST />
