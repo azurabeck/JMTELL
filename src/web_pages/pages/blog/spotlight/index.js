@@ -36,7 +36,7 @@ const Spotlight = (props) => {
                                 { IS_EDITING && <div className='editing-group'> 
                                     { textEdition && <div className='text-group'>
                                         <input onChange={(e) => handleTextEdition({collection: IS_EDITING, text: e.target.value , index: 0})} />
-                                        <div className='btn-orange' onClick={(e) => handleSubmit(e)}></div>
+                                        <div className='btn-orange' onClick={(e) => handleSubmit(e)}>Salvar Seleção</div>
                                     </div> }                                
                                 
                                     <FontAwesomeIcon icon={faPen} onClick={() => handleTextEdition(!textEdition)} />

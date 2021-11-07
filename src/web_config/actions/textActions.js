@@ -3,8 +3,10 @@ export const createText = (text) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         //make async call to database
         const firestore = getFirestore();
-        firestore.collection('text').add({
-            ...text
+        const collection = text.collection.toString()
+        const doc = text.index
+        firestore.collection(collection).add({
+           [doc]: text.text
         })
        
         
