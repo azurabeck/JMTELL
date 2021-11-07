@@ -28,3 +28,7 @@
             }
         }
 }
+
+@media screen and (max-width: 700px) {
+    .company .header .title { max-width: calc(100% - 30px); font-size: 30px; }
+}
