@@ -25,32 +25,32 @@ const Text = (props) => {
 
             <div className='text-group'>
 
-                <div className='btn-text' onClick={() => handleTextEdtion('home-pt')}>Home - PT</div>
-                <div className='btn-text' onClick={() => handleTextEdtion('home-en')}>Home - EN</div>
-                <div className='btn-text' onClick={() => handleTextEdtion('company-pt')}>Empresa - PT</div>
-                <div className='btn-text' onClick={() => handleTextEdtion('company-en')}>Empresa - EN</div>
-                <div className='btn-text' onClick={() => handleTextEdtion('product-pt')}>Produtos - PT</div>
-                <div className='btn-text' onClick={() => handleTextEdtion('product-en')}>Produtos - EN</div>
-                <div className='btn-text' onClick={() => handleTextEdtion('contact-pt')}>Contato - PT</div>
-                <div className='btn-text' onClick={() => handleTextEdtion('contact-en')}>Contato - EN</div>
-                <div className='btn-text' onClick={() => handleTextEdtion('blog-pt')}>Blog - PT</div>
-                <div className='btn-text' onClick={() => handleTextEdtion('blog-en')}>Blog - EN</div>
+                <div className='btn-text' onClick={() => handleTextEdtion('home_pt')}>Home - PT</div>
+                <div className='btn-text' onClick={() => handleTextEdtion('home_en')}>Home - EN</div>
+                <div className='btn-text' onClick={() => handleTextEdtion('company_pt')}>Empresa - PT</div>
+                <div className='btn-text' onClick={() => handleTextEdtion('company_en')}>Empresa - EN</div>
+                <div className='btn-text' onClick={() => handleTextEdtion('product_pt')}>Produtos - PT</div>
+                <div className='btn-text' onClick={() => handleTextEdtion('product_en')}>Produtos - EN</div>
+                <div className='btn-text' onClick={() => handleTextEdtion('contact_pt')}>Contato - PT</div>
+                <div className='btn-text' onClick={() => handleTextEdtion('contact_en')}>Contato - EN</div>
+                <div className='btn-text' onClick={() => handleTextEdtion('blog_pt')}>Blog - PT</div>
+                <div className='btn-text' onClick={() => handleTextEdtion('blog_en')}>Blog - EN</div>
                
             </div>
 
             { textEdition &&
                 <div className='edtion-area'>
                     
-                    { textEdition && textEdition === 'home-pt' && <HOME isEditing='home'/> }
-                    { textEdition && textEdition === 'home-en' && <HOME isEditing='home'/> }
-                    { textEdition && textEdition === 'product-pt' && <PRODUCT isEditing='product-pt'/> }
-                    { textEdition && textEdition === 'product-en' && <PRODUCT isEditing='product-en'/> }
-                    { textEdition && textEdition === 'company-pt' && <COMPANY isEditing='company-pt'/> }
-                    { textEdition && textEdition === 'company-en' && <COMPANY isEditing='company-en'/> }
-                    { textEdition && textEdition === 'contact-pt' && <CONTACT isEditing='contact-pt'/> }
-                    { textEdition && textEdition === 'contact-en' && <CONTACT isEditing='contact-en'/> }
-                    { textEdition && textEdition === 'blog-pt' && <BLOG isEditing='blog-pt'/> }
-                    { textEdition && textEdition === 'blog-en' && <BLOG isEditing='blog-en'/> }
+                    { textEdition && textEdition === 'home_pt' && <HOME isEditing='home_pt'/> }
+                    { textEdition && textEdition === 'home_en' && <HOME isEditing='home_pt'/> }
+                    { textEdition && textEdition === 'product_pt' && <PRODUCT isEditing='product_pt'/> }
+                    { textEdition && textEdition === 'product_en' && <PRODUCT isEditing='product_en'/> }
+                    { textEdition && textEdition === 'company_pt' && <COMPANY isEditing='company_pt'/> }
+                    { textEdition && textEdition === 'company_en' && <COMPANY isEditing='company_en'/> }
+                    { textEdition && textEdition === 'contact_pt' && <CONTACT isEditing='contact_pt'/> }
+                    { textEdition && textEdition === 'contact_en' && <CONTACT isEditing='contact_en'/> }
+                    { textEdition && textEdition === 'blog_pt' && <BLOG isEditing='blog_pt'/> }
+                    { textEdition && textEdition === 'blog_en' && <BLOG isEditing='blog_en'/> }
 
                 </div>
             }

@@ -10,7 +10,10 @@ import './style.scss'
 const Spotlight = (props) => {
 
     const POST = props.posts
+    const BLOG_PT = props.blog && props.blog[0]
+
     const IS_EDITING = props.IS_EDITING
+    const [openEditor, handleEditor] = useState(false)
     const [ textEdition, handleTextEdition ] = useState({
         collection: '',
         text: '',
@@ -32,15 +35,17 @@ const Spotlight = (props) => {
                           style={{ backgroundImage: `url(${item.url})` }} key={index}> 
                           <div className='spotlight-title'>{item.cover_title}</div>
                      
-                          { index === 2 && <div className='spotlight-tag'>
+                          { index === 2 && <div className='spotlight-tag'> {  BLOG_PT && BLOG_PT[0]}
+
+                               
                                 { IS_EDITING && <div className='editing-group'> 
-                                    { textEdition && <div className='text-group'>
+                                    { openEditor && <div className='text-group'>
                                         <input onChange={(e) => handleTextEdition({collection: IS_EDITING, text: e.target.value , index: 0})} />
                                         <div className='btn-orange' onClick={(e) => handleSubmit(e)}>Salvar Seleção</div>
                                     </div> }                                
                                 
-                                    <FontAwesomeIcon icon={faPen} onClick={() => handleTextEdition(!textEdition)} />
-                                 </div>  }
+                                    <FontAwesomeIcon icon={faPen} onClick={() => handleEditor(!openEditor)} />
+                                 </div> }
                           
                           </div> }                       
                       </div>
@@ -56,7 +61,8 @@ const Spotlight = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        posts: state.firestore.ordered.posts
+        posts: state.firestore.ordered.posts,
+        blog: state.firestore.ordered.blog_pt
     }
 }
 
@@ -70,7 +76,7 @@ const mapDispatchToProps = (dispatch) => {
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect([
-        { collection: 'posts' , orderBy: ["date", "desc"] }
-        
+        { collection: 'posts' } ,
+        { collection: 'blog_pt' }        
     ])
 )(Spotlight)
