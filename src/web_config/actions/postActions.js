@@ -3,8 +3,6 @@ export const createPost = (post) => {
         //make async call to database
         const firestore = getFirestore();
 
-        console.log(post)
-
         firestore.collection('posts').add({
             ...post,
             date: new Date().toString() ,       

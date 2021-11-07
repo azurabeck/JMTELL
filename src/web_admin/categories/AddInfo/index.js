@@ -11,8 +11,6 @@ const AddCategorie = ( props ) => {
     const click = props.click
     const IS_EDITING = props.isEditing
 
-    console.log( 'to aqui ' , IS_EDITING.subcategorie)
-
     const [ formData, getForm ] = useState({
         name: '',
         subcategorie: null
@@ -20,12 +18,7 @@ const AddCategorie = ( props ) => {
     const [formValues, setFormValues] = useState([ IS_EDITING ?
         IS_EDITING.subcategorie  : { sub_name: '' } ])
 
-    let handleCategorieChange = (i, e) => {
-
-        console.log('o i ' , i)
-        console.log('o 3 ' , e)
-
-        
+    let handleCategorieChange = (i, e) => {        
         let newFormValues = [...formValues];
         newFormValues[i][e.target.name] = e.target.value;
         setFormValues(newFormValues);

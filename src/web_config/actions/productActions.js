@@ -3,7 +3,6 @@ export const createProcuct = (product) => {
         //make async call to database
         const firestore = getFirestore();
 
-        console.log(product)
 
         firestore.collection('products').add({
             ...product , 

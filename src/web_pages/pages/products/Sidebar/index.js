@@ -52,7 +52,6 @@ const Sidebar = (props) => {
 
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         categories: state.firestore.ordered.categories        
     }

@@ -9,7 +9,6 @@ const ProductList = (props) => {
 
     
     const PRODUCTS_DATA = props.products
-    console.log(PRODUCTS_DATA)
     
     return (
         <>

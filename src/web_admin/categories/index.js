@@ -29,8 +29,6 @@ const Categories = (props) => {
                 {
                     CATEGORIE_DB && CATEGORIE_DB.map((item, index) => {
 
-                        console.log(preview[item.name])
-
                         return (
 
                             <div className='categorie-block' key={index}>             

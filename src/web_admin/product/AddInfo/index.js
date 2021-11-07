@@ -80,8 +80,6 @@ const AddClient = ( props ) => {
         props.click()
     }
 
-    console.log(CATEGORIES)
-
     return (
         <div className='add-info'>
 

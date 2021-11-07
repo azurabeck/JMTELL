@@ -24,9 +24,6 @@ const Sidebar = (props) => {
         props.signOut()
     }
 
-    console.log(ADMIN_LOGGED)
-
-
     return (
         <div className='sidebar'>
 
