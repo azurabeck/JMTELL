@@ -1,6 +1,7 @@
 import authReducer from './authReducer'
 import postReducer from './postReducer'
 import clientReducer from './clientReducer'
+import textReducer from './textReducer'
 import categorietReducer from './categorieReducer'
 import productReducer from './productReducer'
 import { firestoreReducer } from 'redux-firestore'
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     auth: authReducer,
     post: postReducer, 
     client: clientReducer,
+    text: textReducer,
     product: productReducer,
     categorie: categorietReducer,
     firestore: firestoreReducer,
