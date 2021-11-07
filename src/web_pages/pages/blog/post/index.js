@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { createText } from '../../../../web_config/actions/textActions'
-import { Link } from 'react-router-dom'
-import parse from 'html-react-parser'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
+import parse from 'html-react-parser'
 import './style.scss'
 
 const PostList = (props) => {
@@ -37,10 +37,12 @@ const PostList = (props) => {
                         return (
                                 <div className='post-item'>
                                     <div className='post-item-img' style={{ backgroundImage: `url(${item.url})` }} key={index}></div>
-                                    <div className='post-item-details'>
+                                    <div className='post-item-details' style={{position: 'relative'}}>
                                         <div className='post-item-title'>{item.cover_title}</div>
                                         <div className='post-item-author'>{item.author} - {item.date} <span className='divisor'></span> </div>
                                         <div className='post-item-desc'>{parse(item.content)}</div>
+
+                                       
                                         <Link to={'/blog/' + item.id} className='btn-stroke'> { BLOG_PT ? BLOG_PT[1] : '... CONTINUAR LENDO' }  </Link>
                                         { IS_EDITING && <div className='editing-group'> 
                                             { openEditor && <div className='text-group'>
@@ -48,8 +50,9 @@ const PostList = (props) => {
                                                 <div className='btn-orange' onClick={(e) => handleSubmit(e)}>Salvar Seleção</div>
                                             </div> }                                
                                         
-                                            <FontAwesomeIcon icon={faPen} onClick={() => handleEditor(!openEditor)} />
+                                            <FontAwesomeIcon icon={faPen} style={{ position: 'absolute',  bottom: '5px'}} onClick={() => handleEditor(!openEditor)} />
                                         </div> }
+                                        
                                     </div>
                                 </div>
                             )                   
@@ -60,7 +63,20 @@ const PostList = (props) => {
             <div className='blog-menu'>
 
                 <div className='most-read-group'>
-                    <div className='most-read'> <span>Mais Lidas</span> </div>
+                    <div className='most-read'> <span>{ BLOG_PT ? BLOG_PT[2] : 'Mais Lidas' }  </span>
+                    
+                        { IS_EDITING && <div className='editing-group'> 
+                            { openEditor && <div className='text-group'>
+                                <input onChange={(e) => handleTextEdition({collection: IS_EDITING, text: e.target.value , index: 2})} />
+                                <div className='btn-orange' onClick={(e) => handleSubmit(e)}>Salvar Seleção</div>
+                            </div> }                                
+                        
+                            <FontAwesomeIcon icon={faPen} style={{ position: 'absolute',  marginTop: '-30px'}} onClick={() => handleEditor(!openEditor)} />
+                        </div> }
+
+                     </div>
+
+
 
                     {
                         POST && POST.slice(0,3).map((item, index) => {
