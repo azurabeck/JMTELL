@@ -7,3 +7,23 @@
         .products-area { width: calc(100% - 270px); background-color:#FBFAFA; padding-top: 100px; border-left: 2px solid #e1e1e1; }
     }
 }
+
+@media screen and (max-width: 1270px) {
+    .products .products-content .products-sidebar { display: none !important; }
+    .products .products-content .products-area { width: 100%; }
+    .products .products-spotlight-area .products-spotlight .ps-title { margin-right: 100px; }
+}
+
+@media screen and (max-width: 970px) {
+    .products .products-spotlight-area .products-spotlight .ps-title { margin-right: 0px;  font-size: 18px; }
+}
+
+@media screen and (max-width: 750px) {
+    .products .products-spotlight-area .products-spotlight { padding-right: 0; }
+    .products .products-spotlight-area .products-spotlight .ps-img { width: 290px; }
+}
+
+@media screen and (max-width: 500px) {
+    .products .products-spotlight-area .products-spotlight { justify-content: flex-end; }
+    .products .products-spotlight-area .products-spotlight .ps-title { display: none !important; }
+}
