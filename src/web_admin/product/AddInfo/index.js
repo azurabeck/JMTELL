@@ -1,6 +1,8 @@
 import React , { useState } from 'react'
 import { createProcuct } from '../../../web_config/actions/productActions'
 import { connect } from 'react-redux'
+import { compose } from 'redux'
+import { firestoreConnect } from 'react-redux-firebase'
 import './style.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
@@ -8,6 +10,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 const AddClient = ( props ) => {
 
+    const CATEGORIES = props.categorie
     const click = props.click
     const [ formData, getForm ] = useState({
         name: '',
@@ -22,7 +25,6 @@ const AddClient = ( props ) => {
     const [formValues, setFormValues] = useState([{detail_name: "", detail_desc: ""}])
     const [formInfoValues, setInfoFormValues] = useState([{ info_desc: ""}])
     const [formCatValues, setCatFormValues] = useState([{ cat_desc: "" }])
-
 
     let handleDetailsChange = (i, e) => {
         let newFormValues = [...formValues];
@@ -78,6 +80,8 @@ const AddClient = ( props ) => {
         props.click()
     }
 
+    console.log(CATEGORIES)
+
     return (
         <div className='add-info'>
 
@@ -89,6 +93,11 @@ const AddClient = ( props ) => {
                         <textarea placeholder='Descrição do produto' required onChange={(e) => getForm({...formData, description: e.target.value})}></textarea>
                         <input placeholder='Modelo / Marca' required onChange={(e) => getForm({...formData, model: e.target.value})}></input>
                         <input placeholder='Link da imagem' required onChange={(e) => getForm({...formData, img: e.target.value })} ></input>
+
+                        <div className='checkbox-group'>
+                            <input type="checkbox" checked={formData.spotlight}  onChange={e => getForm({...formData, spotlight: !formData.spotlight })} />
+                            <label>Destacar Produto</label>
+                        </div>
 
                         <div className='details-group'>
                             <div className='title'> Detalhes Tecnicos  <div className='add-details'  onClick={() => addDetailsFormFields()}>Adicionar</div> </div>   
@@ -130,7 +139,24 @@ const AddClient = ( props ) => {
                             <div className='title'> Categorias <div className='add-details'  onClick={() => addCatFormFields()}>Adicionar</div> </div>   
                             {formCatValues.map((element, index) => (
                                     <div className='details-field'>
-                                        <input className='cat_desc' name='cat_desc' placeholder='Nome' onChange={e => handleCatChange(index, e)} />
+                                        
+                                            <select name='cat_desc' placeholder='Nome' onChange={e => handleCatChange(index, e)}>
+                                                {
+                                                    CATEGORIES && CATEGORIES.map((item, index) => {
+                                                        return (
+                                                            <>
+                                                            <option selected disabled key={index}>{item.name}</option>
+                                                            {
+                                                                item.subcategorie && item.subcategorie.map((subcat, index) => (
+                                                                    <option value={subcat.sub_name} key={index}>{subcat.sub_name}</option>
+                                                                ))
+
+                                                            }
+                                                            </>
+                                                        )
+                                                    })
+                                                }
+                                            </select>
 
                                         {
                                             index ? 
@@ -153,16 +179,20 @@ const AddClient = ( props ) => {
 }
 
 const mapStateToProps = (state) => {
-    return {
+    return {        
+        categorie: state.firestore.ordered.categories,
         PRODUCT_SENT: state.product.PRODUCT_SENT
     }
 }
 
 
 const mapDispatchToProps = (dispatch) => {
-return {
-    createProcuct: (product) => dispatch(createProcuct(product))
-}
+    return {
+        createProcuct: (product) => dispatch(createProcuct(product))
+    }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddClient)
+export default compose(
+    connect(mapStateToProps , mapDispatchToProps),
+    firestoreConnect([ { collection: 'categories' } ])
+)(AddClient)
