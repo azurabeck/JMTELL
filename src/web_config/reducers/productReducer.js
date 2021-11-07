@@ -1,6 +1,10 @@
-const initState = { MSG_SENT: null }
+const initState = { 
+    MSG_SENT: null ,
+    filterCategorie: []
+}
 
 const productReducer = (state = initState, action) => {
+
     switch(action.type) {
         case 'PRODUCT_CREATED_ERROR': 
             return {
@@ -25,6 +29,10 @@ const productReducer = (state = initState, action) => {
         case 'PRODUCT_DELETE':
             return {
                 ...state, Error: null , PRODUCT_DELETED: true 
+            }
+        case 'PRODUCT_CATEGORIE_FILTER':
+            return {
+                ...state, filterCategorie: action.filter, Error: null , PRODUCT_DELETED: true 
             }
                 
         default:
