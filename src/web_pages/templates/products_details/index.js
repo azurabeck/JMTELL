@@ -4,11 +4,13 @@ import PRODUCT_DETAILS from '../../pages/products_details'
 
 import './style.scss'
 
-const Products = () => {
+const Products = (props) => {
+    
+    const IS_EDITING = props.isEditing
     return (
             
             <div className='products-details'>
-                <PRODUCT_BAR />
+                {!IS_EDITING && <PRODUCT_BAR />}
                 <div className='products-content'>
                     <div className='products-area'>
                         <PRODUCT_DETAILS />               

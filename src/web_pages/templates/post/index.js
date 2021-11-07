@@ -7,11 +7,12 @@ import POST from '../../pages/post/Post'
 
 
 
-const Blog = () => {
+const Blog = (props) => {
+    const IS_EDITING = props.isEditing
     return (
             
             <div className='post'>
-                <BLOG_BAR />
+                { !IS_EDITING && <BLOG_BAR />}
                 <div className='post-content'>
                     <HEADER />
                     <AUTHOR />

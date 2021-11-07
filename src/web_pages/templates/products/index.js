@@ -6,11 +6,12 @@ import PRODUCT_SPOTLIGHT from '../../pages/products/Spotlight'
 
 import './style.scss'
 
-const Products = () => {
+const Products = (props) => {    
+    const IS_EDITING = props.isEditing
     return (
             
             <div className='products'>
-                <PRODUCT_BAR />
+                {!IS_EDITING && <PRODUCT_BAR />}
                 <div className='products-content'>
                     <PRODUCT_SIDEBAR />
                     <div className='products-area'>

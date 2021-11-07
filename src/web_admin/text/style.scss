@@ -1,0 +1,46 @@
+.text-admin { 
+    .fast-bar {
+        display: flex;
+        align-items: center; justify-content: flex-end;
+        color: #a59595;
+
+        svg { margin-left: 30px; }
+        svg:hover { color: rgba(247, 7, 7, 0.733); cursor: pointer; }
+
+    }
+
+    .text-title { width: 100%; text-align: center;
+        font-size: 28px; font-weight: 500; color: #323030;
+        margin-top: 50px; margin-bottom: 15px; }
+    .text-desc { width: 100%; text-align: center;
+        font-size: 20px; font-weight: normal; color: #323030;
+        margin-bottom: 40px; }
+        
+
+    .text-group {
+        display: flex; flex-direction: row;
+        align-items: center; justify-content: center;
+        flex-wrap: wrap;
+        .btn-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            width: 250px;
+            background: #673ab7;
+            border-radius: 4px;
+            color: #fff;
+            margin: 10px 20px;
+            box-shadow: 1px 1px 4px #c9bfbf;
+
+            &:hover { background: #512a94; cursor: pointer; }
+        }
+    }
+
+    .edtion-area {
+        background: #fff;
+        padding: 10px;
+        margin-top: 50px;
+    }
+    
+}

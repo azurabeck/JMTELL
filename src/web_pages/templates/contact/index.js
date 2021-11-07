@@ -5,11 +5,14 @@ import './style.scss'
 import FORM from '../../pages/contact/Form'
 import CONTACT from '../../pages/contact/Contact'
 
-const Contact = () => {
+const Contact = (props) => {
+
+    const IS_EDITING = props.isEditing
+    
     return (
             
             <div className='contact'>
-                <PRODUCT_BAR />
+                { !IS_EDITING && <PRODUCT_BAR /> }
                 <div className='contact-content'>
                     <FORM />
                     <CONTACT />
