@@ -35,7 +35,7 @@ const Spotlight = (props) => {
                           style={{ backgroundImage: `url(${item.url})` }} key={index}> 
                           <div className='spotlight-title'>{item.cover_title}</div>
                      
-                          { index === 2 && <div className='spotlight-tag'> {  BLOG_PT && BLOG_PT[0]}
+                          { index === 2 && <div className='spotlight-tag'> {  BLOG_PT && BLOG_PT[0] }
 
                                
                                 { IS_EDITING && <div className='editing-group'> 
