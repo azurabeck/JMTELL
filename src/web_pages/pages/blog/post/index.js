@@ -1,9 +1,9 @@
 import React , {useState} from 'react'
+import { createText , updateField } from '../../../../web_config/actions/textActions'
+import { EditorContent } from '../../../../web_config/helpers/editText'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { createText } from '../../../../web_config/actions/textActions'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import parse from 'html-react-parser'
@@ -13,20 +13,9 @@ const PostList = (props) => {
 
     const POST = props.posts
     const BLOG_PT = props.blog && props.blog[0]
-
     const IS_EDITING = props.IS_EDITING
-    const [openEditor, handleEditor] = useState(false)
-    const [ textEdition, handleTextEdition ] = useState({
-        collection: '',
-        text: '',
-        index: null,
-    })
-    
-    const handleSubmit = (e) => {       
-        e.preventDefault()        
-        props.createText(textEdition)
-        handleEditor(false)
-    }
+    const OPEN_EDITOR = props.OPEN_EDITOR
+    const TEXT = props.text
 
     return (
         <div className='post-list-group'>
@@ -44,14 +33,8 @@ const PostList = (props) => {
 
                                        
                                         <Link to={'/blog/' + item.id} className='btn-stroke'> { BLOG_PT ? BLOG_PT[1] : '... CONTINUAR LENDO' }  </Link>
-                                        { IS_EDITING && <div className='editing-group'> 
-                                            { openEditor && <div className='text-group'>
-                                                <input onChange={(e) => handleTextEdition({collection: IS_EDITING, text: e.target.value , index: 1})} />
-                                                <div className='btn-orange' onClick={(e) => handleSubmit(e)}>Salvar Seleção</div>
-                                            </div> }                                
-                                        
-                                            <FontAwesomeIcon icon={faPen} style={{ position: 'absolute',  bottom: '5px'}} onClick={() => handleEditor(!openEditor)} />
-                                        </div> }
+                                        <EditorContent  HAS_VALUE={BLOG_PT && BLOG_PT[1]} IS_EDITING={IS_EDITING} OPEN_EDITOR={OPEN_EDITOR} 
+                                                        CHANGE_INPUT={(e) => props.updateField({...TEXT , 1: e.target.value})}/>
                                         
                                     </div>
                                 </div>
@@ -64,15 +47,8 @@ const PostList = (props) => {
 
                 <div className='most-read-group'>
                     <div className='most-read'> <span>{ BLOG_PT ? BLOG_PT[2] : 'Mais Lidas' }  </span>
-                    
-                        { IS_EDITING && <div className='editing-group'> 
-                            { openEditor && <div className='text-group'>
-                                <input onChange={(e) => handleTextEdition({collection: IS_EDITING, text: e.target.value , index: 2})} />
-                                <div className='btn-orange' onClick={(e) => handleSubmit(e)}>Salvar Seleção</div>
-                            </div> }                                
-                        
-                            <FontAwesomeIcon icon={faPen} style={{ position: 'absolute',  marginTop: '-30px'}} onClick={() => handleEditor(!openEditor)} />
-                        </div> }
+                    <EditorContent  HAS_VALUE={BLOG_PT && BLOG_PT[2]} IS_EDITING={IS_EDITING} OPEN_EDITOR={OPEN_EDITOR} 
+                                                        CHANGE_INPUT={(e) => props.updateField({...TEXT , 2: e.target.value})}/>
 
                      </div>
 
@@ -104,14 +80,16 @@ const PostList = (props) => {
 const mapStateToProps = (state) => {
     return {
         posts: state.firestore.ordered.posts,
-        blog: state.firestore.ordered.blog_pt
+        blog: state.firestore.ordered.blog_pt,
+        text: state.text.textCollection
     }
 }
 
   
 const mapDispatchToProps = (dispatch) => {
     return {
-        createText: (text) => dispatch(createText(text))
+        createText: (text) => dispatch(createText(text)),
+        updateField: (text) => dispatch(updateField(text))
     }
 }
   
