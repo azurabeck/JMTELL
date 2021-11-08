@@ -3,6 +3,7 @@
     width: 270px; 
     min-height: 250px;
     z-index: 1;
+    grid-area: 1 / 1 / 6 / 2;
 
     .sidebar-buttons { 
         display: flex; flex-direction: row;

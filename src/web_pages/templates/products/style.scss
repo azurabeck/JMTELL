@@ -1,10 +1,13 @@
 .products { background-color:#fff;
     .products-content {
-        display: flex; flex-direction: row;
-        align-items: flex-start; justify-content: flex-start;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
         margin-top: 130px;
 
-        .products-area { width: calc(100% - 270px); background-color:#FBFAFA; padding-top: 100px; border-left: 2px solid #e1e1e1; }
+        .products-area { width: 100%; background-color:#FBFAFA; padding-top: 100px; border-left: 2px solid #e1e1e1; grid-area: 1 / 2 / 6 / 6;}
     }
 }
 
