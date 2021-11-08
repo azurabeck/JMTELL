@@ -75,8 +75,11 @@ input , textarea {
 .editing-group {
     display: flex; align-items: center; justify-content: center;
     .text-group {  display: flex; flex-direction: column; align-items: center; justify-content: center;
-                   background-color: #4a4a4aab; padding: 10px; z-index: 999;
-        input { height: 30px; margin: 0 20px;}
+                   padding: 10px; z-index: 999;  width: 100%;
+                   border: 1px solid #b3b3b3; margin: 10px 0;
+                   
+  
+        input { height: 30px; width: calc( 100% - 2px);}
     }
 
 }

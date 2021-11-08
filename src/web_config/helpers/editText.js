@@ -15,12 +15,12 @@ export const EditorAction = ({CLICK_EDIT, CLICK_SAVE , IS_EDITING}) => {
     )
 }
 
-export const EditorContent = ({OPEN_EDITOR , CHANGE_INPUT , IS_EDITING}) => {
+export const EditorContent = ({OPEN_EDITOR , CHANGE_INPUT , IS_EDITING, HAS_VALUE}) => {
     return (
         <>
             { IS_EDITING && <div className='editing-group'> 
                     { OPEN_EDITOR && <div className='text-group'>
-                        <input onChange={CHANGE_INPUT} />
+                        <input placeholder={HAS_VALUE && HAS_VALUE} onChange={CHANGE_INPUT} />
                     </div> }                                
             </div> }
         </>
