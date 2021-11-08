@@ -15,6 +15,7 @@ const Sidebar = (props) => {
     
     const ADMIN_LOGGED = props.auth
     const [ MENU_DATA ] = useState(MenuData)
+    const [ PATH_ACTIVE , setActive] = useState('/admin/clientes')
     const path = window.location.pathname
 
     
@@ -40,8 +41,8 @@ const Sidebar = (props) => {
                         <div className='mob-side-menu'>
                             
                             { MENU_DATA && MENU_DATA.map((route, index) => (
-                                <div className={path === route.path ? 'button active' : 'button'}> 
-                                    <a href={route.path} key={index} >{route.title}</a>
+                                <div className={PATH_ACTIVE === route.path ? 'button active' : 'button'}> 
+                                    <Link to={route.path} key={index} onClick={() => setActive(route.path)} >{route.title}</Link>
                                     <FontAwesomeIcon icon={faChevronRight} />
                                 </div>
                             )) }
