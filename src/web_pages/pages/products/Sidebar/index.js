@@ -30,6 +30,12 @@ const Sidebar = (props) => {
     return (
 
         <div className='products-sidebar'>
+                <div className='sidebar-categorie-wrapper'>
+                        <div className='sidebar-buttons' onClick={(e) => handleFilterDispatch(e , 'todos')} > 
+                            Mostrar todos 
+                        </div> 
+                </div>
+
             { SIDEBAR_DATA && SIDEBAR_DATA.map((item, index) => {
                 return (
                     <div className='sidebar-categorie-wrapper'>
@@ -39,7 +45,7 @@ const Sidebar = (props) => {
                             {
                             displayMenu && displayMenu[item.name] && item.subcategorie && item.subcategorie.map((subcat, index) => (
                                 
-                                <div className='sidebar-sub-buttons' onClick={(e) => handleFilterDispatch(e , subcat.sub_name)} key={index}> {subcat.sub_name} </div>  
+                                <div className='sidebar-sub-buttons' onClick={(e) => handleFilterDispatch(e , subcat.tag)} key={index}> {subcat.sub_name} </div>  
                             ))
                         }  
                     </div>

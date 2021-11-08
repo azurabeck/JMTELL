@@ -1,4 +1,4 @@
-import React , { useState } from 'react'
+import React , { useState , useEffect} from 'react'
 import { createText , updateField } from '../../../../web_config/actions/textActions'
 import { EditorContent } from '../../../../web_config/helpers/editText'
 import { connect } from 'react-redux'
@@ -11,12 +11,18 @@ const ProductList = (props) => {
 
     
     const PRODUCTS_DATA = props.products
-    const FILTER = useState(props.filter && props.filter)
+    const FILTER = props.filter
+   
 
     const PRODUCT_PT = props.product && props.product[0]
     const IS_EDITING = props.IS_EDITING
     const OPEN_EDITOR = props.OPEN_EDITOR
     const TEXT = props.text
+    const TAG = FILTER.filterCategorie
+    
+    const PRODUCT_FILTERED = TAG && TAG !== 'todos' && PRODUCTS_DATA && PRODUCTS_DATA.filter(item => item[TAG] )
+    let DATA = PRODUCT_FILTERED ? PRODUCT_FILTERED : PRODUCTS_DATA
+
 
     return (
         <div className='products-list-area'>
@@ -26,7 +32,7 @@ const ProductList = (props) => {
                                    CHANGE_INPUT={(e) => props.updateField({...TEXT , 0: e.target.value})}/>
             <div className='product-list'>
 
-                { PRODUCTS_DATA && PRODUCTS_DATA.map((item, index) => {
+                { DATA && DATA.map((item, index) => {
 
                     return (
                         <div class="product" key={index}>
