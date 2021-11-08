@@ -1,6 +1,7 @@
 import React , { useState } from 'react'
 import { createCategorie } from '../../../web_config/actions/categoriesAction'
 import { connect } from 'react-redux'
+import  { camelCase } from 'lodash'
 import './style.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
@@ -18,15 +19,17 @@ const AddCategorie = ( props ) => {
     const [formValues, setFormValues] = useState([ IS_EDITING ?
         IS_EDITING.subcategorie  : { sub_name: '' } ])
 
-    let handleCategorieChange = (i, e) => {        
+    let handleCategorieChange = (i, e) => {          
+        let camelCaseForm = [...formValues];  
         let newFormValues = [...formValues];
-        newFormValues[i][e.target.name] = e.target.value;
-        setFormValues(newFormValues);
+        newFormValues[i]['sub_name'] = e.target.value;  
+        camelCaseForm[i]['tag'] = camelCase(e.target.value.trim())  
+        setFormValues(newFormValues , camelCaseForm);
         getForm({...formData, subcategorie: formValues })
      }
         
     let addSubCategoriFormFields = () => {
-        setFormValues([...formValues, {sub_name: ""}])
+        setFormValues([...formValues, {sub_name: "" , tag: ''}])
      }
 
      let removeDetailsFormFields = (i) => {
@@ -54,7 +57,7 @@ const AddCategorie = ( props ) => {
                             <div className='title'> Subcategoria  <div className='add-subcategoria'  onClick={() => addSubCategoriFormFields()}>Adicionar</div> </div> 
 
                             {
-                                formValues.map((element, index) => {
+                                formValues && formValues.map((element, index) => {
 
                                     return(
                                         <>
@@ -72,7 +75,7 @@ const AddCategorie = ( props ) => {
 
                                             }
 
-                                            { IS_EDITING && element.map((item, index) => (
+                                            { IS_EDITING && element && element.map((item, index) => (
                                                     <div className='subcategoria-field'>   
                                                         <input className='subcategoria_name' name='sub_name' value={item.sub_name}
                                                             placeholder='Nome' onChange={e => handleCategorieChange(index, e)} />    
