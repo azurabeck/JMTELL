@@ -66,7 +66,8 @@ input , textarea {
     background: #673ab7;
     padding: 0 20px;
     position: absolute;
-    top: 10px; right: 0;    
+    top: 10px; right: 0; 
+    z-index: 999;   
     svg { color: #fff; margin: 0 20px;}
     svg:hover { color: #FAA916; cursor: pointer; }
     .btn-orange { width: unset; height: unset; min-width: unset; min-height: unset; padding: 5px 10px; font-size: 10px; border-radius: 0;}
