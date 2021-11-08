@@ -2,11 +2,17 @@ import React , { useState } from 'react'
 import { SUCCESS_MSG } from '../../../atoms/SVG/_index'
 import { createClient } from '../../../../web_config/actions/clientActions'
 import { connect } from 'react-redux'
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
+import { createText , updateField } from '../../../../web_config/actions/textActions'
+import { EditorContent } from '../../../../web_config/helpers/editText'
+
 
 import './style.scss'
 
 const Form = (props) => {
 
+    // FORMS
     const [ subject , getSubject ] = useState(null)
     const [ formData, getForm ] = useState({
         name: '',
@@ -17,7 +23,6 @@ const Form = (props) => {
         client_subject: subject,
     })
 
-
     const handleSubmit = (e) => {       
         e.preventDefault()        
         props.createClient(formData)
@@ -25,9 +30,23 @@ const Form = (props) => {
 
     const MSG_SENT = props.MSG_SENT
 
+
+    // TEXT EDITOR
+    const CONTACT_PT = props.contact && props.contact[0]
+    const IS_EDITING = props.IS_EDITING
+    const OPEN_EDITOR = props.OPEN_EDITOR
+    const TEXT = props.text
+
+    const [ textEdition, handleTextEdition ] = useState({
+        collection: props.IS_EDITING
+    })
+
+
+
     return (
         <div className='form'>
-
+ 
+	
             <div className='steps-group'>
                 <div className='step active' />
                 <div className={ subject ? 'step active' : 'step' } />
@@ -37,7 +56,11 @@ const Form = (props) => {
             { !subject && !MSG_SENT &&
             
                 <div className='buttons'>
-                    <div className='buttons-title'>Para melhor atende-lo(a), selecione com o assunto para qual você precisa de ajuda, e deixe sua mensagem em seguida.</div>
+                    <div className='buttons-title'>Para melhor atende-lo(a), selecione com o assunto para qual você precisa de ajuda, e deixe sua mensagem em seguida.
+                    
+                    <EditorContent IS_EDITING={IS_EDITING} OPEN_EDITOR={OPEN_EDITOR} CHANGE_INPUT={(e) => props.updateField({...TEXT , 0: e.target.value})}/>
+                    
+                    </div>
                     <div className='button-group'>
                         <div className='button-blue' onClick={() => getSubject('FINANCEIRO')}>FINANCEIRO</div>
                         <div className='button-blue' onClick={() => getSubject('SUPORTE')}>SUPORTE</div>
@@ -109,15 +132,25 @@ const Form = (props) => {
 
     const mapStateToProps = (state) => {
         return {
-            MSG_SENT: state.client.MSG_SENT
+            MSG_SENT: state.client.MSG_SENT,
+            contact: state.firestore.ordered.contact_pt,
+            text: state.text.textCollection
         }
     }
 
 
   const mapDispatchToProps = (dispatch) => {
     return {
-        createClient: (client) => dispatch(createClient(client))
+        createClient: (client) => dispatch(createClient(client)),
+        createText: (text) => dispatch(createText(text)),
+        updateField: (text) => dispatch(updateField(text))
     }
   }
   
-  export default connect(mapStateToProps, mapDispatchToProps)(Form)
+  export default compose(
+    connect(mapStateToProps , mapDispatchToProps),
+    firestoreConnect([
+        { collection: 'posts' , orderBy: ["date", "desc"] } ,
+        { collection: 'contact_pt' }               
+    ])
+)(Form)

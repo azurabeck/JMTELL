@@ -1,3 +1,12 @@
+export const updateField = (text) => {
+    console.log('estou no action ' , text)
+    return {
+        type: 'UPDATE_FIELD',
+        text
+      }
+}
+
+
 export const createText = (text) => {
 
     return (dispatch, getState, { getFirebase, getFirestore }) => {

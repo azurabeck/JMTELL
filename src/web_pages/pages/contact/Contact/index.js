@@ -2,7 +2,7 @@ import React , {useState} from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { createText } from '../../../../web_config/actions/textActions'
+import { createText , updateField } from '../../../../web_config/actions/textActions'
 import { EditorAction , EditorContent } from '../../../../web_config/helpers/editText'
 import './style.scss'
 import { WHATSAPP , PHONE } from '../../../atoms/SVG/_index'
@@ -12,26 +12,28 @@ const Contact = (props) => {
 
     const CONTACT_PT = props.contact && props.contact[0]
     const IS_EDITING = props.IS_EDITING
-    const [openEditor, handleEditor] = useState(false)
+    const OPEN_EDITOR = props.OPEN_EDITOR
+    const TEXT = props.text
+
+
+    // const [openEditor, handleEditor] = useState(false)
     const [ textEdition, handleTextEdition ] = useState({
         collection: props.IS_EDITING
     })
 
-    const handleSubmit = (e) => {       
-        e.preventDefault()        
-        props.createText(textEdition)
-        handleEditor(false)
-    }
+    // const handleSubmit = (e) => {       
+    //     e.preventDefault()        
+    //     props.createText(textEdition)
+    //     handleEditor(false)
+    // }
 
     return (
-        <div className='contact-area'>
-
-            <EditorAction IS_EDITING={IS_EDITING} CLICK_EDIT={() => handleEditor(!openEditor)} CLICK_SAVE={(e) => handleSubmit(e)}/>     
+        <div className='contact-area'> 
 
             <div className='title'>                    
                     { CONTACT_PT ? CONTACT_PT[0] : 'ENTRE EM CONTATO A QUALQUER MOMENTO PELOS NOSSO TELEFONE, OU WHATSAPP' }
-                    <EditorContent IS_EDITING={IS_EDITING} OPEN_EDITOR={openEditor} 
-                                   CHANGE_INPUT={(e) => handleTextEdition({...textEdition , 0: e.target.value})}/>
+                    <EditorContent IS_EDITING={IS_EDITING} OPEN_EDITOR={OPEN_EDITOR} 
+                                   CHANGE_INPUT={(e) => props.updateField({...TEXT , 1: e.target.value})}/>
 
             </div>
 
@@ -40,13 +42,13 @@ const Contact = (props) => {
                 
             </a>
             
-            <EditorContent IS_EDITING={IS_EDITING} OPEN_EDITOR={openEditor} 
-                                   CHANGE_INPUT={(e) => handleTextEdition({...textEdition , 1: e.target.value})}/>
+            <EditorContent IS_EDITING={IS_EDITING} OPEN_EDITOR={OPEN_EDITOR} 
+                                   CHANGE_INPUT={(e) => props.updateField({...TEXT , 2: e.target.value})}/>
 
             <div className='phone-group'>
                 <div className='phone-title'>{ CONTACT_PT ? CONTACT_PT[2] : 'É possível iniciar a ligação clicando no número desejado abaixo' }                    
-                <EditorContent IS_EDITING={IS_EDITING} OPEN_EDITOR={openEditor} 
-                                   CHANGE_INPUT={(e) => handleTextEdition({...textEdition , 2: e.target.value})}/>
+                <EditorContent IS_EDITING={IS_EDITING} OPEN_EDITOR={OPEN_EDITOR} 
+                                   CHANGE_INPUT={(e) => props.updateField({...TEXT , 3: e.target.value})}/>
                 
                 </div> 
                 <div className='phone-numbers'>
@@ -78,14 +80,16 @@ const Contact = (props) => {
 const mapStateToProps = (state) => {
     return {
         posts: state.firestore.ordered.posts,
-        contact: state.firestore.ordered.contact_pt
+        contact: state.firestore.ordered.contact_pt,
+        text: state.text.textCollection
     }
 }
 
   
 const mapDispatchToProps = (dispatch) => {
     return {
-        createText: (text) => dispatch(createText(text))
+        createText: (text) => dispatch(createText(text)),
+        updateField: (text) => dispatch(updateField(text))
     }
 }
 
