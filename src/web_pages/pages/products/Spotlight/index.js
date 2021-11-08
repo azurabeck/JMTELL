@@ -1,14 +1,21 @@
 import React , { useEffect , useState } from 'react'
-import './style.scss';
+import { createText , updateField } from '../../../../web_config/actions/textActions'
+import { EditorContent } from '../../../../web_config/helpers/editText'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import BG from '../../../atoms/SVG/spotlight_bg.svg'
+import './style.scss';
 
 
 const Spotlight = (props) => {
 
     const PRODUCTS_DATA = props.products
+    const PRODUCT_PT = props.product && props.product[0]
+    const IS_EDITING = props.IS_EDITING
+    const OPEN_EDITOR = props.OPEN_EDITOR
+    const TEXT = props.text
+
     const [ SPOTLIGHT , updateProducts] = useState() 
 
     useEffect(() => {
@@ -24,7 +31,10 @@ const Spotlight = (props) => {
         <>
             {
                 SPOTLIGHT &&  <div className='products-spotlight-area'>
-                    Produtos em Destaque
+                    { PRODUCT_PT ? PRODUCT_PT[2] : 'Produtos em Destaque' }
+                    <EditorContent  HAS_VALUE={PRODUCT_PT && PRODUCT_PT[2]} IS_EDITING={IS_EDITING} OPEN_EDITOR={OPEN_EDITOR} 
+                                   CHANGE_INPUT={(e) => props.updateField({...TEXT , 2: e.target.value})}/>
+                    
 
                     {
                         SPOTLIGHT && SPOTLIGHT.slice(0,1).map((item, index) => {
@@ -49,14 +59,23 @@ const Spotlight = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        products: state.firestore.ordered.products
+        products: state.firestore.ordered.products,
+        product: state.firestore.ordered.product_pt,
+        text: state.text.textCollection
     }
   }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createText: (text) => dispatch(createText(text)),
+        updateField: (text) => dispatch(updateField(text))
+    }
+}
   
 export default compose(
-    connect(mapStateToProps),
+    connect(mapStateToProps , mapDispatchToProps),
     firestoreConnect([
-        { collection: 'products' }
+        { collection: 'products' },
+        { collection: 'product_pt' }               
         
     ])
 )(Spotlight)

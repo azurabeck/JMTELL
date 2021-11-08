@@ -1,4 +1,6 @@
-import React , { useState , useEffect} from 'react'
+import React , { useState } from 'react'
+import { createText , updateField } from '../../../../web_config/actions/textActions'
+import { EditorContent } from '../../../../web_config/helpers/editText'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
@@ -11,19 +13,17 @@ const ProductList = (props) => {
     const PRODUCTS_DATA = props.products
     const FILTER = useState(props.filter && props.filter)
 
-    // const PRODUCT_FILTER = PRODUCTS_DATA ? PRODUCTS_DATA.filter(item => item.category.cat_desc === FILTER.filterCategorie) : null
-    // console.log(PRODUCT_FILTER)
+    const PRODUCT_PT = props.product && props.product[0]
+    const IS_EDITING = props.IS_EDITING
+    const OPEN_EDITOR = props.OPEN_EDITOR
+    const TEXT = props.text
 
-    useEffect(() => {
-        console.log(FILTER)
-    
-    
-    });
-        
     return (
         <div className='products-list-area'>
-            Lista de Produtos
-
+            
+            { PRODUCT_PT ? PRODUCT_PT[0] : 'Lista de Produtos' }
+            <EditorContent  HAS_VALUE={PRODUCT_PT && PRODUCT_PT[0]} IS_EDITING={IS_EDITING} OPEN_EDITOR={OPEN_EDITOR} 
+                                   CHANGE_INPUT={(e) => props.updateField({...TEXT , 0: e.target.value})}/>
             <div className='product-list'>
 
                 { PRODUCTS_DATA && PRODUCTS_DATA.map((item, index) => {
@@ -33,11 +33,19 @@ const ProductList = (props) => {
                             <img class="product-img" alt="" src={item.img} />
                             <div class="product-title">{item.name ? item.name : '-' }</div>
                             <div class="product-desc">{item.model ? item.model : '-' }</div>
-                            <Link to={'/produtos/' + item.id} class="btn-products-screen"><a class="btn-stroke" href="/products"> Saiba mais </a></Link>
+                            <Link to={'/produtos/' + item.id} class="btn-products-screen"><a class="btn-stroke" href="/products">
+                            { PRODUCT_PT ? PRODUCT_PT[1] : 'Saiba mais' } </a></Link>      
+                            { index === 0 && 
+                                            <EditorContent  HAS_VALUE={PRODUCT_PT && PRODUCT_PT[1]} IS_EDITING={IS_EDITING} OPEN_EDITOR={OPEN_EDITOR} 
+                                                                CHANGE_INPUT={(e) => props.updateField({...TEXT , 1: e.target.value})}/>
+                            }                      
                         </div>  
                         )
                      })            
                 }
+
+                
+
 
             </div>
         </div>
@@ -47,14 +55,24 @@ const ProductList = (props) => {
 const mapStateToProps = (state) => {
     return {
         products: state.firestore.ordered.products,        
-        filter: state.product.filterCategorie
+        filter: state.product.filterCategorie,
+        product: state.firestore.ordered.product_pt,
+        text: state.text.textCollection
     }
   }
   
+  const mapDispatchToProps = (dispatch) => {
+    return {
+        createText: (text) => dispatch(createText(text)),
+        updateField: (text) => dispatch(updateField(text))
+    }
+}
+
 export default compose(
-    connect(mapStateToProps),
+    connect(mapStateToProps , mapDispatchToProps),
     firestoreConnect([
-        { collection: 'products' }
+        { collection: 'products' },
+        { collection: 'product_pt' }
         
     ])
 )(ProductList)
