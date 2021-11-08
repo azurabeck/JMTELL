@@ -6,17 +6,26 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import './style.scss'
 import ADD_CLIENT from './AddInfo'
+import DETAILS from './Details'
 
 const Clients = (props) => {
 
     const CLIENTS_DB = props.clients
     const [ registerDialog , handleRegister ] = useState(false)
-
+    const [ openDetails , openDetailsFunc ] = useState(false)
+    const [ clientDetails , clientDetailsFun ] = useState()
+    const handleDetails = (item) => {
+        openDetailsFunc(!openDetails)
+        clientDetailsFun(item)
+    }
+ 
     return (
         <div className='clients'>
 
 
             { registerDialog && <ADD_CLIENT click={() => handleRegister(!registerDialog)}/> }
+            { openDetails && <DETAILS item={clientDetails} click={() => openDetailsFunc(!openDetails)}/> }
+
 
 
             <div className='fast-bar'> Clientes: 10  <FontAwesomeIcon icon={faMailBulk} /> </div>    
@@ -45,7 +54,7 @@ const Clients = (props) => {
                     CLIENTS_DB && CLIENTS_DB.map((item, index) => {
                         return (
 
-                            <div className='table-row' key={index}> 
+                            <div className='table-row' key={index} onClick={() => handleDetails(item)}> 
                                 <div className='COL_SIZE_LARGE'> {item.name} </div>
                                 <div className='COL_SIZE_LARGE'> {item.email} </div>
                                 <div className='COL_SIZE_LARGE'> {item.telephone} </div>
