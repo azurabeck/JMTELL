@@ -16,15 +16,14 @@ const AddClient = ( props ) => {
         name: '',
         description: '',
         details: [{ detail_name: "", detail_info : ""}],
-        aditional: [{ info_desc: "" }],        
-        category: [{ cat_desc: "" }],
+        aditional: [{ info_desc: "" }],       
         model: '',
         img: '',
         spotlight: true,
     })
     const [formValues, setFormValues] = useState([{detail_name: "", detail_desc: ""}])
     const [formInfoValues, setInfoFormValues] = useState([{ info_desc: ""}])
-    const [formCatValues, setCatFormValues] = useState([{ cat_desc: "" }])
+    const [formCatValues, setCatFormValues] = useState([])
 
     let handleDetailsChange = (i, e) => {
         let newFormValues = [...formValues];
@@ -39,10 +38,7 @@ const AddClient = ( props ) => {
         getForm({...formData, aditional: formInfoValues })
      }
      let handleCatChange = (i, e) => {
-        let newFormValues = [...formCatValues];
-        newFormValues[i][e.target.name] = e.target.value;
-        setCatFormValues(newFormValues);
-        getForm({...formData, category: formCatValues })
+        getForm({...formData, [e.target.value]: true })
      }
 
         
@@ -53,7 +49,7 @@ const AddClient = ( props ) => {
         setInfoFormValues([...formInfoValues, { info_desc: "" }])
      }
      let addCatFormFields = () => {
-        setCatFormValues([...formCatValues, { cat_desc: "" }])
+        setCatFormValues([...formCatValues , {} ])
      }
 
 
@@ -146,7 +142,7 @@ const AddClient = ( props ) => {
                                                             <option selected disabled key={index}>{item.name}</option>
                                                             {
                                                                 item.subcategorie && item.subcategorie.map((subcat, index) => (
-                                                                    <option value={subcat.sub_name} key={index}>{subcat.sub_name}</option>
+                                                                    <option value={subcat.tag} key={index}>{subcat.sub_name}</option>
                                                                 ))
 
                                                             }
