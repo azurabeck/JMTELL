@@ -36,13 +36,13 @@ export const updateCategorie = (categories) => {
     }
 }
 
-export const deleteCategorie = (categories) => {
+export const deleteCategorie = (categorie) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         //make async call to database
         const firestore = getFirestore();
-        firestore.collection('categories').doc(categories.id).delete()     
+        firestore.collection('categories').doc(categorie).delete()     
         .then(() => {
-            dispatch({ type: 'CATEGORIE_DELETE', categories })
+            dispatch({ type: 'CATEGORIE_DELETE' })
         }).catch((err) => {
             dispatch({type: 'CATEGORIE_DELETE_ERRO', err})
         })
