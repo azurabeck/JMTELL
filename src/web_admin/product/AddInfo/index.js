@@ -97,7 +97,7 @@ const AddClient = ( props ) => {
                             <div className='title'> Detalhes Tecnicos  <div className='add-details'  onClick={() => addDetailsFormFields()}>Adicionar</div> </div>   
                             {formValues.map((element, index) => (
                                     <div className='details-field'>
-                                        <input className='detail_name' name='detail_name' placeholder='Nome'onChange={e => handleDetailsChange(index, e)} />
+                                        <input className='detail_name' name='detail_name' placeholder='Nome'onChange={e => handleDetailsChange(index , e)} />
                                         <input className='detail_desc' name='detail_desc' placeholder='Descrição'  onChange={e => handleDetailsChange(index, e)} />
 
 
@@ -132,16 +132,16 @@ const AddClient = ( props ) => {
                             <div className='details-group'>
                             <div className='title'> Categorias <div className='add-details'  onClick={() => addCatFormFields()}>Adicionar</div> </div>   
                             {formCatValues.map((element, index) => (
-                                    <div className='details-field'>
-                                        
-                                            <select name='cat_desc' placeholder='Nome' onChange={e => handleCatChange(index, e)}>
+                                    <div className='details-field'>                                        
+                                            <select name='cat_desc' placeholder='Nome' onChange={e => handleCatChange(index,  e)}>
                                                 {
                                                     CATEGORIES && CATEGORIES.map((item, index) => {
+                                                        console.log(item)
                                                         return (
                                                             <>
                                                             <option selected disabled key={index}>{item.name}</option>
                                                             {
-                                                                item.subcategorie && item.subcategorie.map((subcat, index) => (
+                                                                item.subcategorie && item.subcategorie.map((subcat, index) => (                                                                    
                                                                     <option value={subcat.tag} key={index}>{subcat.sub_name}</option>
                                                                 ))
 

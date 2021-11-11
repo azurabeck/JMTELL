@@ -57,6 +57,7 @@ export const deleteProcuct = (product) => {
 
 
 export const filterCategorie = (filter) => {
+    console.log(filter)
     return {
       type: 'PRODUCT_CATEGORIE_FILTER',
       filter

@@ -25,7 +25,7 @@ export const MenuData = [
     },
     {
         title: 'Treinamento',
-        path: 'http://www.globo.com',
+        path: 'https://www.sympla.com.br/produtor/jmtell',
         blockItem: true,
         iconClosed: null,
         iconOpened: null,

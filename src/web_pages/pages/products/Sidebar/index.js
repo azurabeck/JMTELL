@@ -15,7 +15,7 @@ const Sidebar = (props) => {
 
     const handleFilterDispatch = (e , filter) => {
         e.preventDefault()
-        props.filterCategorie({filtering: true, filterCategorie: filter})
+        props.filterCategorie({filterByCat: false, filterCategorie: filter})
     }
    
     useEffect(() => {
@@ -26,6 +26,7 @@ const Sidebar = (props) => {
         }
         anyNameFunction();
     }, [SIDEBAR_DATA]);
+
     
     return (
 

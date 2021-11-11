@@ -12,17 +12,17 @@ const ProductList = (props) => {
     
     const PRODUCTS_DATA = props.products
     const FILTER = props.filter
-   
-
+    
     const PRODUCT_PT = props.product && props.product[0]
     const IS_EDITING = props.IS_EDITING
     const OPEN_EDITOR = props.OPEN_EDITOR
     const TEXT = props.text
     const TAG = FILTER.filterCategorie
-    
+
+    console.log(PRODUCTS_DATA)
+
     const PRODUCT_FILTERED = TAG && TAG !== 'todos' && PRODUCTS_DATA && PRODUCTS_DATA.filter(item => item[TAG] )
     let DATA = PRODUCT_FILTERED ? PRODUCT_FILTERED : PRODUCTS_DATA
-
 
     return (
         <div className='products-list-area'>

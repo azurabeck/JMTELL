@@ -29,11 +29,12 @@ const Navbar = () => {
                     { MOB_MENU_OPEN && 
                         <div className='mob-nav-menu'>
                             
-                            { MENU_DATA && MENU_DATA.map((route, index) => (
-                                route.externalLink === true ?
-                                 <a href={route.path} key={index} className={path === route.path && 'active'} >{route.title}</a>
+                            { MENU_DATA && MENU_DATA.map((route, index) => {
+                                return (
+                                route.externalLink ?
+                                 <a href={route.path} target='_black' key={index} className={path === route.path && 'active'} >{route.title}</a>
                                 : <Link to={route.path} key={index} className={path === route.path && 'active'} >{route.title}</Link>
-                            )) }
+                            )}) }
                             
                         </div>
                     }
@@ -42,7 +43,9 @@ const Navbar = () => {
                 </div>  
 
                 { MENU_DATA && MENU_DATA.map((route, index) => (
-                        <Link to={route.path} key={index} className={path === route.path && 'active'} >{route.title}</Link>
+                        route.externalLink ?
+                                 <a href={route.path} target='_black' key={index} className={path === route.path && 'active'} >{route.title}</a>
+                                : <Link to={route.path} key={index} className={path === route.path && 'active'} >{route.title}</Link>
                 )) }
             </div>
         </div>

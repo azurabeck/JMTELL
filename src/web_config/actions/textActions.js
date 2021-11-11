@@ -12,7 +12,7 @@ export const createText = (text) => {
         //make async call to database
         const firestore = getFirestore();
         const collection = text.collection.toString()
-        firestore.collection(collection).add({
+        firestore.collection(collection).doc('NPQsZGYwRmzwukV74Usl').update({
            ...text
         })
        

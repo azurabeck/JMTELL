@@ -22,14 +22,16 @@ const AddCategorie = ( props ) => {
     let handleCategorieChange = (i, e) => {          
         let camelCaseForm = [...formValues];  
         let newFormValues = [...formValues];
+        let categorie = [...formValues]
         newFormValues[i]['sub_name'] = e.target.value;  
         camelCaseForm[i]['tag'] = camelCase(e.target.value.trim())  
-        setFormValues(newFormValues , camelCaseForm);
+        categorie[i]['categorie'] = formData.name
+        setFormValues(newFormValues , camelCaseForm , categorie);
         getForm({...formData, subcategorie: formValues })
      }
         
     let addSubCategoriFormFields = () => {
-        setFormValues([...formValues, {sub_name: "" , tag: ''}])
+        setFormValues([...formValues, {sub_name: "" , tag: '', categorie: formData.name && formData.name}])
      }
 
      let removeDetailsFormFields = (i) => {
