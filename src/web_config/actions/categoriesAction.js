@@ -6,6 +6,11 @@ export const createCategorie = (categories) => {
         firestore.collection('categories').add({
             ...categories 
         })
+        .then(function(docRef) {
+            firestore.collection('categories').doc(docRef.id).update({
+                id: docRef.id,
+            })
+        })
        
         
         .then(() => {

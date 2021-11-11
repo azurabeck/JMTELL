@@ -1,10 +1,11 @@
 import React , { useState } from 'react'
-import { createCategorie } from '../../../web_config/actions/categoriesAction'
+import { createCategorie , updateCategorie } from '../../../web_config/actions/categoriesAction'
 import { connect } from 'react-redux'
 import  { camelCase } from 'lodash'
 import './style.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import categories from '..'
 
 
 const AddCategorie = ( props ) => {
@@ -13,20 +14,31 @@ const AddCategorie = ( props ) => {
     const IS_EDITING = props.isEditing
 
     const [ formData, getForm ] = useState({
-        name: '',
-        subcategorie: null
+        name: IS_EDITING ? IS_EDITING.name : '',
+        subcategorie: IS_EDITING ? IS_EDITING.subcategorie : {}
     })
-    const [formValues, setFormValues] = useState([ IS_EDITING ?
-        IS_EDITING.subcategorie  : { sub_name: '' } ])
+    const [formValues, setFormValues] = useState([ IS_EDITING ? IS_EDITING.subcategorie  : { sub_name: '' , categorie: formData.name && formData.name , tag: ''} ])
+
+    let handleFieldUpdate = ( i , newValue ) => {
+        const formNewValue = { 
+                               categorie: formData.name && formData.name.toLowerCase(),
+                               sub_name: newValue,
+                               tag: newValue.trim(),
+                             }                                  
+        const data = { ...formData.subcategorie , 
+                       [i]: formNewValue }           
+        getForm({...formData , subcategorie: data })
+    }
+
 
     let handleCategorieChange = (i, e) => {          
         let camelCaseForm = [...formValues];  
         let newFormValues = [...formValues];
-        let categorie = [...formValues]
+        
         newFormValues[i]['sub_name'] = e.target.value;  
         camelCaseForm[i]['tag'] = camelCase(e.target.value.trim())  
-        categorie[i]['categorie'] = formData.name
-        setFormValues(newFormValues , camelCaseForm , categorie);
+
+        setFormValues(newFormValues , camelCaseForm);
         getForm({...formData, subcategorie: formValues })
      }
         
@@ -42,7 +54,8 @@ const AddCategorie = ( props ) => {
 
     const handleSubmit = (e) => {       
         e.preventDefault()        
-        props.createCategorie(formData)
+        if( IS_EDITING ) { props.updateCategorie(formData) }
+        else { props.createCategorie(formData) }
         props.click()
     }
 
@@ -66,7 +79,7 @@ const AddCategorie = ( props ) => {
                                             {   !IS_EDITING &&
                                                     <div className='subcategoria-field'>                                                        
                                                         <input className='subcategoria_name' name='sub_name'
-                                                                    placeholder='Nome' onChange={e => handleCategorieChange(index, e)} />       
+                                                                    placeholder='Nome' onChange={ e => handleCategorieChange(index, e) } />       
 
                                                         {
                                                             index ? 
@@ -79,8 +92,8 @@ const AddCategorie = ( props ) => {
 
                                             { IS_EDITING && element && element.map((item, index) => (
                                                     <div className='subcategoria-field'>   
-                                                        <input className='subcategoria_name' name='sub_name' value={item.sub_name}
-                                                            placeholder='Nome' onChange={e => handleCategorieChange(index, e)} />    
+                                                        <input className='subcategoria_name' name='sub_name' value={formData.subcategorie[index].sub_name}
+                                                            placeholder='Nome' onChange={ e => handleFieldUpdate(index , e.target.value) } />    
                                                         {
                                                             index ? 
                                                             <button type="button"  className="button remove" onClick={() => removeDetailsFormFields(index)}>x</button> 
@@ -119,6 +132,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        updateCategorie: (categorie) => dispatch(updateCategorie(categorie)),
         createCategorie: (categorie) => dispatch(createCategorie(categorie))
     }
 }
