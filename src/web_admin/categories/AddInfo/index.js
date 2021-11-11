@@ -5,7 +5,6 @@ import  { camelCase } from 'lodash'
 import './style.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import categories from '..'
 
 
 const AddCategorie = ( props ) => {
@@ -14,6 +13,7 @@ const AddCategorie = ( props ) => {
     const IS_EDITING = props.isEditing
 
     const [ formData, getForm ] = useState({
+        id: IS_EDITING ? IS_EDITING.id : null,
         name: IS_EDITING ? IS_EDITING.name : '',
         subcategorie: IS_EDITING ? IS_EDITING.subcategorie : {}
     })

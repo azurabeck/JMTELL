@@ -26,15 +26,17 @@ export const updateCategorie = (categories) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         //make async call to database
         const firestore = getFirestore();
+        const id = categories.id.toString().replace(/\s/g, '')
 
-        firestore.collection('categories').doc(categories.id).update({
+        firestore.collection('categories').doc(id).update({
             ...categories 
         })
        
         
         .then(() => {
-            dispatch({ type: 'CATEGORIE_UPDATE', categories })
+            dispatch({ type: 'CATEGORIE_UPDATE' })
         }).catch((err) => {
+            console.log(err)
             dispatch({type: 'CATEGORIE_UPDATE_ERRO', err})
         })
         
