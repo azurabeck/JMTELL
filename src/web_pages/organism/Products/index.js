@@ -17,13 +17,16 @@ const Product_bar = (props) => {
 
     return (
         <div className='product-bar'> 
-                <div className='title'> Product <FontAwesomeIcon icon={faArrowRight} /> </div>
-                <div className='button-area'>
-                    <div className='bar-button'>
-                        <COMBO_BOX TEXT='CATEGORIAS' SIDEBAR_DATA={SIDEBAR_DATA} SCREEN='produtos' />
-                    </div> 
-                    <div className='bar-button'><div className='button' onClick={() => props.filterCategorie({filterByCat: 2, filterCategorie: ''})}>DESTAQUES</div></div>      
+                <div className='product-buttons'>
+                    <div className='title'> Product <FontAwesomeIcon icon={faArrowRight} /> </div>
+                    <div className='button-area'>
+                        <div className='bar-button'>
+                            <COMBO_BOX TEXT='CATEGORIAS' SIDEBAR_DATA={SIDEBAR_DATA} SCREEN='produtos' />
+                        </div> 
+                        <div className='bar-button'><div className='button' onClick={() => props.filterCategorie({filterByCat: 2, filterCategorie: ''})}>DESTAQUES</div></div>      
+                    </div>
                 </div>
+
                 <SEARCH />
         
          </div>
