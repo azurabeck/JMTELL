@@ -19,16 +19,16 @@ const AddCategorie = ( props ) => {
     })
     const [formValues, setFormValues] = useState([ IS_EDITING ? IS_EDITING.subcategorie  : { sub_name: '' , categorie: formData.name && formData.name , tag: ''} ])
 
-    let handleFieldUpdate = ( i , newValue ) => {
-        const formNewValue = { 
-                               categorie: formData.name && formData.name.toLowerCase(),
-                               sub_name: newValue,
-                               tag: newValue.trim(),
-                             }                                  
-        const data = { ...formData.subcategorie , 
-                       [i]: formNewValue }           
-        getForm({...formData , subcategorie: data })
-    }
+    // let handleFieldUpdate = ( i , newValue ) => {
+    //     const formNewValue = { 
+    //                            categorie: formData.name && formData.name.toLowerCase(),
+    //                            sub_name: newValue,
+    //                            tag: newValue.trim(),
+    //                          }                                  
+    //     const data = { ...formData.subcategorie , 
+    //                    [i]: formNewValue }           
+    //     getForm({...formData , subcategorie: data })
+    // }
 
 
     let handleCategorieChange = (i, e) => {          
@@ -39,7 +39,7 @@ const AddCategorie = ( props ) => {
         camelCaseForm[i]['tag'] = camelCase(e.target.value.trim())  
 
         setFormValues(newFormValues , camelCaseForm);
-        getForm({...formData, subcategorie: formValues })
+        getForm({...formData, subcategorie: formValues , categorie: formData.name })
      }
         
     let addSubCategoriFormFields = () => {
@@ -90,7 +90,7 @@ const AddCategorie = ( props ) => {
 
                                             }
 
-                                            { IS_EDITING && element && element.map((item, index) => (
+                                            {/* { IS_EDITING && element && element.map((item, index) => (
                                                     <div className='subcategoria-field'>   
                                                         <input className='subcategoria_name' name='sub_name' value={formData.subcategorie[index].sub_name}
                                                             placeholder='Nome' onChange={ e => handleFieldUpdate(index , e.target.value) } />    
@@ -101,7 +101,7 @@ const AddCategorie = ( props ) => {
                                                         }
                                                     </div> 
                                                 ))
-                                            }
+                                            } */}
                                         </>
 
                                 )})

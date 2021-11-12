@@ -34,7 +34,7 @@ const Categories = (props) => {
                                 <div className='categorie-block-header' > 
                                     <div className='categorie-block-title'>{item.name}</div> 
                                     <FontAwesomeIcon icon={faTrash}  onClick={() => props.deleteCategorie(item.id)}/> 
-                                    <FontAwesomeIcon icon={faPen}  onClick={() => handleRegister({ open:  !registerDialog.open, editing: item})}/> 
+                                    {/* <FontAwesomeIcon icon={faPen}  onClick={() => handleRegister({ open:  !registerDialog.open, editing: item})}/>  */}
                                     <FontAwesomeIcon icon={preview[item.name] ? faChevronUp : faChevronDown}  onClick={() => handlePreview({[item.name]: !preview[item.name]})} /> 
                                 </div>
             

@@ -13,6 +13,8 @@ const Sidebar = (props) => {
     const SIDEBAR_DATA = props.categories
     const [ displayMenu , handleMenu ] = useState( null )
 
+    console.log(SIDEBAR_DATA)
+
     const handleFilterDispatch = (e , filter) => {
         e.preventDefault()
         props.filterCategorie({filterByCat: false, filterCategorie: filter})
@@ -26,7 +28,6 @@ const Sidebar = (props) => {
         }
         anyNameFunction();
     }, [SIDEBAR_DATA]);
-
     
     return (
 
@@ -38,17 +39,20 @@ const Sidebar = (props) => {
                 </div>
 
             { SIDEBAR_DATA && SIDEBAR_DATA.map((item, index) => {
+                const itemName = item.name
+                const sub = item.subcategorie 
+ 
                 return (
                     <div className='sidebar-categorie-wrapper'>
-                        <div className='sidebar-buttons' key={index} onClick={() => handleMenu( displayMenu && {...displayMenu , [item.name]: !displayMenu[item.name] })} > 
-                            {item.name} 
+                        <div className='sidebar-buttons' key={index} onClick={() => handleMenu( displayMenu && {...displayMenu , [itemName]: !displayMenu[item.name] })} > 
                             <FontAwesomeIcon icon={displayMenu && displayMenu[item.name] ? faChevronUp : faChevronDown}/> </div>
                             {
-                            displayMenu && displayMenu[item.name] && item.subcategorie && item.subcategorie.map((subcat, index) => (
-                                
-                                <div className='sidebar-sub-buttons' onClick={(e) => handleFilterDispatch(e , subcat.tag)} key={index}> {subcat.sub_name} </div>  
-                            ))
-                        }  
+                                displayMenu && displayMenu[item.name] && sub && Object(sub).map((subcat, index) => {
+                                    console.log(subcat) 
+                                    return (
+                                    <div className='sidebar-sub-buttons' onClick={(e) => handleFilterDispatch(e , subcat.tag)} key={index}> {subcat.sub_name} </div>  
+                                )})
+                            }  
                     </div>
                 )
             })}

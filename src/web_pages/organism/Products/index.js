@@ -15,6 +15,8 @@ const Product_bar = (props) => {
     const SIDEBAR_DATA = props.categories
     const [ displayMenu , handleMenu ] = useState( null )
 
+    console.log(SIDEBAR_DATA && SIDEBAR_DATA)
+
     // const handleFilterDispatch = (e , filter) => {
     //     e.preventDefault()
     //     props.filterCategorie({filtering: true, filterCategorie: filter})
