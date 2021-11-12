@@ -1,14 +1,14 @@
 .product-bar { position: fixed;
     display: flex; flex-direction: row;
     align-items: center; justify-content: space-between;
-    width: calc(100% - 140px); height: 50px;
+    width: calc(100% - 135px); height: 50px;
     padding: 0 70px;
     max-width: 100%;
     font-weight: 400; font-size: 16px;
     background-color: #2C3A41; color: #FFFFFF; 
     top: 80px; z-index: 2;
 
-    .title {  color: #fff !important; margin: 0 !important; font-size: 16px !important;  svg { margin-right: 40px; margin-left: 40px; } }
+    .title { display: flex; align-items: center; color: #fff !important; margin: 0 !important; font-size: 16px !important;  svg { margin-right: 40px; margin-left: 40px; } }
     .button-area {
         display: flex;  flex-direction: row;
         align-items: center; justify-content: space-between;
@@ -16,4 +16,21 @@
 
         .button:hover { cursor: pointer; color: #FAA916; }
     }
+}
+
+@media screen and (max-width: 1100px) {
+    .product-bar .title { display: none !important; }
+}
+
+@media screen and (max-width: 950px) {
+    .product-bar .button-area .bar-button { margin: auto; margin-right: 40px !important; }
+}
+
+@media screen and (max-width: 850px) {
+    .product-bar { flex-direction: column !important;  align-items: flex-start !important; height: auto !important; }
+    .product-bar .button-area .bar-button { margin: auto; margin-bottom: 10px; margin-top: 10px; }
+}
+
+@media screen and (max-width: 850px) {
+    .product-bar {  width: calc(100% - 40px) !important;  padding: 0 20px !important;}
 }

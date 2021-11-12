@@ -1,4 +1,4 @@
-import React , { useState , useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
@@ -13,24 +13,6 @@ import './style.scss'
 const Product_bar = (props) => {
 
     const SIDEBAR_DATA = props.categories
-    const [ displayMenu , handleMenu ] = useState( null )
-
-    console.log(SIDEBAR_DATA && SIDEBAR_DATA)
-
-    const handleFilterDispatch = (e , filter) => {
-        e.preventDefault()
-        props.filterCategorie({filtering: true, filterCategorie: filter})
-    }
-   
-    // useEffect(() => {
-    //     async function anyNameFunction() {
-    //         await SIDEBAR_DATA;
-    //         const SIDEBAR_TOPICS = await SIDEBAR_DATA && SIDEBAR_DATA.map(item =>  ( item.name ) )
-    //         handleMenu( SIDEBAR_TOPICS && SIDEBAR_TOPICS.reduce((a, v) => ({ ...a, [v]: true}) , {}) )
-    //     }
-    //     anyNameFunction();
-    // }, [SIDEBAR_DATA]);
-
 
 
     return (
@@ -38,10 +20,9 @@ const Product_bar = (props) => {
                 <div className='title'> Product <FontAwesomeIcon icon={faArrowRight} /> </div>
                 <div className='button-area'>
                     <div className='bar-button'>
-                        <COMBO_BOX TEXT='CATEGORIAS' SIDEBAR_DATA={SIDEBAR_DATA} />
+                        <COMBO_BOX TEXT='CATEGORIAS' SIDEBAR_DATA={SIDEBAR_DATA} SCREEN='produtos' />
                     </div> 
-                    <div className='bar-button'><div className='button'>DESTAQUES</div></div>   
-                    <div className='bar-button'><div className='button'>MAIS RECENTE</div></div>       
+                    <div className='bar-button'><div className='button' onClick={() => props.filterCategorie({filterByCat: 2, filterCategorie: ''})}>DESTAQUES</div></div>      
                 </div>
                 <SEARCH />
         

@@ -1,16 +1,29 @@
-import React from 'react'
-import BUTTON_ORANGE_SQUARE from '../../atoms/BUTTON_ORANGE'
+import React , { useState }  from 'react'
+import { connect } from 'react-redux'
+import { filterCategorie } from '../../../web_config/actions/productActions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import './style.scss'
 
-const Search = () => {
+const Search = (props) => {
+
+    const [ SEARCH_CONTENT , setSearchContent ] = useState()
+
     return (
         <div className='search'>
-            <input placeholder='Procure pelo produto aqui'></input>
-            <div className='button-search' ><FontAwesomeIcon icon={faSearch}/></div>
+            <input placeholder='Digite e clique na lupa para pesquisar pelo nome' onChange={(e) => setSearchContent(e.target.value)}></input>
+            <div className='button-search' onClick={() => props.filterCategorie({filterByCat: 3, filterCategorie: SEARCH_CONTENT})} >
+                <FontAwesomeIcon icon={faSearch}/>
+            </div>
         </div>
     )
 }
 
-export default Search
+
+  
+const mapDispatchToProps = (dispatch) => {
+    return {
+        filterCategorie: (filter) => dispatch(filterCategorie(filter)),
+    }
+} 
+export default connect(null , mapDispatchToProps)(Search)

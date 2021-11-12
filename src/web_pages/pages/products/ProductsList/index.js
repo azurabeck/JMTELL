@@ -6,6 +6,7 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Link } from 'react-router-dom'
 import './style.scss';
+import { toSafeInteger } from 'lodash'
 
 const ProductList = (props) => {
 
@@ -18,10 +19,35 @@ const ProductList = (props) => {
     const OPEN_EDITOR = props.OPEN_EDITOR
     const TEXT = props.text
     const TAG = FILTER.filterCategorie
+    const FILTER_TYPE = FILTER.filterByCat
+    const TAG_LOWER = TAG && TAG.toLowerCase()
+    let PRODUCT_FILTERED
 
-    console.log(PRODUCTS_DATA)
+    switch(FILTER_TYPE) {
+        case 0: 
+            // SUBCAT
+            PRODUCT_FILTERED = PRODUCTS_DATA && PRODUCTS_DATA.filter(item => item[TAG] )
+            break;
+        case 1:
+            // CATEGORIE
+            PRODUCT_FILTERED =  PRODUCTS_DATA && PRODUCTS_DATA.filter(item => item.categorie === TAG_LOWER)
+            break;
+        case 2:
+            // SPOTLIGHT
+            PRODUCT_FILTERED =  PRODUCTS_DATA && PRODUCTS_DATA.filter(item => item.spotlight )
+            break;
+        case 3:
+            // SEARCH
+            PRODUCT_FILTERED = TAG && PRODUCTS_DATA && PRODUCTS_DATA.filter(item => item.name === TAG)
+            break;
+        case 4:
+            // TODOS
+            PRODUCT_FILTERED = TAG && TAG !== 'todos' && PRODUCTS_DATA && PRODUCTS_DATA.filter(item => item[TAG] )
+            break;
+        default: 
+    }
 
-    const PRODUCT_FILTERED = TAG && TAG !== 'todos' && PRODUCTS_DATA && PRODUCTS_DATA.filter(item => item[TAG] )
+
     let DATA = PRODUCT_FILTERED ? PRODUCT_FILTERED : PRODUCTS_DATA
 
     return (
@@ -79,6 +105,5 @@ export default compose(
     firestoreConnect([
         { collection: 'products' },
         { collection: 'product_pt' }
-        
     ])
 )(ProductList)

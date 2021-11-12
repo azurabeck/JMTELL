@@ -13,7 +13,7 @@
 
 @media screen and (max-width: 1270px) {
     .products .products-content .products-sidebar { display: none !important; }
-    .products .products-content .products-area { width: 100%; }
+    .products .products-content .products-area { grid-area: 1 / 1 / 6 / 6 !important; }
     .products .products-spotlight-area .products-spotlight .ps-title { margin-right: 100px; }
 }
 

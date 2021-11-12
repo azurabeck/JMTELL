@@ -13,11 +13,9 @@ const Sidebar = (props) => {
     const SIDEBAR_DATA = props.categories
     const [ displayMenu , handleMenu ] = useState( null )
 
-    console.log(SIDEBAR_DATA)
-
-    const handleFilterDispatch = (e , filter) => {
+    const handleFilterDispatch = (e , filter , filterIndex) => {
         e.preventDefault()
-        props.filterCategorie({filterByCat: false, filterCategorie: filter})
+        props.filterCategorie({filterByCat: filterIndex, filterCategorie: filter})
     }
    
     useEffect(() => {
@@ -33,7 +31,7 @@ const Sidebar = (props) => {
 
         <div className='products-sidebar'>
                 <div className='sidebar-categorie-wrapper'>
-                        <div className='sidebar-buttons' onClick={(e) => handleFilterDispatch(e , 'todos')} > 
+                        <div className='sidebar-buttons' onClick={(e) => handleFilterDispatch(e , 'todos' , 4)} > 
                             Mostrar todos 
                         </div> 
                 </div>
@@ -49,7 +47,7 @@ const Sidebar = (props) => {
                             {
                                 displayMenu && displayMenu[item.name] && sub && sub.map((subcat, index) => {
                                     return (
-                                    <div className='sidebar-sub-buttons' onClick={(e) => handleFilterDispatch(e , subcat.tag)} key={index}> {subcat.sub_name} </div>  
+                                    <div className='sidebar-sub-buttons' onClick={(e) => handleFilterDispatch(e , subcat.tag , 0)} key={index}> {subcat.sub_name} </div>  
                                 )})
                             }  
                     </div>
