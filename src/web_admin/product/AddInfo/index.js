@@ -20,6 +20,7 @@ const AddClient = ( props ) => {
         model: '',
         img: '',
         spotlight: true,
+        categorie: ''
     })
     const [formValues, setFormValues] = useState([{detail_name: "", detail_desc: ""}])
     const [formInfoValues, setInfoFormValues] = useState([{ info_desc: ""}])
@@ -37,8 +38,9 @@ const AddClient = ( props ) => {
         setInfoFormValues(newFormValues);
         getForm({...formData, aditional: formInfoValues })
      }
-     let handleCatChange = (i, e) => {
-        getForm({...formData, [e.target.value]: true })
+     let handleCatChange = (i, e ) => {
+        const categorie = e.target[e.target.selectedIndex].getAttribute("name")
+        getForm({...formData, [e.target.value]: true , categorie: categorie })
      }
 
         
@@ -68,7 +70,6 @@ const AddClient = ( props ) => {
         newFormValues.splice(i, 1);
         setCatFormValues(newFormValues)
     }
-
 
     const handleSubmit = (e) => {       
         e.preventDefault()        
@@ -131,19 +132,21 @@ const AddClient = ( props ) => {
 
                             <div className='details-group'>
                             <div className='title'> Categorias <div className='add-details'  onClick={() => addCatFormFields()}>Adicionar</div> </div>   
-                            {formCatValues.map((element, index) => (
-                                    <div className='details-field'>                                        
-                                            <select name='cat_desc' placeholder='Nome' onChange={e => handleCatChange(index,  e)}>
+                            {formCatValues.map((element, index) => {
+                                            
+                                return(
+                                    <div className='details-field'>                              
+                                            <select name='cat_desc' placeholder='Nome' onChange={(e) => handleCatChange(index,  e )}>
                                                 {
                                                     CATEGORIES && CATEGORIES.map((item, index) => {
-                                                        console.log(item)
                                                         return (
                                                             <>
                                                             <option selected disabled key={index}>{item.name}</option>
                                                             {
-                                                                item.subcategorie && item.subcategorie.map((subcat, index) => (                                                                    
-                                                                    <option value={subcat.tag} key={index}>{subcat.sub_name}</option>
-                                                                ))
+                                                                item.subcategorie && item.subcategorie.map((subcat, index) => {
+                                                                    return (                                                                    
+                                                                    <option value={subcat.tag} key={index} name={subcat.categorie}>{subcat.sub_name}</option>
+                                                                )})
 
                                                             }
                                                             </>
@@ -158,7 +161,7 @@ const AddClient = ( props ) => {
                                             : null
                                         }
                                     </div>
-                                ))
+                                )})
                             }
                         </div>                 
 
