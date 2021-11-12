@@ -45,10 +45,9 @@ const Sidebar = (props) => {
                 return (
                     <div className='sidebar-categorie-wrapper'>
                         <div className='sidebar-buttons' key={index} onClick={() => handleMenu( displayMenu && {...displayMenu , [itemName]: !displayMenu[item.name] })} > 
-                            <FontAwesomeIcon icon={displayMenu && displayMenu[item.name] ? faChevronUp : faChevronDown}/> </div>
+                            { itemName } <FontAwesomeIcon icon={displayMenu && displayMenu[item.name] ? faChevronUp : faChevronDown}/> </div>
                             {
-                                displayMenu && displayMenu[item.name] && sub && Object(sub).map((subcat, index) => {
-                                    console.log(subcat) 
+                                displayMenu && displayMenu[item.name] && sub && sub.map((subcat, index) => {
                                     return (
                                     <div className='sidebar-sub-buttons' onClick={(e) => handleFilterDispatch(e , subcat.tag)} key={index}> {subcat.sub_name} </div>  
                                 )})

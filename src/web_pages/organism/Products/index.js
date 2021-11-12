@@ -17,10 +17,10 @@ const Product_bar = (props) => {
 
     console.log(SIDEBAR_DATA && SIDEBAR_DATA)
 
-    // const handleFilterDispatch = (e , filter) => {
-    //     e.preventDefault()
-    //     props.filterCategorie({filtering: true, filterCategorie: filter})
-    // }
+    const handleFilterDispatch = (e , filter) => {
+        e.preventDefault()
+        props.filterCategorie({filtering: true, filterCategorie: filter})
+    }
    
     // useEffect(() => {
     //     async function anyNameFunction() {
