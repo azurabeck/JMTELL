@@ -6,7 +6,7 @@ import { compose } from 'redux'
 import { createText } from '../../../web_config/actions/textActions'
 
 
-
+import WHATSAPP from '../../atoms/WHATSAPP';
 import HEADER from '../../pages/company/Header'
 import BUDGET from '../../pages/company/Budget'
 import CLIENTS from '../../pages/company/Clients'
@@ -37,6 +37,7 @@ const Company = (props) => {
             <TEAM IS_EDITING={IS_EDITING ? IS_EDITING : null} OPEN_EDITOR={openEditor}/>
             <CLIENTS IS_EDITING={IS_EDITING ? IS_EDITING : null} OPEN_EDITOR={openEditor}/>
             <BUDGET IS_EDITING={IS_EDITING ? IS_EDITING : null} OPEN_EDITOR={openEditor}/>
+            <WHATSAPP />
         </div>
     ) 
 }

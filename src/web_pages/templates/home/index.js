@@ -5,6 +5,7 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { createText } from '../../../web_config/actions/textActions'
 
+import WHATSAPP from '../../atoms/WHATSAPP';
 import HEADER from '../../pages/home/Header'
 import ABOUT from '../../pages/home/About'
 import PRODUCTS from '../../pages/home/Products'
@@ -34,7 +35,7 @@ const Home = (props) => {
                 <PRODUCTS IS_EDITING={IS_EDITING ? IS_EDITING : null} OPEN_EDITOR={openEditor}/> 
                 <ASSOCIATED IS_EDITING={IS_EDITING ? IS_EDITING : null} OPEN_EDITOR={openEditor}/> 
                 <CONTACT IS_EDITING={IS_EDITING ? IS_EDITING : null} OPEN_EDITOR={openEditor}/> 
-
+                <WHATSAPP />
                 
         </div>
     ) 

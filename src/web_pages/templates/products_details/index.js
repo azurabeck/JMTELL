@@ -3,6 +3,7 @@ import PRODUCT_BAR from '../../organism/Products'
 import PRODUCT_DETAILS from '../../pages/products_details'
 
 import './style.scss'
+import WHATSAPP from '../../atoms/WHATSAPP';
 
 const Products = (props) => {
     
@@ -16,6 +17,7 @@ const Products = (props) => {
                         <PRODUCT_DETAILS />               
                     </div>
                 </div>
+                <WHATSAPP />
             </div>
     ) 
 }

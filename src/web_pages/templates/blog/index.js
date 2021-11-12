@@ -4,6 +4,7 @@ import './style.scss'
 import SPOTLIGHT from '../../pages/blog/spotlight'
 import POST_LIST from '../../pages/blog/post'
 
+import WHATSAPP from '../../atoms/WHATSAPP';
 import { EditorAction } from '../../../web_config/helpers/editText'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
@@ -24,14 +25,15 @@ const Blog = (props) => {
     }
 
 
-    return (            
+    return (      
+        
         <div className='blog'>
             {!IS_EDITING && <BLOG_BAR />}
             <EditorAction IS_EDITING={IS_EDITING} CLICK_EDIT={() => handleEditor(!openEditor)} CLICK_SAVE={(e) => handleSubmitText(e)} /> 
             <div className='blog-content'>
                 <SPOTLIGHT IS_EDITING={IS_EDITING ? IS_EDITING : null} OPEN_EDITOR={openEditor}/>
                 <POST_LIST IS_EDITING={IS_EDITING ? IS_EDITING : null} OPEN_EDITOR={openEditor}/>
-            </div>
+            </div>           
         </div>
     ) 
 }

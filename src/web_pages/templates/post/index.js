@@ -4,6 +4,7 @@ import './style.scss'
 import HEADER from '../../pages/post/Header'
 import AUTHOR from '../../pages/post/Author'
 import POST from '../../pages/post/Post'
+import WHATSAPP from '../../atoms/WHATSAPP';
 
 
 
@@ -18,6 +19,7 @@ const Blog = (props) => {
                     <AUTHOR />
                     <POST />
                 </div>
+                <WHATSAPP />
             </div>
     ) 
 }

@@ -8,6 +8,7 @@ import PRODUCT_BAR from '../../organism/Products'
 import PRODUCT_SIDEBAR from '../../pages/products/Sidebar'
 import PRODUCT_LIST from '../../pages/products/ProductsList'
 import PRODUCT_SPOTLIGHT from '../../pages/products/Spotlight'
+import WHATSAPP from '../../atoms/WHATSAPP';
 
 import './style.scss'
 
@@ -33,6 +34,7 @@ const Products = (props) => {
                         <PRODUCT_LIST IS_EDITING={IS_EDITING ? IS_EDITING : null} OPEN_EDITOR={openEditor}/>                        
                     </div>
                 </div>
+                <WHATSAPP />
             </div>
     ) 
 }
