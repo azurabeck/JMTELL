@@ -16,6 +16,14 @@ export const MenuData = [
         externalLink: false,
     },
     {
+        title: 'Distribuidores',
+        path: '/admin/providers',
+        blockItem: true,
+        iconClosed: null,
+        iconOpened: null,
+        externalLink: false,
+    },
+    {
         title: 'Categorias',
         path: '/admin/categorias',
         blockItem: true,

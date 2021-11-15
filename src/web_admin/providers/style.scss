@@ -1,0 +1,92 @@
+.providers { 
+
+    .fast-bar {
+        display: flex;
+        align-items: center; justify-content: flex-end;
+        color: #a59595;
+
+        svg { margin-left: 30px; }
+        svg:hover { color: rgba(247, 7, 7, 0.733); cursor: pointer; }
+
+    }
+
+    .title {
+        display: flex; flex-direction: row;
+        align-items: center; justify-content: flex-start;
+        font-size: 28px; font-weight: 500; color: #323030;
+        margin-top: 50px; margin-bottom: 40px;
+
+        .button-orange { 
+            display: flex; 
+            align-items: center; justify-content: center;
+            background: #FAA916; color: #fff;
+            border-radius: 9px;
+            font-weight: 400;
+            text-transform: uppercase;
+            margin-left: 40px;
+            font-size: 14px;
+            width: 250px; height: 34px;
+            
+        
+            &:hover {
+                cursor: pointer;
+                background-color: #f39e05;
+                box-shadow: 2px 2px 4px #4e4e4e;
+            }
+        }
+        
+    }
+
+    .provider-group { 
+        display: flex; flex-direction: row; 
+        align-items: center; justify-content: flex-start;
+        width: 250px; width: 100%; flex-wrap: wrap;
+    
+        .provider-block {
+
+            display: flex; flex-direction: column;
+            align-items: flex-start; justify-content: flex-start;
+            flex-wrap: wrap;; margin-right: 50px; width: 200px;
+            background-color: #fff;
+
+            .img-block { 
+                display: block; width: 200px; height: 200px; background-color: #fff !important; 
+                background-color: #fff !important;
+                background-position: center !important;
+                background-size: contain !important;
+                background-repeat: no-repeat !important;
+            }
+
+            .provider-block-title { width: calc(100% - 10px);
+                    background: #1274c3;
+                    font-size: 12px;
+                    display: flex;
+                    align-items: center;
+                    padding: 10px 5px;
+                    margin-bottom: 0;
+                    color: #fff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    .svg-group { display: flex; flex-direction: row; 
+                        align-items: center;
+                        svg { margin-right: 20px; }
+                        svg:hover { cursor: pointer; color: #f39e05; }
+                        a { margin-right: 0; svg { color: #fff; margin-right: 0; } }
+                    }
+            }
+        }
+    }
+  
+}
+
+.categorie-block-sub::-webkit-scrollbar {
+    width: 5px;
+}
+  
+.categorie-block-sub::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 0px;
+    background: #B0BEC5; 
+}
