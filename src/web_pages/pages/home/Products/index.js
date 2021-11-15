@@ -18,16 +18,41 @@ const Header = (props) => {
     const TEXT = props.text
 
     const PRODUCTS_DATA = props.products
-    const [ SPOTLIGHT , updateProducts] = useState() 
+    const [ SPOTLIGHT , updateProducts] = useState()     
+    const [ ANIMATION_STATE , updateAnimation ] = useState( {  fn: 0,  sn: 5 , spotlight: 0})
+
 
     useEffect(() => {
         async function anyNameFunction() {
             const PRODUCTS_SPOTLIGHT = await PRODUCTS_DATA && PRODUCTS_DATA.filter(item => item.spotlight === true)
-            updateProducts( PRODUCTS_SPOTLIGHT && PRODUCTS_SPOTLIGHT)
+            updateProducts( PRODUCTS_SPOTLIGHT && PRODUCTS_SPOTLIGHT); 
+            updateAnimation({ fn: 0, sn: PRODUCTS_SPOTLIGHT && PRODUCTS_SPOTLIGHT.length })
         }
         anyNameFunction();
     }, [PRODUCTS_DATA]);
+
+    const handleNext = () => {
+        const {fn , sn} = ANIMATION_STATE
+        const nextFn = fn + 2
+        const nextSn = sn 
         
+        if(fn > (sn - 6)) {
+            updateAnimation({fn: 0, sn: nextSn})
+        } else {
+            updateAnimation({fn: nextFn, sn: nextSn})
+        }
+    }
+
+    const handlePrev = () => {
+        const {fn , sn} = ANIMATION_STATE
+        const nextFn = fn - 2
+        const nextSn = sn 
+        
+        updateAnimation({fn: nextFn, sn: nextSn})
+        
+    }
+   
+    console.log(ANIMATION_STATE)
 
     return (
         <div className='products'>
@@ -43,11 +68,11 @@ const Header = (props) => {
             <div className='line'></div>
 
             <div className='products-spotlight'>
-                <FontAwesomeIcon icon={faCaretLeft} className='arrow' />
+                { ANIMATION_STATE.fn !== 0 && <FontAwesomeIcon icon={faCaretLeft} className='arrow' onClick={() => handlePrev()} /> }               
 
 
                 {
-                    SPOTLIGHT && SPOTLIGHT.slice(0,5).map((item, index) => {
+                    SPOTLIGHT && SPOTLIGHT.slice(ANIMATION_STATE.fn, ANIMATION_STATE.sn).map((item, index) => {
                         return (
                             <div className='product'>
                                 <div className='product-img' > <img alt='' src={item.img}/> </div>
@@ -71,10 +96,7 @@ const Header = (props) => {
                 }
 
                
-               
-
-
-                <FontAwesomeIcon icon={faCaretRight} className='arrow' />
+               <FontAwesomeIcon icon={faCaretRight} className='arrow' onClick={() => handleNext()}/> 
             </div>
         </div>
     )
