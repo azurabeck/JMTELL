@@ -39,12 +39,11 @@
             .associated { position: relative;
                 display: flex; flex-direction: column;
                 align-items: center; justify-content: center;
-                width: 100px; height: 100px;
-                margin: 0 50px;
-                background-color: #fff;
-                border-radius: 2px;
+                width: 200px; height: 200px;
+                margin: 0 5px; background-color: #fff;
                 
                 .associated-img { display: block; max-width: 90px; height: 90px; object-fit: contain; }
+                &:hover { box-shadow: 3px 3px 4px #d5d5d5; cursor: pointer; }
             }
     
         }

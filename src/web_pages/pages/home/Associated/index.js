@@ -12,6 +12,8 @@ import './style.scss';
 const Header = (props) => {
 
     const HOME_PT = props.home && props.home[0]
+    const PROVIDERS = props.providers && props.providers
+
     const IS_EDITING = props.IS_EDITING
     const OPEN_EDITOR = props.OPEN_EDITOR
     const TEXT = props.text
@@ -29,24 +31,17 @@ const Header = (props) => {
 
             <div className='associated-preview'>
                 <FontAwesomeIcon icon={faCaretLeft} className='arrow' />
-                <div className='associated'>
-                    <img className='associated-img' alt='' src='https://m.media-amazon.com/images/I/51alwW2xKtL._AC_SL1000_.jpg'/>
-                </div>
-                <div className='associated'>
-                    <img className='associated-img' alt='' src='https://m.media-amazon.com/images/I/51alwW2xKtL._AC_SL1000_.jpg'/>
-                </div>
-                <div className='associated'>
-                    <img className='associated-img' alt='' src='https://m.media-amazon.com/images/I/51alwW2xKtL._AC_SL1000_.jpg'/>
-                </div>
-                <div className='associated'>
-                    <img className='associated-img' alt='' src='https://m.media-amazon.com/images/I/51alwW2xKtL._AC_SL1000_.jpg'/>
-                </div>
-                <div className='associated'>
-                    <img className='associated-img' alt='' src='https://m.media-amazon.com/images/I/51alwW2xKtL._AC_SL1000_.jpg'/>
-                </div>
-                <div className='associated'>
-                    <img className='associated-img' alt='' src='https://m.media-amazon.com/images/I/51alwW2xKtL._AC_SL1000_.jpg'/>
-                </div>
+
+                {
+                    PROVIDERS && PROVIDERS.map((item, index) => {
+                        return (
+                            <a href={item.link} className='associated' key={index}>
+                                <img className='associated-img' alt='' src={item.img}/>
+                                <div className='item-name'>{item.name}</div>
+                            </a>
+                        )
+                    })
+                }
                 <FontAwesomeIcon icon={faCaretRight} className='arrow' />
             </div>
 
@@ -58,6 +53,7 @@ const Header = (props) => {
 const mapStateToProps = (state) => {
     return {
         home: state.firestore.ordered.home_pt,
+        providers: state.firestore.ordered.providers,
         text: state.text.textCollection
     }
 }
@@ -73,6 +69,7 @@ const mapDispatchToProps = (dispatch) => {
  export default compose(
     connect(mapStateToProps , mapDispatchToProps),
     firestoreConnect([
-        { collection: 'home_pt' }               
+        { collection: 'home_pt' }    ,
+        { collection: 'providers' }    ,    
     ])
 )(Header)
