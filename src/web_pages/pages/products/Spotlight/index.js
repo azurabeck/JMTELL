@@ -6,6 +6,8 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import BG from '../../../atoms/SVG/spotlight_bg.svg'
 import './style.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 
 const Spotlight = (props) => {
@@ -17,6 +19,25 @@ const Spotlight = (props) => {
     const TEXT = props.text
 
     const [ SPOTLIGHT , updateProducts] = useState() 
+    const [ ANIMATION_STATE , updateAnimation ] = useState( {  fn: 0,  sn: 1 })
+    const DELAY = 5;
+
+    const handleNext = () => {
+        if ( SPOTLIGHT && SPOTLIGHT.length === ANIMATION_STATE.sn ) {
+            updateAnimation({fn: 0, sn: 1})
+        } else {            
+            updateAnimation({fn: ANIMATION_STATE.fn + 1, sn: ANIMATION_STATE.sn + 1})
+        }
+    }
+
+    useEffect(
+        () => {
+          let timer1 = setTimeout(() => handleNext(), DELAY * 1000);
+          return () => {
+            clearTimeout(timer1);
+          };
+        },
+      );
 
     useEffect(() => {
         async function anyNameFunction() {
@@ -24,10 +45,12 @@ const Spotlight = (props) => {
             updateProducts( PRODUCTS_SPOTLIGHT && PRODUCTS_SPOTLIGHT)
         }
         anyNameFunction();
-    }, [PRODUCTS_DATA]);
         
+    }, [PRODUCTS_DATA]);
+   
+    
     return (
-
+ 
         <>
             {
                 SPOTLIGHT &&  <div className='products-spotlight-area'>
@@ -37,13 +60,14 @@ const Spotlight = (props) => {
                     
 
                     {
-                        SPOTLIGHT && SPOTLIGHT.slice(0,1).map((item, index) => {
+                        SPOTLIGHT && SPOTLIGHT.slice(ANIMATION_STATE.fn, ANIMATION_STATE.sn).map((item, index) => {
                             return (
-                                <div className='products-spotlight'>  
+                                <div className='products-spotlight' key={index}>  
                                         <div className='ps-title'> {item.model} <br/> <span>{item.name}</span> </div>     
                                         <div className='ps-img' style={{background: `url(${BG})`}}> 
-                                            <img src={item.img} alt=''/>
+                                            <img src={item.img} alt=''/>                                            
                                         </div>     
+                                        <FontAwesomeIcon icon={faChevronRight} onClick={() => handleNext()}/>
                                 </div>
                             )
                         })
