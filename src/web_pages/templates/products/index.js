@@ -19,7 +19,7 @@ const Products = (props) => {
     const [openEditor, handleEditor] = useState(false)    
     const handleSubmitText = (e) => {       
         e.preventDefault()        
-        props.createText({ collection: IS_EDITING , ...TEXT_EDITION })
+        props.createText({ collection: IS_EDITING , ...TEXT_EDITION , id: 'HXJClMA9AfDkpEAgSmXP' })
         handleEditor(false)
     }
 

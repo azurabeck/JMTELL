@@ -24,7 +24,7 @@ const Home = (props) => {
     
     const handleSubmitText = (e) => {       
         e.preventDefault()        
-        props.createText({ collection: IS_EDITING , ...TEXT_EDITION })
+        props.createText({ collection: IS_EDITING , ...TEXT_EDITION , id: 'fPeEs9HayeEtpUkotgVT'})
         handleEditor(false)
     }
     return (

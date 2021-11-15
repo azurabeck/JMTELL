@@ -19,7 +19,7 @@ const Contact = (props) => {
     
     const handleSubmitText = (e) => {       
         e.preventDefault()        
-        props.createText({ collection: IS_EDITING , ...TEXT_EDITION })
+        props.createText({ collection: IS_EDITING , ...TEXT_EDITION , id: 'NPQsZGYwRmzwukV74Usl'})
         handleEditor(false)
     }
 

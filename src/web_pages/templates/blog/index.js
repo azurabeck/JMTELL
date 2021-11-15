@@ -20,7 +20,7 @@ const Blog = (props) => {
 
     const handleSubmitText = (e) => {       
         e.preventDefault()        
-        props.createText({ collection: IS_EDITING , ...TEXT_EDITION })
+        props.createText({ collection: IS_EDITING , ...TEXT_EDITION , id: 'ZW7L9W1VRb5nYipOW6aZ'})
         handleEditor(false)
     }
 

@@ -16,10 +16,17 @@ const Header = (props) => {
     const OPEN_EDITOR = props.OPEN_EDITOR
     const TEXT = props.text
 
+    const CUSTOM_CSS = { 
+        backgroundImage: ` linear-gradient( rgba(0, 60, 89, 0.80),  rgba(0, 60, 89, 0.80) ) ,
+        url(${  HOME_PT && HOME_PT[10] !== 'default' ? HOME_PT[10]  : 'https://www.vibracoustic.com/wp-content/uploads/2019/12/Teaser-NVH-Expertise-Collaborative-Power-scaled.jpg' })`,
+    }
+
 
     return (
         <div className='header'>
-            <div className='bg-img'></div>
+            <div className='bg-img' style={CUSTOM_CSS}></div>
+            <EditorContent  HAS_VALUE={HOME_PT && HOME_PT[10]} IS_EDITING={IS_EDITING} OPEN_EDITOR={OPEN_EDITOR} 
+                            CHANGE_INPUT={(e) => props.updateField({...TEXT , 10: e.target.value})}/>
             <img src={LOGO_WHITE} alt=''/>
             <div className='title'>
                 { HOME_PT ? HOME_PT[0] : 'GERANDO SOLUÇÕES PARA O DIA A DIA DA SUA EMPRESA' }
