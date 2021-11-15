@@ -1,8 +1,8 @@
 .providers {
     .add-provider {
-        position: absolute;
+        position: fixed;
         background: white;
-        left: 0; top: 0; bottom: 0;
+        left: 240px; top: 0; bottom: 0;
         box-shadow: 1px 1px 4px #8f8d8d;
         width: 408px;
         display: flex;
