@@ -52,8 +52,6 @@ const Header = (props) => {
         
     }
    
-    console.log(ANIMATION_STATE)
-
     return (
         <div className='products'>
             <div className='title'>{ HOME_PT ? HOME_PT[4] : 'PRODUTOS' }

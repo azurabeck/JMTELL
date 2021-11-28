@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useState , useEffect} from 'react'
 import { createText , updateField } from '../../../../web_config/actions/textActions'
 import { EditorContent } from '../../../../web_config/helpers/editText'
 import { connect } from 'react-redux'
@@ -11,12 +11,42 @@ import './style.scss';
 
 const Header = (props) => {
 
+    const [ sliceState , updateSlice ] = useState({   fv: 0 , sv: 5  })
+    const [ listSize , sliceLimited ] = useState(0)
     const HOME_PT = props.home && props.home[0]
     const PROVIDERS = props.providers && props.providers
 
     const IS_EDITING = props.IS_EDITING
     const OPEN_EDITOR = props.OPEN_EDITOR
     const TEXT = props.text
+
+    const handleNext = () => {
+        console.log(listSize)
+
+        updateSlice({fv: sliceState.fv + 1, sv: sliceState.sv + 1})
+        if( sliceState.sv === listSize ) {
+            updateSlice({fv: 0, sv: 5})
+        }
+
+    }
+
+    const handlePrev = () => {
+        console.log(listSize)
+
+        updateSlice({fv: sliceState.fv - 1, sv: sliceState.sv - 1})
+        if( sliceState.fv === 0 ) {
+            updateSlice({fv: listSize - 5 , sv: listSize})
+        }
+
+    }
+
+    useEffect(() => {
+        async function anyNameFunction() {
+            const PROVIDER_LIMIT = await props.providers && props.providers.length
+            sliceLimited(PROVIDER_LIMIT)
+        }
+        anyNameFunction();
+    });
 
     return (
         <div className='associated'>
@@ -30,10 +60,10 @@ const Header = (props) => {
             <div className='line'></div>
 
             <div className='associated-preview'>
-                <FontAwesomeIcon icon={faCaretLeft} className='arrow' />
+                <FontAwesomeIcon icon={faCaretLeft} className='arrow' onClick={() => handlePrev()}/>
 
                 {
-                    PROVIDERS && PROVIDERS.map((item, index) => {
+                    PROVIDERS && PROVIDERS.slice(sliceState.fv , sliceState.sv).map((item, index) => {
                         return (
                             <a href={item.link} className='associated' key={index}>
                                 <img className='associated-img' alt='' src={item.img}/>
@@ -42,7 +72,7 @@ const Header = (props) => {
                         )
                     })
                 }
-                <FontAwesomeIcon icon={faCaretRight} className='arrow' />
+                <FontAwesomeIcon icon={faCaretRight} className='arrow' onClick={() => handleNext()}/>
             </div>
 
         </div>
