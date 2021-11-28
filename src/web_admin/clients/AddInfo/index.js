@@ -72,9 +72,9 @@ const mapStateToProps = (state) => {
 
 
 const mapDispatchToProps = (dispatch) => {
-return {
-    createClient: (client) => dispatch(createClient(client))
-}
+    return {
+        createClient: (client) => dispatch(createClient(client))
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddClient)

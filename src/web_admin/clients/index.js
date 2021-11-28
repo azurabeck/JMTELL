@@ -7,6 +7,7 @@ import { compose } from 'redux'
 import './style.scss'
 import ADD_CLIENT from './AddInfo'
 import DETAILS from './Details'
+import { updateClient } from '../../web_config/actions/clientActions';
 
 const Clients = (props) => {
 
@@ -17,6 +18,7 @@ const Clients = (props) => {
     const handleDetails = (item) => {
         openDetailsFunc(!openDetails)
         clientDetailsFun(item)
+        props.updateClient(item)
     }
  
     return (
@@ -54,7 +56,7 @@ const Clients = (props) => {
                     CLIENTS_DB && CLIENTS_DB.map((item, index) => {
                         return (
 
-                            <div className='table-row' key={index} onClick={() => handleDetails(item)}> 
+                            <div className={`table-row ${item.read ? '' : 'bold'}`} key={index} onClick={() => handleDetails(item)}> 
                                 <div className='COL_SIZE_LARGE'> {item.name} </div>
                                 <div className='COL_SIZE_LARGE'> {item.email} </div>
                                 <div className='COL_SIZE_LARGE'> {item.telephone} </div>
@@ -78,10 +80,16 @@ const mapStateToProps = (state) => {
     return {
       clients: state.firestore.ordered.clients
     }
-  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateClient: (client) => dispatch(updateClient(client))
+    }
+}
   
 export default compose(
-    connect(mapStateToProps),
+    connect(mapStateToProps , mapDispatchToProps),
     firestoreConnect([
         { collection: 'clients' }
     ])
