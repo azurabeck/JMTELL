@@ -32,7 +32,7 @@ const Providers = (props) => {
                             <div className='provider-block' key={index}>   
                                 <div className='provider-block-title '>{item.name}
                                     <div className='svg-group'>
-                                        <FontAwesomeIcon icon={faTrash}  onClick={() => props.deleteProvider(item.id)}/> 
+                                        <FontAwesomeIcon icon={faTrash}  onClick={() => props.deleteProvider(item)}/> 
                                         <a href={item.link} target='_blank' alt='company site' rel="noreferrer">
                                             <FontAwesomeIcon icon={faExternalLinkAlt}/>
                                         </a>
