@@ -7,7 +7,7 @@ export const createProvider = (providers) => {
             time: new Date() 
         })        
         .then(function(docRef) {
-            firestore.collection('posts').doc(docRef.id).update({
+            firestore.collection('providers').doc(docRef.id).update({
                 id: docRef.id,
             })
         })
