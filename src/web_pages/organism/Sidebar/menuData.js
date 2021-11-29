@@ -46,5 +46,13 @@ export const MenuData = [
         iconClosed: null,
         iconOpened: null,
         externalLink: true,
+    },
+    {
+        title: 'Carrossel',
+        path: '/admin/carrossel',
+        blockItem: true,
+        iconClosed: null,
+        iconOpened: null,
+        externalLink: true,
     }
 ]

@@ -24,8 +24,9 @@ import MANAGER_PRODUCTS from './web_admin/product'
 import MANAGER_BLOG from './web_admin/blog'
 import CREATE_POST from './web_admin/blog/AddPost'
 import CATEOGORIES from './web_admin/categories'
-import TEXT from './web_admin/text'
 import PROVIDERS from './web_admin/providers'
+import TEXT from './web_admin/text'
+import CARROSSEL from './web_admin/carrossel'
 
 
 
@@ -59,7 +60,7 @@ function Routes() {
                     <Route exact path='/admin/categorias' component={CATEOGORIES}></Route>
                     <Route exact path='/admin/textos' component={TEXT}></Route>
                     <Route exact path='/admin/providers' component={PROVIDERS}></Route>
-
+                    <Route exact path='/admin/carrossel' component={CARROSSEL}></Route>
 
                 </Switch>
             </div>
