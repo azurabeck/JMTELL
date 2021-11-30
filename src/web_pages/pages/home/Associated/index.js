@@ -12,6 +12,8 @@ import './style.scss';
 const Header = (props) => {
 
     const [ sliceState , updateSlice ] = useState({   fv: 0 , sv: 5  })
+    const [ sliceStateMob , updateSliceMob ] = useState({   fv: 0 , sv: 1  })
+
     const [ listSize , sliceLimited ] = useState(0)
     const HOME_PT = props.home && props.home[0]
     const PROVIDERS = props.providers && props.providers
@@ -21,23 +23,31 @@ const Header = (props) => {
     const TEXT = props.text
 
     const handleNext = () => {
-        console.log(listSize)
-
         updateSlice({fv: sliceState.fv + 1, sv: sliceState.sv + 1})
         if( sliceState.sv === listSize ) {
             updateSlice({fv: 0, sv: 5})
         }
-
     }
 
     const handlePrev = () => {
-        console.log(listSize)
-
         updateSlice({fv: sliceState.fv - 1, sv: sliceState.sv - 1})
         if( sliceState.fv === 0 ) {
             updateSlice({fv: listSize - 5 , sv: listSize})
         }
+    }
 
+    const handleNextMob = () => {
+        updateSliceMob({fv: sliceStateMob.fv + 1, sv: sliceStateMob.sv + 1})
+        if( sliceStateMob.sv === listSize ) {
+            updateSlice({fv: 0, sv: 1})
+        }
+    }
+
+    const handlePrevMob = () => {
+        updateSliceMob({fv: sliceStateMob.fv - 1, sv: sliceStateMob.sv - 1})
+        if( sliceStateMob.fv === 0 ) {
+            updateSlice({fv: listSize - 1 , sv: listSize})
+        }
     }
 
     useEffect(() => {
@@ -59,7 +69,7 @@ const Header = (props) => {
             </div>
             <div className='line'></div>
 
-            <div className='associated-preview'>
+            <div className='associated-preview desktop'>
                 <FontAwesomeIcon icon={faCaretLeft} className='arrow' onClick={() => handlePrev()}/>
 
                 {
@@ -73,6 +83,22 @@ const Header = (props) => {
                     })
                 }
                 <FontAwesomeIcon icon={faCaretRight} className='arrow' onClick={() => handleNext()}/>
+            </div>
+
+            <div className='associated-preview mobile'>
+                <FontAwesomeIcon icon={faCaretLeft} className='arrow' onClick={() => handlePrevMob()}/>
+
+                {
+                    PROVIDERS && PROVIDERS.slice(sliceStateMob.fv , sliceStateMob.sv).map((item, index) => {
+                        return (
+                            <a href={item.link} className='associated' key={index}>
+                                <img className='associated-img' alt='' src={item.img}/>
+                                <div className='item-name'>{item.name}</div>
+                            </a>
+                        )
+                    })
+                }
+                <FontAwesomeIcon icon={faCaretRight} className='arrow' onClick={() => handleNextMob()}/>
             </div>
 
         </div>

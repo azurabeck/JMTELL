@@ -97,10 +97,20 @@
 
 @media screen and (max-width: '860px') {
     .home .products .desc { max-width: calc(100% - 40px); }
+    .home .products .products-spotlight .product { flex: 0 0 80%;  }
+    .home .products .products-spotlight .arrow:last-child {
+        right: 0px; z-index: 2;  background: #133e3012; height: 100%; padding: 0 2px;
+    }
+    .home .products .products-spotlight .arrow:first-child {
+        left: 0px; z-index: 2;  background: #133e3012; height: 100%; padding: 0 2px;
+    }
 }
 
 @media screen and (max-width: '600px') {
     .home .products .title { font-size: 25px; }
     .home .products .desc { font-size: 22px; }
 }
+
+
+
 

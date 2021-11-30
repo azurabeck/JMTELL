@@ -1,5 +1,6 @@
 import React , { useState } from 'react'
 import { createCategorie , updateCategorie } from '../../../web_config/actions/categoriesAction'
+
 import { connect } from 'react-redux'
 import  { camelCase } from 'lodash'
 import './style.scss'
@@ -113,11 +114,12 @@ const AddCategorie = ( props ) => {
                         </div>                
              
 
-                        <div className='btn-area'> <button className='btn-orange-square' type='submit'>{IS_EDITING ? 'Salvar Edição' : 'Registrar Categoria'}</button> </div>
+                        <div className='btn-area'> <button className='btn-orange-square' type='submit'>{IS_EDITING ? 'Salvar Edição' : 'Registrar Categoria'}</button> 
+                         </div>
                         
                     </form>
 
-
+     
 
         </div>
     )
@@ -133,7 +135,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         updateCategorie: (categorie) => dispatch(updateCategorie(categorie)),
-        createCategorie: (categorie) => dispatch(createCategorie(categorie))
+        createCategorie: (categorie) => dispatch(createCategorie(categorie)),
     }
 }
 

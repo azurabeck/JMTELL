@@ -2,8 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { Link } from 'react-router-dom'
+import parse from 'html-react-parser'
 import './style.scss';
+import DEFAULT from '../../../static/imagem-default.svg'
 
 const ProductList = (props) => {
 
@@ -18,13 +19,13 @@ const ProductList = (props) => {
                     return (
                         <div key={index}>
                             <div class="product-main-details">
-                                <div className='product-main-details-img'> <img class="product-img" alt="" src={item.img} /> </div>
+                                <div className='product-main-details-img'> <img class="product-img" alt="" src={item.img.startsWith('/image') ? DEFAULT : item.img } /> </div>
                                 <div className='product-main-details-desc'>
                                     <div class="pmd-name">{item.name ? item.name : '-' }</div>
                                     <div class="pmd-model">{item.model ? item.model : '-' }</div>
                                     <div class="pmd-divisor"></div>
                                     <div class="pmd-title">Sobre o Produto</div>
-                                    <div class="pmd-desc">{item.description ? item.description : '-' }</div>
+                                    <div class="pmd-desc">{item.description ?  parse(item.description) : '-' }</div>
                                 </div>
                             </div>  
 

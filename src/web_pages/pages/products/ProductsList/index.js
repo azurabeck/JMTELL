@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React , { useState , useEffect} from 'react'
 import { createText , updateField } from '../../../../web_config/actions/textActions'
 import { EditorContent } from '../../../../web_config/helpers/editText'
@@ -7,6 +8,7 @@ import { compose } from 'redux'
 import { Link } from 'react-router-dom'
 import './style.scss';
 import { toSafeInteger } from 'lodash'
+import DEFAULT from '../../../../static/imagem-default.svg'
 
 const ProductList = (props) => {
 
@@ -62,7 +64,7 @@ const ProductList = (props) => {
 
                     return (
                         <div class="product" key={index}>
-                            <img class="product-img" alt="" src={item.img} />
+                            <img class="product-img" src={item.img.startsWith('/image') ? DEFAULT : item.img }/>
                             <div class="product-title">{item.name ? item.name : '-' }</div>
                             <div class="product-desc">{item.model ? item.model : '-' }</div>
                             <Link to={'/produtos/' + item.id} class="btn-products-screen"><a class="btn-stroke" href="/products">

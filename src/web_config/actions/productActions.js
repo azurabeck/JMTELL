@@ -1,3 +1,5 @@
+import data from './data.json'
+
 export const createProcuct = (product) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         //make async call to database
@@ -60,5 +62,30 @@ export const filterCategorie = (filter) => {
     return {
       type: 'PRODUCT_CATEGORIE_FILTER',
       filter
+    }
+}
+
+export const createProcuctWithPreviusData = () => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        //make async call to database
+        const firestore = getFirestore();
+        const usercollection = data
+        
+        usercollection.forEach(function(obj){
+            firestore.collection('products').add({
+                ...obj
+            })
+        }).then(() => (
+            console.log("done")
+        ))
+    }
+}
+
+export const deleteCollection = () => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        //make async call to database
+        const firestore = getFirestore();   
+        
+        firestore.collection('product-list').doc('Q4r6UHpgUfUQJraTOh0R').delete()
     }
 }

@@ -88,9 +88,25 @@
         input , textarea { width: calc(100% - 60px) !important; margin: 0 auto; margin-left: 39px; margin-bottom: 10px; }
         .text-btn-area { width: 100%; }
         .form-horizontal-row { flex-direction: column; input { width: 100%; margin: 0 !important; margin-bottom: 10px !important; } }
-        .text-btn-area .btn-orange-square{ position: unset !important; width: 100% !important; max-width: calc(100% - 47px); margin-left: 39px; }
     
     }
+
+    .home .contact .form-area form .form-horizontal-row {
+        max-width: 100%!important;
+        width: 100%!important;
+        margin: 0 auto 0 18px!important;
+    }
+
+    .home .contact .form-area form input, .home .contact .form-area form textarea {
+        width: calc(100% - 60px)!important;
+        margin: 0 auto 6px 28px;
+    }
     
+    .home .contact .form-area form .text-btn-area .btn-orange-square {
+        position: unset!important;
+        width: 100%!important;
+        max-width: calc(100% - 18px);
+        margin-left: 28px;
+    }
     .home .contact .form-area img.bussiness-man-img {  display: none !important;  }
 }

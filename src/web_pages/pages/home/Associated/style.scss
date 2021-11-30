@@ -47,6 +47,8 @@
             }
     
         }
+
+        .associated-preview.mobile { display: none; }
     }
 }
 
@@ -62,6 +64,10 @@
 
 @media screen and (max-width: '1150px') {
     .home .associated .desc { max-width: calc(100% - 40px); }
+    .home .associated .associated-preview.desktop { display: none; }
+    .home .associated .associated-preview.mobile { display: flex; }
+    .home .associated .associated-preview.mobile .arrow { margin: 0; height: 200px; }
+    .home .associated .associated-preview.mobile .arrow { background-color: transparent !important; }
 }
 
 @media screen and (max-width: '860px') {

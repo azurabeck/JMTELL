@@ -29,7 +29,8 @@ const PostList = (props) => {
                                     <div className='post-item-details' style={{position: 'relative'}}>
                                         <div className='post-item-title'>{item.cover_title}</div>
                                         <div className='post-item-author'>{item.author} - {item.date} <span className='divisor'></span> </div>
-                                        <div className='post-item-desc'>{parse(item.content)}</div>
+                                        <div className='post-item-desc'>
+import parse from 'html-react-parser'</div>
 
                                        
                                         <Link to={'/blog/' + item.id} className='btn-stroke'> { BLOG_PT ? BLOG_PT[1] : '... CONTINUAR LENDO' }  </Link>
