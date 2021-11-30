@@ -16,10 +16,10 @@ const AssociatedMenu = () => {
                     <div className='title'>Distribuídores autorizados</div>
                     <div className='group-columns'>
                         <div className='column'>
-                            <a to='https://intelbras.com/pt-br/' target='_blank'>    Intelbras > acesse o site   </a>
-                            <a to='https://www.linear-hcs.com.br/' target='_blank'>     Linear HCS > acesse o site  </a>
-                            <a to='https://br.prysmiangroup.com/pt/company/the-group-history/local-history' target='_blank'>     Prysmian > acesse o site    </a>
-                            <a to='https://nice.com.br/peccinin/' target='_blank'>     Peccinin > acesse o site    </a>
+                            <a href='https://intelbras.com/pt-br/' target='_blank' rel="noreferrer">    Intelbras > acesse o site   </a>
+                            <a href='https://www.linear-hcs.com.br/' target='_blank' rel="noreferrer">     Linear HCS > acesse o site  </a>
+                            <a href='https://br.prysmiangroup.com/pt/company/the-group-hishrefry/local-history' target='_blank' rel="noreferrer">     Prysmian > acesse o site    </a>
+                            <a href='https://nice.com.br/peccinin/' target='_blank' rel="noreferrer">     Peccinin > acesse o site    </a>
                         </div>
                     </div>
                 </div>   
@@ -33,7 +33,7 @@ const AssociatedMenu = () => {
                             </div>
                             <div className='column row'>  
                                 <a href="mailto:contato@jmtell.com.br"> <EMAIL /> </a>
-                                <a href='https://api.whatsapp.com/send?l=pt_br&phone=55213351-1211' className='whatsapp' target='_blank' rel="noreferrer">
+                                <a href='https://api.whatsapp.com/send?l=pt_br&phone=55213351-1211' target='_blank' rel="noreferrer">
                                     <WHATSAPP />
                                 </a>
                                 <BUTTON_STROKE
