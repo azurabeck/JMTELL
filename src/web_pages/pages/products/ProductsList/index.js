@@ -64,7 +64,7 @@ const ProductList = (props) => {
 
                     return (
                         <div class="product" key={index}>
-                            <img class="product-img" src={item.img.startsWith('/image') ? DEFAULT : item.img }/>
+                            <img class="product-img" src={item.img ? item.img : DEFAULT}/>
                             <div class="product-title">{item.name ? item.name : '-' }</div>
                             <div class="product-desc">{item.model ? item.model : '-' }</div>
                             <Link to={'/produtos/' + item.id} class="btn-products-screen"><a class="btn-stroke" href="/products">

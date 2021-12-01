@@ -19,7 +19,7 @@ const ProductList = (props) => {
                     return (
                         <div key={index}>
                             <div class="product-main-details">
-                                <div className='product-main-details-img'> <img class="product-img" alt="" src={item.img.startsWith('/image') ? DEFAULT : item.img } /> </div>
+                                <div className='product-main-details-img'> <img class="product-img" alt="" src={item.img ? item.img : DEFAULT } /> </div>
                                 <div className='product-main-details-desc'>
                                     <div class="pmd-name">{item.name ? item.name : '-' }</div>
                                     <div class="pmd-model">{item.model ? item.model : '-' }</div>

@@ -1,9 +1,11 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { signOut } from '../../../../web_config/actions/authActions'
 import './style.scss';
 import { FACEBOOK , INSTAGRAM } from '../../../atoms/SVG/_index'
+import LOGIN_PAGE from '../../../../web_admin/login'
 
 const CopyRight = (props) => {
 
@@ -18,7 +20,10 @@ const CopyRight = (props) => {
         <div className='copy-right'>
 
                 <div className='social-networks'>
-                    <FACEBOOK /> <INSTAGRAM /> { ADMIN_LOGGED && <div className='logout-admin' onClick={(e) => handleSignOut(e)}> DESLIGAR ADMIN </div> }
+                    <FACEBOOK /> <INSTAGRAM /> 
+                    { ADMIN_LOGGED && <div className='logout-admin' onClick={(e) => handleSignOut(e)}> DESLIGAR ADMIN </div> }
+                    { ADMIN_LOGGED &&  <Link className='logout-admin' to='/admin'> Painel -> </Link> }
+                    { !ADMIN_LOGGED && <Link className='logout-admin' to='/admin'> LOGAR ADMIN </Link> }
                 </div>
                 Copyright © 2021 - Todos os Direitos Reservados - JMTELL  
         </div>
