@@ -33,7 +33,7 @@ const Navbar = () => {
                                 return (
                                 route.externalLink ?
                                  <a href={route.path} target='_black' key={index} className={path === route.path && 'active'} >{route.title}</a>
-                                : <Link to={route.path} key={index} className={path === route.path && 'active'} >{route.title}</Link>
+                                : <Link to={route.path} key={index} className={path === route.path && 'active'} onClick={() => handleMenu(false)}>{route.title}</Link>
                             )}) }
                             
                         </div>
