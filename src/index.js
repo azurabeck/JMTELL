@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import HttpsRedirect from 'react-https-redirect';
+import { createBrowserHistory } from "history";
 
 import thunk from 'redux-thunk'
 
@@ -14,6 +15,8 @@ import fbConfig from './web_config/fbConfig'
 import rootReducer from './web_config/reducers/rootReducer'
 import Routes from './Routes';
 import './main_style.scss';
+
+const history = createBrowserHistory();
 
 const store = createStore(rootReducer, 
      compose (
@@ -27,7 +30,7 @@ store.firebaseAuthIsReady.then(() => {
      ReactDOM.render( 
           <HttpsRedirect>
                <Provider store={store}>
-                         <BrowserRouter><Routes /></BrowserRouter>
+                         <BrowserRouter history={history}><Routes /></BrowserRouter>
                </Provider>
           </HttpsRedirect>, document.getElementById('root'));
 })
