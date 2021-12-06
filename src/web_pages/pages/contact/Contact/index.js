@@ -25,7 +25,7 @@ const Contact = (props) => {
 
             </div>
 
-            <a href='https://wa.me/5521982065889' className='whatsapp-group'>
+            <a href='https://wa.me/552133511211' className='whatsapp-group'>
                 <WHATSAPP /> { CONTACT_PT ? CONTACT_PT[2] : 'Clique aqui para enviar mensagem no whatsapp' }                
             </a>            
             <EditorContent HAS_VALUE={CONTACT_PT && CONTACT_PT[2]} IS_EDITING={IS_EDITING} OPEN_EDITOR={OPEN_EDITOR} 
