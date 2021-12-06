@@ -10,11 +10,15 @@ const ProductList = (props) => {
 
     
     const PRODUCTS_DATA = props.products
+
     
     return (
         <>
 
                 { PRODUCTS_DATA && PRODUCTS_DATA.map((item, index) => {
+
+                    
+                console.log(item.aditional)
 
                     return (
                         <div key={index}>
@@ -43,16 +47,20 @@ const ProductList = (props) => {
                                             }
                                          </div>
 
-                                        <div className='pei-extra-details'>
-                                            <div class="pei-title">INFORMAÇÕES ADICIONAIS</div>
-                                            <ul>
-                                                { 
-                                                    item.aditional && item.aditional.map((extra, index) => (
-                                                        <li>{extra.info_desc}</li>
-                                                    ))
-                                                }
-                                            </ul>
-                                        </div>
+                                         {
+                                            item.aditional[0].info_desc !== '' && <div className='pei-extra-details'>
+                                                <div class="pei-title">INFORMAÇÕES ADICIONAIS</div>
+                                                <ul>
+                                                    { 
+                                                        item.aditional && item.aditional.map((extra, index) => (
+                                                            <li>{extra.info_desc}</li>
+                                                        ))
+                                                    }
+                                                </ul>
+                                            </div>
+                                         }
+
+                                       
 
                             </div>  
 
