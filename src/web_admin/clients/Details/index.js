@@ -62,7 +62,7 @@ const ClientDetails = ( props ) => {
                         {item.msg.text ? item.msg.text : 'Cliente não enviou mensagem, ou foi gerado pelo admin'}
                     </div>
                     <div className='msg-data'>
-                       Enviado em: {moment(item.msg.time.seconds).format('DD/MM/YYYY')}</div>
+                       Enviado em: {moment(item.msg.time.toDate().toDateString()).format('DD/MM/YYYY')}</div>
 
 
                 </div>
