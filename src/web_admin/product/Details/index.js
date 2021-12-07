@@ -14,6 +14,8 @@ const Details = (props) => {
     const category = PRODUCT.category
     const details = PRODUCT.details
     const aditional = PRODUCT.aditional
+    const id = PRODUCT.id
+
 
     const handleSubmit = (e , spotlight) => {
         e.preventDefault()
@@ -23,10 +25,9 @@ const Details = (props) => {
      
     const handleDelete = (e) => {
         e.preventDefault()
-        props.deleteProcuct({...PRODUCT})
+        props.deleteProcuct(id)
         CLICK()
     }
-
 
     return (
         <div className='product-details'>

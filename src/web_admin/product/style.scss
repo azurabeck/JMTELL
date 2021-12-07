@@ -120,6 +120,19 @@
                 max-width: 100%;
 
                 &:hover { background-color: #dbdbdb; cursor: pointer;}
+
+                            
+                .btn-red { 
+                    color: #8a6a67;
+                    font-size: 13px;
+
+                    svg { margin-left: 10px; }
+
+                    &:hover { 
+                        color: #F24333; 
+                        cursor: pointer;
+                    }
+                }
             }
         }
     }

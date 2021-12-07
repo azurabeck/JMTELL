@@ -1,9 +1,10 @@
-import { faCaretRight, faMailBulk, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+import { faMailBulk, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { deleteProcuct } from '../../web_config/actions/productActions'
 import './style.scss'
 import ADD_CLIENT from './AddInfo'
 import DETAILS from './Details'
@@ -20,6 +21,13 @@ const Products = (props) => {
         showDetails(!openDetails)
     }
 
+    const handleDelete = (e, id) => {
+        e.preventDefault()
+        props.deleteProcuct(id)
+    }
+
+
+    
     return (
         <div className='products-admin'>      
 
@@ -42,7 +50,7 @@ const Products = (props) => {
                 </div>
                 <div className='table-header'>
                     <div className='COL_SIZE_LARGE'> Nome do Produto </div>
-                    <div className='COL_SIZE_LARGE'> Produto em Destaque </div>         
+                    <div className='COL_SIZE_LARGE'> Produto em Destaque </div>      
                     <div className='COL_SIZE_LARGE'>  </div>              
 
                 </div>
@@ -50,13 +58,15 @@ const Products = (props) => {
                 <div className='table-body'>
                 {
                     PRODUCTS_DB && PRODUCTS_DB.map((item, index) => {
+
+                        const id = item.id
                     
                         return (
 
-                            <div className='table-row' key={index} onClick={() => handleDetails(item)}> 
-                                <div className='COL_SIZE_LARGE'> {item.name} </div>
-                                <div className='COL_SIZE_LARGE'> {item.spotlight ? 'Em detaque' : ''} </div>
-                                <div className='COL_SIZE_LARGE'> Exibir detalhes <FontAwesomeIcon icon={faCaretRight} /> </div>      
+                            <div className='table-row' key={index} > 
+                                <div className='COL_SIZE_LARGE' onClick={() => handleDetails(item)}> {item.name} </div>
+                                <div className='COL_SIZE_LARGE' onClick={() => handleDetails(item)}> {item.spotlight ? 'Em detaque' : ''} </div>
+                                <div className='COL_SIZE_LARGE'> <div className='btn-red' onClick={(e) => handleDelete(e , id)}>deletar <FontAwesomeIcon icon={faTrash} /> </div> </div>
                             </div>
                         )
                     })
@@ -73,10 +83,16 @@ const mapStateToProps = (state) => {
        products: state.firestore.ordered.products
     }
   }
+
+  const mapDispatchToProps = (dispatch) => {
+    return {
+        deleteProcuct: (product) => dispatch(deleteProcuct(product))
+    }
+}
   
 export default compose(
-    connect(mapStateToProps),
+    connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect([
-        { collection: 'products' }
+        { collection: 'products' , orderBy: ['time' , 'desc']}
     ])
 )(Products)
