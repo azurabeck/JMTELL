@@ -15,6 +15,8 @@ const Products = (props) => {
     const [ registerDialog , handleRegister ] = useState(false)
     const [ openDetails , showDetails ] = useState(false)
     const [ itemDetails , handleItems ] = useState(null)
+    const [ filterValue , handleFilter ] = useState('')
+
 
     const handleDetails = (item) => {
         handleItems(item)    
@@ -27,6 +29,8 @@ const Products = (props) => {
     }
 
 
+    const UPDATE_LIST = PRODUCTS_DB && PRODUCTS_DB.filter((item) =>  item.name.toLowerCase().includes(filterValue.toLowerCase()) );
+    const PRODUCT_LIST = filterValue ? UPDATE_LIST : PRODUCTS_DB
     
     return (
         <div className='products-admin'>      
@@ -44,7 +48,7 @@ const Products = (props) => {
                 <div className='table-title'> 
                 
                     <div className='search-round'>
-                        <input placeholder='Procure por email ou nome' />
+                        <input value={filterValue} placeholder='Procure pelo nome do produto' onChange={(e) => handleFilter(e.target.value)} />
                         <div className='button-search'><FontAwesomeIcon icon={faSearch} /></div> 
                     </div>
                 </div>
@@ -57,10 +61,9 @@ const Products = (props) => {
 
                 <div className='table-body'>
                 {
-                    PRODUCTS_DB && PRODUCTS_DB.map((item, index) => {
+                    PRODUCT_LIST && PRODUCT_LIST.map((item, index) => {
 
                         const id = item.id
-                    
                         return (
 
                             <div className='table-row' key={index} > 
