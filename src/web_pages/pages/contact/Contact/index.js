@@ -24,12 +24,35 @@ const Contact = (props) => {
                                    CHANGE_INPUT={(e) => props.updateField({...TEXT , 1: e.target.value})}/>
 
             </div>
+            
+            <div className='phone-group'>
+                
+                <div className='phone-title'>{ CONTACT_PT ? CONTACT_PT[2] : 'Entre em contato com os nossos vendedores diretamente pelo whatsapp' }</div>                
+                <EditorContent HAS_VALUE={CONTACT_PT && CONTACT_PT[2]} IS_EDITING={IS_EDITING} OPEN_EDITOR={OPEN_EDITOR} 
+                                    CHANGE_INPUT={(e) => props.updateField({...TEXT , 2: e.target.value})}/>
+                
+                <div className='phone-numbers' id='whatsapp'>
+                    <WHATSAPP />  
+                    <div className='phone-number-group'>
+                        <a href='https://api.whatsapp.com/send?l=pt_br&phone=5521-96421-1255'><span className='bullet'/> Alex - (21) 96421-1255</a>                   
+                        <a href='https://api.whatsapp.com/send?l=pt_br&phone=5521-99114-2990'><span className='bullet'/> Ana Rangel - (21) 99114-2990</a>                   
+                        <a href='https://api.whatsapp.com/send?l=pt_br&phone=5521-98054-8610'><span className='bullet'/> Brenda - (21) 3013-4444</a>                   
+                    </div>
+                    <div className='division'/>
+                    <div className='phone-number-group'>
+                        <a href='https://api.whatsapp.com/send?l=pt_br&phone=5521-98116-0110'><span className='bullet'/> Erik - (21) 98116-0110 </a>             
+                        <a href='https://api.whatsapp.com/send?l=pt_br&phone=5521-99422-2199'><span className='bullet'/> Guilherme - (21) 99422-2199</a>          
+                        <a href='https://api.whatsapp.com/send?l=pt_br&phone=5521-99115-9812'><span className='bullet'/> Paulo Jr. (21) 99115-9812</a>                
+                    </div>
+                    <div className='division'/>
+                    <div className='phone-number-group'>
+                        <a href='https://api.whatsapp.com/send?l=pt_br&phone=5521-99555-0522'><span className='bullet'/> Ruan - (21) 99555-0522 </a>           
+                    </div>
+                </div>
 
-            <a href='https://wa.me/552133511211' className='whatsapp-group'>
-                <WHATSAPP /> { CONTACT_PT ? CONTACT_PT[2] : 'Clique aqui para enviar mensagem no whatsapp' }                
-            </a>            
-            <EditorContent HAS_VALUE={CONTACT_PT && CONTACT_PT[2]} IS_EDITING={IS_EDITING} OPEN_EDITOR={OPEN_EDITOR} 
-                                   CHANGE_INPUT={(e) => props.updateField({...TEXT , 2: e.target.value})}/>
+            </div>
+
+
 
             <div className='phone-group'>
                 <div className='phone-title'>{ CONTACT_PT ? CONTACT_PT[3] : 'É possível iniciar a ligação clicando no número desejado abaixo' }                    
