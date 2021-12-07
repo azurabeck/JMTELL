@@ -34,19 +34,19 @@ const Contact = (props) => {
                 <div className='phone-numbers' id='whatsapp'>
                     <WHATSAPP />  
                     <div className='phone-number-group'>
-                        <a href='https://api.whatsapp.com/send?l=pt_br&phone=5521-96421-1255'><span className='bullet'/> Alex - (21) 96421-1255</a>                   
-                        <a href='https://api.whatsapp.com/send?l=pt_br&phone=5521-99114-2990'><span className='bullet'/> Ana Rangel - (21) 99114-2990</a>                   
-                        <a href='https://api.whatsapp.com/send?l=pt_br&phone=5521-98054-8610'><span className='bullet'/> Brenda - (21) 3013-4444</a>                   
+                        <a target='_blank' href='https://api.whatsapp.com/send?l=pt_br&phone=5521-96421-1255' rel="noreferrer"><span className='bullet'/> Alex - (21) 96421-1255</a>                   
+                        <a target='_blank' href='https://api.whatsapp.com/send?l=pt_br&phone=5521-99114-2990' rel="noreferrer"><span className='bullet'/> Ana Rangel - (21) 99114-2990</a>                   
+                        <a target='_blank' href='https://api.whatsapp.com/send?l=pt_br&phone=5521-98054-8610' rel="noreferrer"><span className='bullet'/> Brenda - (21) 3013-4444</a>                   
                     </div>
                     <div className='division'/>
                     <div className='phone-number-group'>
-                        <a href='https://api.whatsapp.com/send?l=pt_br&phone=5521-98116-0110'><span className='bullet'/> Erik - (21) 98116-0110 </a>             
-                        <a href='https://api.whatsapp.com/send?l=pt_br&phone=5521-99422-2199'><span className='bullet'/> Guilherme - (21) 99422-2199</a>          
-                        <a href='https://api.whatsapp.com/send?l=pt_br&phone=5521-99115-9812'><span className='bullet'/> Paulo Jr. (21) 99115-9812</a>                
+                        <a target='_blank' href='https://api.whatsapp.com/send?l=pt_br&phone=5521-98116-0110' rel="noreferrer"><span className='bullet'/> Erik - (21) 98116-0110 </a>             
+                        <a target='_blank' href='https://api.whatsapp.com/send?l=pt_br&phone=5521-99422-2199' rel="noreferrer"><span className='bullet'/> Guilherme - (21) 99422-2199</a>          
+                        <a target='_blank' href='https://api.whatsapp.com/send?l=pt_br&phone=5521-99115-9812' rel="noreferrer"><span className='bullet'/> Paulo Jr. (21) 99115-9812</a>                
                     </div>
                     <div className='division'/>
                     <div className='phone-number-group'>
-                        <a href='https://api.whatsapp.com/send?l=pt_br&phone=5521-99555-0522'><span className='bullet'/> Ruan - (21) 99555-0522 </a>           
+                        <a target='_blank' href='https://api.whatsapp.com/send?l=pt_br&phone=5521-99555-0522' rel="noreferrer"><span className='bullet'/> Ruan - (21) 99555-0522 </a>           
                     </div>
                 </div>
 
