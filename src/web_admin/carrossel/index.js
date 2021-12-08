@@ -1,20 +1,32 @@
-import { faCaretRight, faMailBulk, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faMailBulk } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+import { updateCarrossel } from '../../web_config/actions/carrosselActions'
 import './style.scss'
 
 import HOME_HEADER from '../../web_pages/pages/home/Header'
 
-const Carrossel = () => {
+const Carrossel = (props) => {
+
+    const CARROSSEL_DB = props.carrossel
 
     const [ carrossel , setCarrossel ] = useState({
-        img_0: '',
-        img_1: '',
-        img_2: '',
+        img_0: CARROSSEL_DB && CARROSSEL_DB[0] && CARROSSEL_DB[0].image,
+        img_1: CARROSSEL_DB && CARROSSEL_DB[1] && CARROSSEL_DB[1].image,
+        img_2: CARROSSEL_DB && CARROSSEL_DB[2] && CARROSSEL_DB[2].image,
     })
+
+    const [ success, changeToIcon ] = useState('')
+
+    const handleSave = (e, id, link) => {
+        e.preventDefault()
+        props.updateCarrossel({id: id, image: link})
+        changeToIcon(id)
+        setTimeout(() => changeToIcon(''), 1000);
+    }
 
 
     return (
@@ -27,21 +39,49 @@ const Carrossel = () => {
 
                <div className='edtion-area'>
 
-                    <input className='input-carrossel' 
-                           onChange={(e) => setCarrossel({...carrossel, img_0: e.target.value})} 
-                           name='img_0' 
-                           placeholder='Insira a URL da primeira imagem'
-                    />
-                    <input className='input-carrossel' 
-                           onChange={(e) => setCarrossel({...carrossel, img_1: e.target.value})} 
-                           name='img_1' 
-                           placeholder='Insira a URL da segunda imagem'
-                    />
-                    <input className='input-carrossel' 
-                           onChange={(e) => setCarrossel({...carrossel, img_2: e.target.value})} 
-                           name='img_2' 
-                           placeholder='Insira a URL da terceira imagem'
-                    />
+                    <div className='input-group'>
+                            
+                        <input className='input-carrossel' 
+                            onChange={(e) => setCarrossel({...carrossel, img_0: e.target.value})} 
+                            name='img_0' 
+                            value={carrossel && carrossel.img_0 }
+                            placeholder='Insira a URL da primeira imagem'
+                        /> 
+                        {
+                            success === 'Ds7sJj9M6YsVHDIYZ4vt' ?    <div className='save-image'>  <FontAwesomeIcon icon={faCheck}/> </div>
+                                    :  <div className='save-image' onClick={(e) => handleSave(e, 'Ds7sJj9M6YsVHDIYZ4vt', carrossel.img_0)}>save</div>
+                        }
+                       
+                    </div>
+
+                    <div className='input-group'>
+                            
+                            <input className='input-carrossel' 
+                                onChange={(e) => setCarrossel({...carrossel, img_1: e.target.value})} 
+                                name='img_0' 
+                                value={carrossel && carrossel.img_1 }
+                                placeholder='Insira a URL da primeira imagem'
+                            /> 
+                            {
+                                success === 'J7dVNuOkrBgzAlELS6xA' ?  <div className='save-image'>  <FontAwesomeIcon icon={faCheck}/> </div>
+                                        : <div className='save-image' onClick={(e) => handleSave(e, 'J7dVNuOkrBgzAlELS6xA', carrossel.img_1)}>save</div>
+                            }
+                    </div>
+
+                    <div className='input-group'>
+                        
+                        <input className='input-carrossel' 
+                            onChange={(e) => setCarrossel({...carrossel, img_2: e.target.value})} 
+                            value={carrossel && carrossel.img_2 }
+                            name='img_0' 
+                            placeholder='Insira a URL da primeira imagem'
+                        /> 
+                        {
+                            success === 'mkgdPYwSAvhcU1kFj3rf' ? <div className='save-image'>  <FontAwesomeIcon icon={faCheck}/> </div>
+                                        :   <div className='save-image' onClick={(e) => handleSave(e, 'mkgdPYwSAvhcU1kFj3rf', carrossel.img_2)}>save</div>
+                        }
+                       
+                    </div>
 
                     
                      <HOME_HEADER hide_button={true} /> 
@@ -55,13 +95,19 @@ const Carrossel = () => {
 
 const mapStateToProps = (state) => {
     return {
-       products: state.firestore.ordered.products
+        carrossel: state.firestore.ordered.carrossel
     }
   }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateCarrossel: (item) => dispatch(updateCarrossel(item))
+    }
+}
   
 export default compose(
-    connect(mapStateToProps),
+    connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect([
-        { collection: 'products' }
+        { collection: 'carrossel' }
     ])
 )(Carrossel)
