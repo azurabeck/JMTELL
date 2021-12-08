@@ -54,5 +54,13 @@ export const MenuData = [
         iconClosed: null,
         iconOpened: null,
         externalLink: true,
-    }
+    },
+    {
+        title: 'Produtos Antigos',
+        path: '/admin/produtos-antigos',
+        blockItem: true,
+        iconClosed: null,
+        iconOpened: null,
+        externalLink: false,
+    },
 ]

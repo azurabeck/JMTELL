@@ -70,10 +70,10 @@ const Header = (props) => {
             <div className='line'></div>
 
             <div className='associated-preview desktop'>
-                <FontAwesomeIcon icon={faCaretLeft} className='arrow' onClick={() => handlePrev()}/>
+                {/* <FontAwesomeIcon icon={faCaretLeft} className='arrow' onClick={() => handlePrev()}/> */}
 
                 {
-                    PROVIDERS && PROVIDERS.slice(sliceState.fv , sliceState.sv).map((item, index) => {
+                    PROVIDERS && PROVIDERS.map((item, index) => {
                         return (
                             <a href={item.link} className='associated' key={index}>
                                 <img className='associated-img' alt='' src={item.img}/>
@@ -82,14 +82,14 @@ const Header = (props) => {
                         )
                     })
                 }
-                <FontAwesomeIcon icon={faCaretRight} className='arrow' onClick={() => handleNext()}/>
+                {/* <FontAwesomeIcon icon={faCaretRight} className='arrow' onClick={() => handleNext()}/> */}
             </div>
 
-            <div className='associated-preview mobile'>
-                <FontAwesomeIcon icon={faCaretLeft} className='arrow' onClick={() => handlePrevMob()}/>
+            {/* <div className='associated-preview mobile'> */}
+                {/* <FontAwesomeIcon icon={faCaretLeft} className='arrow' onClick={() => handlePrevMob()}/> */}
 
-                {
-                    PROVIDERS && PROVIDERS.slice(sliceStateMob.fv , sliceStateMob.sv).map((item, index) => {
+                {/* {
+                    PROVIDERS && PROVIDERS.map((item, index) => {
                         return (
                             <a href={item.link} className='associated' key={index}>
                                 <img className='associated-img' alt='' src={item.img}/>
@@ -97,9 +97,9 @@ const Header = (props) => {
                             </a>
                         )
                     })
-                }
-                <FontAwesomeIcon icon={faCaretRight} className='arrow' onClick={() => handleNextMob()}/>
-            </div>
+                } */}
+                {/* <FontAwesomeIcon icon={faCaretRight} className='arrow' onClick={() => handleNextMob()}/> */}
+            {/* </div> */}
 
         </div>
     )

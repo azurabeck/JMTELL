@@ -16,10 +16,11 @@ const AssociatedMenu = () => {
                     <div className='title'>Distribuídores autorizados</div>
                     <div className='group-columns'>
                         <div className='column'>
-                            <a href='https://intelbras.com/pt-br/' target='_blank' rel="noreferrer">    Intelbras > acesse o site   </a>
-                            <a href='https://www.linear-hcs.com.br/' target='_blank' rel="noreferrer">     Linear HCS > acesse o site  </a>
-                            <a href='https://br.prysmiangroup.com/pt/company/the-group-hishrefry/local-history' target='_blank' rel="noreferrer">     Prysmian > acesse o site    </a>
-                            <a href='https://nice.com.br/peccinin/' target='_blank' rel="noreferrer">     Peccinin > acesse o site    </a>
+                            <a href='#' target='_blank' rel="noreferrer">     Intelbras   </a>
+                            <a href='#' target='_blank' rel="noreferrer">     MCM  </a>
+                            <a href='#' target='_blank' rel="noreferrer">     Kian    </a>
+                            <a href='#' target='_blank' rel="noreferrer">     Nice    </a>
+                            <a href='#' target='_blank' rel="noreferrer">     Fran    </a>
                         </div>
                     </div>
                 </div>   

@@ -21,6 +21,8 @@ import Post from './web_pages/templates/post'
 import LOGIN from './web_admin/login'
 import MANAGER_CLIENTS from './web_admin/clients'
 import MANAGER_PRODUCTS from './web_admin/product'
+import OLD_PRODUCTS from './web_admin/oldProduct'
+
 import MANAGER_BLOG from './web_admin/blog'
 import CREATE_POST from './web_admin/blog/AddPost'
 import CATEOGORIES from './web_admin/categories'
@@ -61,6 +63,7 @@ function Routes() {
                     <Route exact path='/admin/textos' component={TEXT}></Route>
                     <Route exact path='/admin/providers' component={PROVIDERS}></Route>
                     <Route exact path='/admin/carrossel' component={CARROSSEL}></Route>
+                    <Route exact path='/admin/produtos-antigos' component={OLD_PRODUCTS}></Route>
 
                 </Switch>
             </div>

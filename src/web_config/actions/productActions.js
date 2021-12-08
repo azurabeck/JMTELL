@@ -57,6 +57,19 @@ export const deleteProcuct = (product) => {
     }
 }
 
+export const deleteOldProcuct = (product) => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        //make async call to database
+        const firestore = getFirestore();
+        firestore.collection('products-old').doc(product).delete()     
+        .then(() => {
+            dispatch({ type: 'PRODUCT_DELETE', product })
+        }).catch((err) => {
+            dispatch({type: 'PRODUCT_DELETE_ERRO', err})
+        })
+        
+    }
+}
 
 export const filterCategorie = (filter) => {
     return {
@@ -72,7 +85,7 @@ export const createProcuctWithPreviusData = () => {
         const usercollection = data
         
         usercollection.forEach(function(obj){
-            firestore.collection('products').add({
+            firestore.collection('oldProducts').add({
                 ...obj
             })
         }).then(() => (
