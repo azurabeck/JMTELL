@@ -12,12 +12,25 @@ const Networks = (props) => {
 
 
     const NETWORK = props.network
-    const [ editUrl , handleUrl ] = useState()
+    const [ editUrl , handleUrl ] = useState('')
     const [ formUrl , handleChange ] = useState()
     
+    const openInput = (e , item) => {
+        e.preventDefault()    
+        const open = item
+        handleUrl(open)
+    }
 
-    const handleEdition = (e, item) => {
-        console.log(item)
+    const handleEdition = (e) => {
+        e.preventDefault()
+        handleUrl('')
+        props.updateNetwork(formUrl)
+    }
+
+    const changeVisible = (e , value) => {
+        e.preventDefault()
+        handleUrl('')
+        props.updateNetwork(value)
     }
 
 
@@ -33,6 +46,7 @@ const Networks = (props) => {
                     NETWORK && NETWORK.map((item) => {
 
                         let image
+                        let name = item.name
                         
                         if(item.name === 'Facebook') {
                             image = <FACE_SQUARE />;
@@ -53,20 +67,22 @@ const Networks = (props) => {
                                 
                                 <div className='net-name'>{image} {item.name}</div>
                                 <div className='net-input'>
-                                    {
-                                        !editUrl &&  <>{item.url} <FontAwesomeIcon icon={faEdit} onClick={() => handleUrl(true)}/></>
-                                    }
                                      
-                                    { editUrl && <>
-                                            <input value={formUrl} onChange={(e) => handleChange(e.target.value)} /> 
+                                    { editUrl === item.name ? <>
+                                            <input value={formUrl ? formUrl.url : item.url} onChange={(e) => handleChange({...item, url: e.target.value})} /> 
                                             <div className='btn-save' onClick={(e) => handleEdition(e, item)}> Salvar </div>
-                                        </> 
+                                        </> :
+                                        <>{item.url} <FontAwesomeIcon icon={faEdit} onClick={(e) => openInput(e, name)}/></>
                                     }
                                 </div>
                                 <div className='net-visible'>
                                     Você deseja exibir esta rede na sua página?
-                                    <div className='radio'> <span className={item.isVisible && 'active'} /> Sim</div>
-                                    <div className='radio'> <span className={!item.isVisible && 'active'}/> Não</div>
+                                    <div className='radio'> 
+                                        <span className={item.isVisible && 'active'} 
+                                              onClick={(e) => changeVisible(e, {...item, isVisible: true})}/> Sim</div>
+                                    <div className='radio'> 
+                                        <span className={!item.isVisible && 'active'} 
+                                              onClick={(e) => changeVisible(e, {...item, isVisible: false})}/> Não</div>
                                 </div>
                             </div>
                         )
@@ -88,7 +104,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateNetwork: (item) => dispatch(updateNetwork(item))
+        updateNetwork: (network) => dispatch(updateNetwork(network))
     }
 }
   
