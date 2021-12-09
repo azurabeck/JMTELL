@@ -75,7 +75,7 @@ const Navbar = (props) => {
                     }
 
                     return (
-                        <a className='sub-nav-net' href={item.url} target='_blank' rel="noreferrer">{image}</a>
+                        <a className='sub-nav-net' style={{display: item.isVisible ? 'block' : 'none'}} href={item.url} target='_blank' rel="noreferrer">{image}</a>
                     )
 
             })}
