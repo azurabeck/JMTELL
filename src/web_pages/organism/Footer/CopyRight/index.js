@@ -20,7 +20,6 @@ const CopyRight = (props) => {
         <div className='copy-right'>
 
                 <div className='social-networks'>
-                    <FACEBOOK /> <INSTAGRAM /> 
                     { ADMIN_LOGGED && <div className='logout-admin' onClick={(e) => handleSignOut(e)}> DESLIGAR ADMIN </div> }
                     { ADMIN_LOGGED &&  <Link className='logout-admin' to='/admin'> Painel -> </Link> }
                     { !ADMIN_LOGGED && <Link className='logout-admin' to='/admin'> LOGAR ADMIN </Link> }

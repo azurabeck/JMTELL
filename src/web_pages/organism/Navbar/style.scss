@@ -40,6 +40,30 @@
            
 }
 
+.sub-nav {
+      margin-top: 80px;
+      height: 35px;
+      margin-bottom: 0px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      background: #ebedef;
+      color: #8798a1;
+      font-size: 14px;
+      font-weight: 300;
+      padding: 0 70px;
+    
+    a.sub-nav-net {
+      margin: 0 5px;
+      font-size: 25px;
+      color: #8798a1;
+
+      &:first-child  { margin-left: 30px; }
+      &:hover { color: #FAA916; cursor: pointer; }
+    }
+}
+
+
 @media screen and (min-width: '860px') {
       .navbar {  width: calc(100% - 140px); padding: 0 70px; 
             .nav-bar { display: none !important; }
