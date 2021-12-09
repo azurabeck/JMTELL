@@ -3,6 +3,7 @@ import postReducer from './postReducer'
 import clientReducer from './clientReducer'
 import textReducer from './textReducer'
 import categorietReducer from './categorieReducer'
+import networkReducer from './networkReducer'
 import productReducer from './productReducer'
 import providerReducer from './providerReducer'
 import { firestoreReducer } from 'redux-firestore'
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
     product: productReducer,
     provider: providerReducer,
     categorie: categorietReducer,
+    network: networkReducer,
     firestore: firestoreReducer,
     firebase: firebaseReducer
 })

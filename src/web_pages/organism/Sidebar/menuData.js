@@ -56,6 +56,14 @@ export const MenuData = [
         externalLink: true,
     },
     {
+        title: 'Redes Sociais',
+        path: '/admin/redes-sociais',
+        blockItem: true,
+        iconClosed: null,
+        iconOpened: null,
+        externalLink: false,
+    },
+    {
         title: 'Produtos Antigos',
         path: '/admin/produtos-antigos',
         blockItem: true,
