@@ -40,8 +40,34 @@
                 background-color: #cdcccc;
                 display: flex;
                 align-items: center;
-                justify-content: flex-start;
+                justify-content: space-between;
                 padding: 0 10px;
+
+                svg { color: #42325c; 
+                    &:hover { color: #6100ff; cursor: pointer; }
+                }
+
+                input { 
+                    width: 300px;
+                    height: 30px;
+                    background-color: #c0bfbf;
+                    border: none;
+                    outline: none;                    
+                }
+
+                .btn-save { 
+                    font-size: 14px;
+                    padding: 0 5px;
+                    font-size: 14px;
+                    border: 1px solid #42325c;
+                    color: #42325c;
+
+                    &:hover { 
+                        cursor: pointer;
+                        border-color: #6100ff;
+                        color: #6100ff;
+                    }
+                }
             }
             .net-visible {
                 display: flex;

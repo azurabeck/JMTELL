@@ -1,4 +1,4 @@
-import { faMailBulk } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faMailBulk, faSave } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { connect } from 'react-redux'
@@ -12,6 +12,13 @@ const Networks = (props) => {
 
 
     const NETWORK = props.network
+    const [ editUrl , handleUrl ] = useState()
+    const [ formUrl , handleChange ] = useState()
+    
+
+    const handleEdition = (e, item) => {
+        console.log(item)
+    }
 
 
     return (
@@ -45,7 +52,17 @@ const Networks = (props) => {
                             <div className='network'>
                                 
                                 <div className='net-name'>{image} {item.name}</div>
-                                <div className='net-input'>{item.url && item.url}</div>
+                                <div className='net-input'>
+                                    {
+                                        !editUrl &&  <>{item.url} <FontAwesomeIcon icon={faEdit} onClick={() => handleUrl(true)}/></>
+                                    }
+                                     
+                                    { editUrl && <>
+                                            <input value={formUrl} onChange={(e) => handleChange(e.target.value)} /> 
+                                            <div className='btn-save' onClick={(e) => handleEdition(e, item)}> Salvar </div>
+                                        </> 
+                                    }
+                                </div>
                                 <div className='net-visible'>
                                     Você deseja exibir esta rede na sua página?
                                     <div className='radio'> <span className={item.isVisible && 'active'} /> Sim</div>
