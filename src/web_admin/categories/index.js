@@ -13,10 +13,16 @@ import  { camelCase } from 'lodash'
 const Categories = (props) => {
 
     const CATEGORIE_DB = props.categorie
+    
+    // SHOW "REGISTRAR NOVA CATEGORIA" MODAL
     const [ registerDialog , handleRegister ] = useState({open: false , editing: false})
+
+    // SHOW DETAILS FROM CATEGORIE
+    const [ preview , handlePreview ] = useState(false)
+
+    // DISPLAY INPUT, CHANGE INPUT VALUE, UPDATE CAT INFORMATION
     const [ displayInput , handleInput ] = useState(false)
     const [ inputValue , changeInput ] = useState('')
-    const [ preview , handlePreview ] = useState(false)
     const [ catActive , getCatInfo ] = useState()
 
 
