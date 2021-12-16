@@ -7,7 +7,7 @@ import { compose } from 'redux'
 import { updateNetwork } from '../../web_config/actions/networkActions'
 import { FACE_SQUARE , INSTA_SQUARE, LINK_SQUARE, PINT_SQUARE, TWIIT_SQUARE, YOU_SQUARE } from '../../web_pages/atoms/SVG/_index'
 import './style.scss'
-
+import  FastBar  from '../organism/fastBar/fastBar'
 const Networks = (props) => {
 
 
@@ -36,7 +36,7 @@ const Networks = (props) => {
 
     return (
         <div className='network-admin'>   
-            <div className='fast-bar'> Clientes: 10  <FontAwesomeIcon icon={faMailBulk} /> </div>       
+            <FastBar/>  
         
             <div className='text-title'> Redes Sociais </div>
             <div className='text-desc'> Altere os links das redes sociais, e decida quando elas devem ser exibidas no site </div>

@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import './style.scss'
-
+import  FastBar  from '../organism/fastBar/fastBar'
 import HOME from '../../web_pages/templates/home'
 import PRODUCT from '../../web_pages/templates/products'
 import COMPANY from '../../web_pages/templates/company'
@@ -18,7 +18,7 @@ const Text = () => {
 
     return (
         <div className='text-admin'>   
-            <div className='fast-bar'> Clientes: 10  <FontAwesomeIcon icon={faMailBulk} /> </div>       
+            <FastBar/>>
             
             <div className='text-title'> Edição dos textos </div>
             <div className='text-desc'> Selecione a página que gostaria de alterar o texto </div>

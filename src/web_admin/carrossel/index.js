@@ -6,7 +6,7 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { updateCarrossel } from '../../web_config/actions/carrosselActions'
 import './style.scss'
-
+import  FastBar  from '../organism/fastBar/fastBar'
 import HOME_HEADER from '../../web_pages/pages/home/Header'
 
 const Carrossel = (props) => {
@@ -31,7 +31,7 @@ const Carrossel = (props) => {
 
     return (
         <div className='carrossel-admin'>   
-            <div className='fast-bar'> Clientes: 10  <FontAwesomeIcon icon={faMailBulk} /> </div>       
+            <FastBar />       
             
             <div className='text-title'> Edição do carrossel </div>
             <div className='text-desc'> Adicione url de imagens para adiciornar nova imagens ao carrossel </div>

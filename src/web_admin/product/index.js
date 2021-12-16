@@ -5,6 +5,7 @@ import { compose } from 'redux'
 import { faMailBulk, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { deleteProcuct } from '../../web_config/actions/productActions'
+import  FastBar  from '../organism/fastBar/fastBar'
 import './style.scss'
 import ADD_CLIENT from './AddInfo'
 import DETAILS from './Details'
@@ -38,7 +39,7 @@ const Products = (props) => {
             { openDetails && <DETAILS PRODUCT={itemDetails} CLICK={() => showDetails(false)} /> }    
             { registerDialog && <ADD_CLIENT click={() => handleRegister(!registerDialog)}/> }
 
-            <div className='fast-bar'> Clientes: 10  <FontAwesomeIcon icon={faMailBulk} /> </div>    
+            <FastBar />
         
             <div className='title'> Produto  <div className='button-orange' 
                                                     onClick={() => handleRegister(!registerDialog)}> REGISTRAR NOVO PRODUTO </div> 

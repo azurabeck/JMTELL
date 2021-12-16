@@ -7,6 +7,7 @@ import { compose } from 'redux'
 import { deleteProvider } from '../../web_config/actions/providerActions'
 import './style.scss'
 import ADD_CLIENT from './AddInfo'
+import  FastBar  from '../organism/fastBar/fastBar'
 
 const Providers = (props) => {
 
@@ -17,7 +18,7 @@ const Providers = (props) => {
         <div className='providers'>      
 
             { registerDialog.open && <ADD_CLIENT isEditing={registerDialog.editing} click={() => handleRegister({open:  !registerDialog.open})}/> }
-            <div className='fast-bar'> Clientes: 10  <FontAwesomeIcon icon={faMailBulk} /> </div>            
+            <FastBar />           
             <div className='title'> Distribuidores
                                     <div className='button-orange'  onClick={() => handleRegister({ open:  !registerDialog.open, editing: false})} > REGISTRAR NOVO DISTRIBUIDOR </div> 
             </div>

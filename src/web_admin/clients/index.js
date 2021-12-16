@@ -8,7 +8,7 @@ import './style.scss'
 import ADD_CLIENT from './AddInfo'
 import DETAILS from './Details'
 import { updateClient } from '../../web_config/actions/clientActions';
-
+import  FastBar  from '../organism/fastBar/fastBar'
 const Clients = (props) => {
 
     const CLIENTS_DB = props.clients
@@ -30,7 +30,7 @@ const Clients = (props) => {
 
 
 
-            <div className='fast-bar'> Clientes: 10  <FontAwesomeIcon icon={faMailBulk} /> </div>    
+            <FastBar />   
         
             <div className='title'> Clientes  <div className='button-orange' 
                                                     onClick={() => handleRegister(!registerDialog)}> REGISTRAR NOVO CLIENT </div> 

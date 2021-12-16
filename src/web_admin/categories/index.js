@@ -7,7 +7,7 @@ import { compose } from 'redux'
 import { deleteCategorie } from '../../web_config/actions/categoriesAction'
 import './style.scss'
 import ADD_CLIENT from './AddInfo'
-
+import  FastBar  from '../organism/fastBar/fastBar'
 const Categories = (props) => {
 
     const CATEGORIE_DB = props.categorie
@@ -18,7 +18,7 @@ const Categories = (props) => {
         <div className='categories'>      
 
             { registerDialog.open && <ADD_CLIENT isEditing={registerDialog.editing} click={() => handleRegister({open:  !registerDialog.open})}/> }
-            <div className='fast-bar'> Clientes: 10  <FontAwesomeIcon icon={faMailBulk} /> </div>            
+            <FastBar/>          
             <div className='title'> Categorias dos Produtos 
                                     <div className='button-orange'  onClick={() => handleRegister({ open:  !registerDialog.open, editing: false})} > REGISTRAR NOVA CATEGORIA </div> 
             </div>

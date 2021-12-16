@@ -6,7 +6,7 @@ import { faMailBulk, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { deleteProcuct  } from '../../web_config/actions/productActions'
 import './style.scss'
-
+import  FastBar  from '../organism/fastBar/fastBar'
 
 const OldProducts = (props) => {
 
@@ -24,7 +24,7 @@ const OldProducts = (props) => {
     return (
         <div className='products-admin'>      
 
-            <div className='fast-bar'> Clientes: 10  <FontAwesomeIcon icon={faMailBulk} /> </div>    
+            <FastBar />
         
             <div className='title'> Produtos Antigos   </div>
 

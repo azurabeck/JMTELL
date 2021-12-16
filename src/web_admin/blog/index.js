@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import './style.scss'
+import  FastBar  from '../organism/fastBar/fastBar'
 
 const Blog = (props) => {
 
@@ -15,7 +16,7 @@ const Blog = (props) => {
         <div className='blog'>      
 
 
-            <div className='fast-bar'> Clientes: 10  <FontAwesomeIcon icon={faMailBulk} /> </div>            
+            <FastBar />               
             <div className='title'> Blog  <Link className='button-orange' 
                                                 to={'/admin/blog/create-post'}> CRIAR NOVO POST </Link> 
             </div>
