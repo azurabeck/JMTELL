@@ -19,7 +19,7 @@ const AddClient = ( props ) => {
         aditional: [{ info_desc: "" }],       
         model: '',
         img: '',
-        spotlight: true,
+        spotlight: false,
         categorie: ''
     })
     const [formValues, setFormValues] = useState([{detail_name: "", detail_desc: ""}])
