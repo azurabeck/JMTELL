@@ -14,22 +14,11 @@ const AddCategorie = ( props ) => {
     const IS_EDITING = props.isEditing
 
     const [ formData, getForm ] = useState({
-        id: IS_EDITING ? IS_EDITING.id : null,
-        name: IS_EDITING ? IS_EDITING.name : '',
-        subcategorie: IS_EDITING ? IS_EDITING.subcategorie : {}
+        id: null,
+        name: '',
+        subcategorie: {}
     })
-    const [formValues, setFormValues] = useState([ IS_EDITING ? IS_EDITING.subcategorie  : { sub_name: '' , categorie: formData.name && formData.name , tag: ''} ])
-
-    // let handleFieldUpdate = ( i , newValue ) => {
-    //     const formNewValue = { 
-    //                            categorie: formData.name && formData.name.toLowerCase(),
-    //                            sub_name: newValue,
-    //                            tag: newValue.trim(),
-    //                          }                                  
-    //     const data = { ...formData.subcategorie , 
-    //                    [i]: formNewValue }           
-    //     getForm({...formData , subcategorie: data })
-    // }
+    const [formValues, setFormValues] = useState([ { sub_name: '' , categorie: formData.name && formData.name , tag: ''} ])
 
 
     let handleCategorieChange = (i, e) => {          
@@ -55,15 +44,15 @@ const AddCategorie = ( props ) => {
 
     const handleSubmit = (e) => {       
         e.preventDefault()        
-        if( IS_EDITING ) { props.updateCategorie(formData) }
-        else { props.createCategorie(formData) }
+       
+        props.createCategorie(formData)
         props.click()
     }
 
     return (
         <div className='add-categorie'>
 
-                <div className='title'>{IS_EDITING ? 'Editar' : 'Registrar'} Categoria <div className='btn-close' onClick={click}><FontAwesomeIcon icon={faTimes} /></div> </div>
+                <div className='title'>Registrar Categoria <div className='btn-close' onClick={click}><FontAwesomeIcon icon={faTimes} /></div> </div>
 
                 <form className='contact-form-group' onSubmit={(e) => handleSubmit(e)}>
                         
@@ -91,18 +80,6 @@ const AddCategorie = ( props ) => {
 
                                             }
 
-                                            {/* { IS_EDITING && element && element.map((item, index) => (
-                                                    <div className='subcategoria-field'>   
-                                                        <input className='subcategoria_name' name='sub_name' value={formData.subcategorie[index].sub_name}
-                                                            placeholder='Nome' onChange={ e => handleFieldUpdate(index , e.target.value) } />    
-                                                        {
-                                                            index ? 
-                                                            <button type="button"  className="button remove" onClick={() => removeDetailsFormFields(index)}>x</button> 
-                                                            : null
-                                                        }
-                                                    </div> 
-                                                ))
-                                            } */}
                                         </>
 
                                 )})
@@ -134,7 +111,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateCategorie: (categorie) => dispatch(updateCategorie(categorie)),
         createCategorie: (categorie) => dispatch(createCategorie(categorie)),
     }
 }

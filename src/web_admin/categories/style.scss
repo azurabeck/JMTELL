@@ -56,6 +56,56 @@
 
                 svg:hover { cursor: pointer; color: #FAA916; }
             }
+
+            .subcategorie-add {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 45px;
+                background-color: #7e91a3;
+                font-size: 12px;
+                border-bottom: 1px dashed #fff;
+                color: #fff;
+                margin-top: 2px;
+                outline: none;
+
+                &:hover { cursor: text; background-color: #5b758f; }
+            }
+
+            .subcategorie-input {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 45px;
+                background-color: #7e91a3;
+                font-size: 12px;
+                border-bottom: 1px dashed #fff;
+                color: #fff;
+                margin-top: 2px;
+
+                input { 
+                    width: 308px;
+                    background-color: #6e859b;
+                    height: 40px;
+                    outline: none;
+                    color: #fff;
+                    font-size: 14px;
+                    letter-spacing: 0.03em;
+
+                    &::placeholder {
+                        font-size: 14px;
+                        color: #ffffff6b;
+                        font-weight: normal;
+                    }
+                }
+                
+                svg { font-size: 14px; margin-right: 27px; cursor: pointer;}
+                svg.svg-inline--fa.fa-save.fa-w-14:hover { color: #FAA916; }
+                svg.svg-inline--fa.fa-trash.fa-w-14:hover { color: #FAA916; }
+
+            }
+
+
             .categorie-block-sub {
                 width: 430px; height: auto; 
                 max-height: 400px;
@@ -66,6 +116,7 @@
                 .subcategorie-name {
                     background: #e1e7ed; height: 50px;
                     display: flex; align-items: center;
+                    justify-content: space-between;
                     padding: 0 15px; color: #8699a9;
                     text-transform: capitalize;
                     font-size: 15px; margin-top: 2px;            
