@@ -9,7 +9,7 @@ import './style.scss';
 
 import LOGO_WHITE  from '../../atoms/logo_white.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight, faPowerOff } from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight, faPowerOff , faHouseUser } from '@fortawesome/free-solid-svg-icons';
 
 const Sidebar = (props) => {
     
@@ -33,7 +33,9 @@ const Sidebar = (props) => {
             </div>
 
             <div className='logged-area'>
-               <span> Você esta logado! </span> <FontAwesomeIcon icon={faPowerOff}  onClick={(e) => handleSignOut(e)}/>
+               <span> Você esta logado! </span>
+                <Link to='/' ><FontAwesomeIcon icon={faHouseUser} /></Link>
+                <FontAwesomeIcon icon={faPowerOff}  onClick={(e) => handleSignOut(e)}/>
             </div>
 
             <div className='sidebar-buttons'>
