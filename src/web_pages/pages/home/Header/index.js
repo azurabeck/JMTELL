@@ -82,7 +82,7 @@ const Header = (props) => {
                                             WIDTH='430px'
                                             HEIGHT='60px'
                                             BTN_TYPE={2}
-                                            TO='#contato' />
+                                            TO='/contato' />
             }
 
                 

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React , { useState , useEffect} from 'react'
+import React from 'react'
 import { createText , updateField } from '../../../../web_config/actions/textActions'
 import { EditorContent } from '../../../../web_config/helpers/editText'
 import { connect } from 'react-redux'
@@ -7,7 +7,6 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Link } from 'react-router-dom'
 import './style.scss';
-import { toSafeInteger } from 'lodash'
 import DEFAULT from '../../../../static/imagem-default.svg'
 
 const ProductList = (props) => {

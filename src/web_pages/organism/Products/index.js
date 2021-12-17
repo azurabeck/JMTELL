@@ -13,9 +13,7 @@ import './style.scss'
 const Product_bar = (props) => {
 
     const SIDEBAR_DATA = props.categories
-
-
-    return (
+        return (
         <div className='product-bar'> 
                 <div className='product-buttons'>
                     <div className='title'> Product <FontAwesomeIcon icon={faArrowRight} /> </div>
