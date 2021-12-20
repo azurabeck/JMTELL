@@ -8,6 +8,14 @@ export const MenuData = [
         externalLink: false,
     },
     {
+        title: 'Funcionários',
+        path: '/admin/funcionarios',
+        blockItem: true,
+        iconClosed: null,
+        iconOpened: null,
+        externalLink: false,
+    },
+    {
         title: 'Produtos',
         path: '/admin/produtos',
         blockItem: true,
