@@ -14,6 +14,14 @@ export const MenuData = [
         iconClosed: null,
         iconOpened: null,
         externalLink: false,
+    },    
+    {
+        title: 'Categorias',
+        path: '/admin/categorias',
+        blockItem: true,
+        iconClosed: null,
+        iconOpened: null,
+        externalLink: false,
     },
     {
         title: 'Produtos',
@@ -24,16 +32,16 @@ export const MenuData = [
         externalLink: false,
     },
     {
-        title: 'Distribuidores',
-        path: '/admin/providers',
+        title: 'Produtos Antigos',
+        path: '/admin/produtos-antigos',
         blockItem: true,
         iconClosed: null,
         iconOpened: null,
         externalLink: false,
     },
     {
-        title: 'Categorias',
-        path: '/admin/categorias',
+        title: 'Distribuidores',
+        path: '/admin/providers',
         blockItem: true,
         iconClosed: null,
         iconOpened: null,
@@ -70,13 +78,5 @@ export const MenuData = [
         iconClosed: null,
         iconOpened: null,
         externalLink: false,
-    },
-    {
-        title: 'Produtos Antigos',
-        path: '/admin/produtos-antigos',
-        blockItem: true,
-        iconClosed: null,
-        iconOpened: null,
-        externalLink: false,
-    },
+    }
 ]

@@ -26,6 +26,8 @@ const AddClient = ( props ) => {
     const [formInfoValues, setInfoFormValues] = useState([{ info_desc: ""}])
     const [formCatValues, setCatFormValues] = useState([])
 
+    console.log(props.EDIT)
+
     let handleDetailsChange = (i, e) => {
         let newFormValues = [...formValues];
         newFormValues[i][e.target.name] = e.target.value;
@@ -157,7 +159,7 @@ const AddClient = ( props ) => {
 
                                         {
                                             index ? 
-                                            <button type="button"  className="button remove" onClick={() => removeCatFormFields(index)}>x</button> 
+                                            <button type="button" className="button remove" onClick={() => removeCatFormFields(index)}>x</button> 
                                             : null
                                         }
                                     </div>
