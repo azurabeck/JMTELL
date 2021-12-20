@@ -17,7 +17,7 @@ const FastBar = (props) => {
     if ( filterLenght === 0 ) {
        return <Link className='fast-bar' to='/admin/clientes'> <FontAwesomeIcon icon={faMailBulk} /> sem novas mensagens </Link>
     } else if ( filterLenght === 1) {
-       return <Link className='fast-bar active' to='/admin/clientes'> <FontAwesomeIcon icon={faMailBulk} /> 1 nova mensagens </Link>
+       return <Link className='fast-bar active' to='/admin/clientes'> <FontAwesomeIcon icon={faMailBulk} /> 1 nova mensagem </Link>
     } else if ( filterLenght > 1) {
         return <Link className='fast-bar active' to='/admin/clientes'> <FontAwesomeIcon icon={faMailBulk} /> {filterLenght} Mensagens não lida </Link>
     } else {

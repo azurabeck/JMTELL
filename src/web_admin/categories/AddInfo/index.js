@@ -68,7 +68,7 @@ const AddCategorie = ( props ) => {
                                         <>
                                             {   !IS_EDITING &&
                                                     <div className='subcategoria-field'>                                                        
-                                                        <input className='subcategoria_name' name='sub_name'
+                                                        <input className='subcategoria_name' name='sub_name' required
                                                                     placeholder='Nome' onChange={ e => handleCategorieChange(index, e) } />       
 
                                                         {
@@ -77,7 +77,6 @@ const AddCategorie = ( props ) => {
                                                             : null
                                                         }
                                                     </div>
-
                                             }
 
                                         </>
@@ -85,14 +84,14 @@ const AddCategorie = ( props ) => {
                                 )})
                             }
 
-
+                            <div style={{fontSize: '12px', textAlign: 'center'}}>*Você precisa de pelo menos 1 subcategoria para salvar</div>
 
 
                         </div>                
-             
-
-                        <div className='btn-area'> <button className='btn-orange-square' type='submit'>{IS_EDITING ? 'Salvar Edição' : 'Registrar Categoria'}</button> 
-                         </div>
+                        
+                        <div className='btn-area'>
+                            <button className='btn-orange-square' type='submit'>{IS_EDITING ? 'Salvar Edição' : 'Registrar Categoria'}</button>                            
+                        </div>
                         
                     </form>
 

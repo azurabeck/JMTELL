@@ -7,7 +7,7 @@
         cursor: default;
 
         svg { margin-right: 15px; }
-        .active { color: #7a7a7a;
+        &.active { color: #7a7a7a;
             &:hover { color: rgba(247, 7, 7, 0.733); cursor: pointer; }
         }
 
