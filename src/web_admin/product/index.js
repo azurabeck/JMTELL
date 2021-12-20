@@ -8,6 +8,7 @@ import { deleteProcuct } from '../../web_config/actions/productActions'
 import  FastBar  from '../organism/fastBar/fastBar'
 import './style.scss'
 import ADD_CLIENT from './AddInfo'
+import EDIT_CLIENT from './EditInfo'
 import DETAILS from './Details'
 
 const Products = (props) => {
@@ -30,7 +31,8 @@ const Products = (props) => {
         props.deleteProcuct(id)
     }
 
-    const handleEdit = (item) => {
+    const handleEdit = (e, item) => {
+        e.preventDefault()
         handleEditfunction(item)
     }
 
@@ -43,7 +45,7 @@ const Products = (props) => {
 
             { openDetails && <DETAILS PRODUCT={itemDetails} CLICK={() => showDetails(false)} /> }    
             { registerDialog && <ADD_CLIENT click={() => handleRegister(!registerDialog)}/> }
-            { edit && <ADD_CLIENT EDIT={edit} click={() => handleRegister(!registerDialog)}/>  }
+            { edit && <EDIT_CLIENT EDIT={edit} close={() => handleEditfunction('')}/>  }
 
             <FastBar />
         
