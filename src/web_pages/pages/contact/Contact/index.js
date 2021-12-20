@@ -10,6 +10,7 @@ import { WHATSAPP , PHONE } from '../../../atoms/SVG/_index'
 
 const Contact = (props) => {
 
+    const EMPLOYEES = props.employees 
     const CONTACT_PT = props.contact && props.contact[0]
     const IS_EDITING = props.IS_EDITING
     const OPEN_EDITOR = props.OPEN_EDITOR
@@ -34,17 +35,18 @@ const Contact = (props) => {
                 <div className='phone-numbers' id='whatsapp'>
                     <WHATSAPP />  
                     <div className='phone-number-group'>
-                        <a target='_blank' href='https://api.whatsapp.com/send?l=pt_br&phone=5521-96421-1255' rel="noreferrer"><span className='bullet'/> Alex - (21) 96421-1255</a>                   
-                        <a target='_blank' href='https://api.whatsapp.com/send?l=pt_br&phone=5521-99114-2990' rel="noreferrer"><span className='bullet'/> Ana Rangel - (21) 99114-2990</a>                   
-                        <a target='_blank' href='https://api.whatsapp.com/send?l=pt_br&phone=5521-98054-8610' rel="noreferrer"><span className='bullet'/> Brenda - (21) 3013-4444</a>      
-                        <a target='_blank' href='https://api.whatsapp.com/send?l=pt_br&phone=5521-99555-0522' rel="noreferrer"><span className='bullet'/> Ruan - (21) 99555-0522 </a>           
+                    {
+                        EMPLOYEES && EMPLOYEES.map((emp, index) => {
 
-                    </div>
-                    <div className='division'/>
-                    <div className='phone-number-group'>
-                        <a target='_blank' href='https://api.whatsapp.com/send?l=pt_br&phone=5521-98116-0110' rel="noreferrer"><span className='bullet'/> Erik - (21) 98116-0110 </a>             
-                        <a target='_blank' href='https://api.whatsapp.com/send?l=pt_br&phone=5521-99422-2199' rel="noreferrer"><span className='bullet'/> Guilherme - (21) 99422-2199</a>          
-                        <a target='_blank' href='https://api.whatsapp.com/send?l=pt_br&phone=5521-99115-9812' rel="noreferrer"><span className='bullet'/> Paulo Jr. (21) 99115-9812</a>                
+                            const phone = emp.phone.replace(/[\(\)\-\s]+/g, '')
+
+                            return (                                
+                                <a  key={index} target='_blank' href={`https://api.whatsapp.com/send?l=pt_br&phone=55${phone}`} rel="noreferrer">
+                                    <span className='bullet'/> {emp.name} - {emp.phone}
+                                </a>
+                            )
+                        })
+                    }
                     </div>
                 </div>
 
@@ -76,6 +78,7 @@ const mapStateToProps = (state) => {
     return {
         posts: state.firestore.ordered.posts,
         contact: state.firestore.ordered.contact_pt,
+        employees: state.firestore.ordered.employees,
         text: state.text.textCollection
     }
 }
@@ -93,6 +96,7 @@ const mapDispatchToProps = (dispatch) => {
     connect(mapStateToProps , mapDispatchToProps),
     firestoreConnect([
         { collection: 'posts' , orderBy: ["date", "desc"] } ,
-        { collection: 'contact_pt' }               
+        { collection: 'contact_pt' }  ,
+        { collection: 'employees' }             
     ])
 )(Contact)
