@@ -39,17 +39,18 @@ const Sidebar = (props) => {
             { SIDEBAR_DATA && SIDEBAR_DATA.map((item, index) => {
                 const itemName = item.name
                 const sub = item.subcategorie 
- 
+
+
                 return (
                     <div className='sidebar-categorie-wrapper'>
                         <div className='sidebar-buttons' key={index} onClick={() => handleMenu( displayMenu && {...displayMenu , [itemName]: !displayMenu[item.name] })} > 
                             { itemName } <FontAwesomeIcon icon={displayMenu && displayMenu[item.name] ? faChevronUp : faChevronDown}/> </div>
-                            {
+                            {/* {
                                 displayMenu && displayMenu[item.name] && sub && sub.map((subcat, index) => {
                                     return (
                                     <div className='sidebar-sub-buttons' onClick={(e) => handleFilterDispatch(e , subcat.tag , 0)} key={index}> {subcat.sub_name} </div>  
                                 )})
-                            }  
+                            }   */}
                     </div>
                 )
             })}
