@@ -82,6 +82,11 @@ const Edit = (props) => {
                                                 : <FontAwesomeIcon icon={faEdit} onClick={() => handleEdit('model')}/>  }
                                                 
                             </li>
+                            {
+                                formValue.details.map(item => (
+                                    <li><div style={{display: 'flex', alignItems: 'center'}}><label className='bullet'></label> {item.detail_name}</div></li>
+                                ))
+                            }
                         </ul>
                         
                     </div>
