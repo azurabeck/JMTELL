@@ -34,8 +34,24 @@ const Edit = (props) => {
                             </div>                  
                         </div>
                         <div className='image-main'>
-                            <img alt='' src={formValue && formValue.img} /> 
-                        </div>               
+                            {
+                                edit === 'image' ?
+                                    <ReactQuill 
+                                    className='materialize-text-area' 
+                                    modules={imageModule}
+                                    formats={imageModule}
+                                    id='content' 
+                                    onChange={(e) => handleForm({
+                                        ...formValue, 
+                                        img: e.replace('<p>','')
+                                              .replace('</p>', '')                                     
+                                    })} 
+                                    value={formValue && formValue.img}/>   
+                                :  ( formValue.img.includes('<img src') ? parse(formValue.img) : <img src={formValue.img} alt=''/> )
+                            } 
+                            { edit === 'image' ? <FontAwesomeIcon icon={faSave} onClick={(e) => handleSave(e)}/> 
+                                               : <FontAwesomeIcon icon={faEdit} onClick={() => handleEdit('image')}/>  }        
+                        </div>         
                     
                     </div>
                     {/* HANDLE IMAGE AREA END   */}
@@ -56,8 +72,7 @@ const Edit = (props) => {
                         {/* HANDLE MODEL */}
                         <div className='item-model'>Principais caracteristicas</div>
                         <ul>
-                            <li>
-                                
+                            <li>                                
                                 { edit === 'model' ?
                                     <div className='input-group'> 
                                         <input alt='' value={formValue.model} onChange={(e) => handleForm({...formValue, model: e.target.value})} />
@@ -95,7 +110,7 @@ const Edit = (props) => {
 
                 {/* HANDLE CAT */}
                 <div className='categorie'>
-                    {formValue.categorie}
+                    {formValue.categorie} : 
                 </div>
                 {/* HANDLE CAT END */}
 
@@ -106,6 +121,12 @@ const Edit = (props) => {
             </div>  
         </form>
     )
+}
+
+export const imageModule = Edit.modules = {
+    toolbar: [    
+      ['image']  ,
+    ]
 }
 
 Edit.modules = {
