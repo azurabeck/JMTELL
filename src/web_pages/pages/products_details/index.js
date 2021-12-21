@@ -16,10 +16,6 @@ const ProductList = (props) => {
         <>
 
                 { PRODUCTS_DATA && PRODUCTS_DATA.map((item, index) => {
-
-                    
-                console.log(item.aditional)
-
                     return (
                         <div key={index}>
                             <div class="product-main-details">

@@ -11,10 +11,8 @@ const Edit = (props) => {
     const [ formValue , handleForm ] = useState(props.EDIT)
     const [ edit, handleEdit ] = useState('')
     
-    console.log(formValue)
 
     const handleSave = () => {
-        console.log(formValue)
         handleEdit('')
     }
 

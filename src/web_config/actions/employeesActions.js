@@ -27,7 +27,6 @@ export const updateEmployees = (employees) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         //make async call to database
         const firestore = getFirestore();
-        console.log(employees)
 
         firestore.collection('employees').doc(employees.id).update({
             ...employees

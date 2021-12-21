@@ -26,7 +26,6 @@ export const updateCategorie = (categories) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         //make async call to database
         
-        console.log(categories)
         const firestore = getFirestore();
         const id = categories.id.toString().replace(/\s/g, '')
 
@@ -45,7 +44,6 @@ export const updateCategorie = (categories) => {
 }
 
 export const deleteCategorie = (categorie) => {
-    console.log('to aqui')
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         //make async call to database
         const firestore = getFirestore();

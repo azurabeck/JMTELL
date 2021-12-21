@@ -26,8 +26,6 @@ const AddClient = ( props ) => {
     const [formInfoValues, setInfoFormValues] = useState([{ info_desc: ""}])
     const [formCatValues, setCatFormValues] = useState([])
 
-    console.log(props.EDIT)
-
     let handleDetailsChange = (i, e) => {
         let newFormValues = [...formValues];
         newFormValues[i][e.target.name] = e.target.value;

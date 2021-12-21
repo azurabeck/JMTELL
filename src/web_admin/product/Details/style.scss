@@ -36,6 +36,8 @@
         }
 
         .image {
+            display: flex;
+            flex-direction: column;
             background: #fff;
             width: 150px;
             height: 150px;
@@ -43,12 +45,98 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 20px;
+            width: calc(100% - 50px);
+            font-size: 12px;
+            margin-top: 65px;
 
             img { width: 100%; height: 100%; object-fit: contain; }
+
+            .button-edit-group {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-top: 10px;
+                width: 100%;
+
+                svg { 
+                    font-size: 12px;
+                    &:hover {
+                        border-color: #6100ff;
+                        color: #6100ff;
+                        cursor: pointer;
+                    }                    
+                }
+
+                div { 
+                    border: 1px solid #707070;
+                    color: #707070;
+                    padding: 3px 5px;
+                    border-radius: 4px;
+                    margin: 0 5px;
+                    font-size: 10px;
+
+                    &:hover {
+                        border-color: #6100ff;
+                        color: #6100ff;
+                        cursor: pointer;
+                    }
+                }
+            }
+            
+            svg { 
+                color: #3d3d3d; 
+                font-size: 18px; 
+                &:hover {
+                    color: #6100ff;
+                    cursor: pointer;
+                }
+            }
+
+            .ql-container.ql-snow { 
+                height: 100px;
+            }
+            .ql-toolbar.ql-snow {
+                text-align: center;
+                padding: 0;
+            }
+            .ql-editor {
+                width: 250px;
+                height: 100px;
+            }
+
+            .save-image {                    
+                color: #ef6464;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-top: 8px;
+
+                svg { 
+                    color: #3d3d3d; 
+                    font-size: 18px; 
+                    &:hover {
+                        color: #6100ff;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        
+        .product-name {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-top: 50px;
+            margin-bottom: 10px;
+            width: calc(100% - 50px);
+            strong {
+                word-break: break-word;
+                max-width: 320px;
+                margin-right: 10px;
+            }
         }
 
-        .center-text { text-align: center; max-width: 350px; width: 350px; margin-bottom: 10px; }
-        .left-text { text-align: left; max-width: 350px; width: 350px; margin-bottom: 10px; }
+        .left-text { text-align: left; max-width: 350px; width: 350px; margin-bottom: 10px; display: flex; }
 
         .tag-group { 
             display: flex; flex-direction: row; flex-wrap: wrap;
@@ -61,7 +149,6 @@
             }
 
         }
-
 
         .details-group {
             display: flex; flex-direction: column;

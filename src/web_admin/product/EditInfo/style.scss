@@ -81,14 +81,13 @@
                 }
 
                 .image-main { 
-                        width: 200px;
-                        height: 201px;
+                        width: 210px;
+                        height: 210px;
 
                         img {
                             object-fit: contain;
                             max-width: 210px;
                             height: 210px;
-                            padding: 0 10px;
                             background-color: #fff;
                         }
                     }
