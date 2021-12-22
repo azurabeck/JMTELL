@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight, faEdit, faPlus, faSave, faTimes, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { updateProcuct , deleteProcuct } from '../../../web_config/actions/productActions'
 import './style.scss'
+import ComboBoxCat from '../ComboBoxCat'
 
 const Details = (props) => {
 
@@ -67,6 +68,7 @@ const Details = (props) => {
 
     //#endregion
 
+    console.log(props.PRODUCT_CATEGORIE)
 
     return (
         <div className='product-details'>
@@ -215,37 +217,47 @@ const Details = (props) => {
                  
             </div>
 
-            <strong className='left-text'> 
-                Informações de destaque: 
-                <FontAwesomeIcon icon={faPlus} 
-                                 onClick={() => handleForm({...formValue, aditional: [...aditional, {info_desc: ''}]  })}/>  </strong>
-            <ul>
-                {
-                    aditional && aditional.map((item, index) => {
-                        return (
-                            <li key={index}> 
-                                { edit === `aditional_${index}` 
-                                    ?  <input alt='' value={formValue && formValue.info_desc} 
-                                              onChange={(e) => handleForm({...formValue, aditional: {...aditional, [index]:{info_desc: e.target.value}}  })} /> 
-                                    :  item.info_desc
-                                }
-                                { edit === `aditional_${index}` 
-                                    ? <FontAwesomeIcon icon={faSave} onClick={(e) => handleSave(e)}/> 
-                                    : <>
-                                        <FontAwesomeIcon icon={faEdit} onClick={() => handleEdit(`aditional_${index}`)}/>  
-                                        {/* <FontAwesomeIcon icon={faTrash} onClick={(e) => handleDeleteAditional(e, index)}/>   */}
-                                      </>
-                                }  
-                            </li>
-                        )
-                    })
-                }
-            </ul>          
+            {/* ADTIONAL INFO */}
+                <strong className='left-text'> 
+                    Informações de destaque: 
+                    <FontAwesomeIcon icon={faPlus} onClick={() => handleForm({...formValue, aditional: [...aditional, {info_desc: ''}]  })}/>  
+                </strong>
+                <ul>
+                    {
+                        aditional && aditional.map((item, index) => {
+                            return (
+                                <li key={index}> 
+                                    { edit === `aditional_${index}` 
+                                        ?  <input alt='' value={formValue && formValue.info_desc} 
+                                                onChange={(e) => handleForm({...formValue, aditional: {...aditional, [index]:{info_desc: e.target.value}}  })} /> 
+                                        :  item.info_desc
+                                    }
+                                    { edit === `aditional_${index}` 
+                                        ? <FontAwesomeIcon icon={faSave} onClick={(e) => handleSave(e)}/> 
+                                        : <>
+                                            <FontAwesomeIcon icon={faEdit} onClick={() => handleEdit(`aditional_${index}`)}/>  
+                                            {/* <FontAwesomeIcon icon={faTrash} onClick={(e) => handleDeleteAditional(e, index)}/>   */}
+                                        </>
+                                    }  
+                                </li>
+                            )
+                        })
+                    }
+                </ul>   
+            {/* ADITIONAL INFO END */}
 
+            {/* SPOTLIGH */}
             { spotlightState && <div className='spotlight' onClick={(e) => handleSubmit(e , !spotlightState)}>Em Destaque</div> }
             { spotlightState === false && <div className='spotlight-off' onClick={(e) => handleSubmit(e, !spotlightState)}>Destacar</div> }
+            {/* SPOTLIGHT END */}
 
-            <strong className='left-text'> Categoria: {PRODUCT.categorie} </strong>
+
+
+
+            <strong className='left-text'> Categoria: {PRODUCT.categorie} <FontAwesomeIcon icon={faPlus} /></strong>
+
+            <ComboBoxCat />
+
             <ul>
                 { subCats && subCats.map((item , i) => (
                     <li key={i}>{item}</li>
@@ -288,6 +300,7 @@ export const imageModule = Details.modules = {
 const mapStateToProps = (state) => {
     return {
         PRODUCT_SENT: state.product.PRODUCT_SENT,
+        PRODUCT_CATEGORIE: state.product.productCategorie
     }
 }
 

@@ -71,6 +71,13 @@ export const deleteOldProcuct = (product) => {
     }
 }
 
+export const setProductCategorie = (productCategorie) => {
+    return {
+        type: 'SET_PRODUCT_CATEGORIE',
+        productCategorie
+      }
+}
+
 export const filterCategorie = (filter) => {
     return {
       type: 'PRODUCT_CATEGORIE_FILTER',

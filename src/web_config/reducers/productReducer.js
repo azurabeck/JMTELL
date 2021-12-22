@@ -1,6 +1,10 @@
 const initState = { 
     MSG_SENT: null ,
-    filterCategorie: []
+    filterCategorie: [],
+    productCategorie: [{
+        categorie: [],
+        subCategories: []
+    }]
 }
 
 const productReducer = (state = initState, action) => {
@@ -29,6 +33,10 @@ const productReducer = (state = initState, action) => {
         case 'PRODUCT_DELETE':
             return {
                 ...state, Error: null , PRODUCT_DELETED: true 
+            }
+        case 'SET_PRODUCT_CATEGORIE':
+            return {
+                ...state, productCategorie: action.productCategorie, Error: null
             }
         case 'PRODUCT_CATEGORIE_FILTER':
             return {
