@@ -6,11 +6,35 @@ import ReactQuill from 'react-quill'
 import parse from 'html-react-parser'
 import 'react-quill/dist/quill.snow.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight, faEdit, faSave, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faChevronRight, faEdit, faPlus, faSave, faTimes, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { updateProcuct , deleteProcuct } from '../../../web_config/actions/productActions'
 import './style.scss'
 
 const Details = (props) => {
+
+    //#region EDIT FUNCTIONS
+    const [ formValue , handleForm ] = useState(props.PRODUCT)
+    const [ edit, handleEdit ] = useState('')
+    const [ showImage, handleImagePv ] = useState(0)     
+
+
+    const handleSave = () => {
+        console.log('after save' , formValue)
+        handleEdit('')
+    }
+
+    // const handleDeleteAditional = (e, i) => {
+    //     e.preventDefault()
+    //     const getAdionatal = formValue.aditional   
+    //     const newValue = getAdionatal.filter(item => item.Object(i))
+
+    //     console.log('value', newValue)
+        
+    //     handleForm({ ...formValue, aditional: newValue }) 
+    //     console.log(formValue)
+    // }
+
+    //#endregion
 
     //#region DETAILS FUNCTION
 
@@ -20,7 +44,7 @@ const Details = (props) => {
 
     const category = PRODUCT.category
     const details = PRODUCT.details
-    const aditional = PRODUCT.aditional
+    const aditional = formValue.aditional ? formValue.aditional : PRODUCT.aditional
     const id = PRODUCT.id
     
     const handleSubmit = (e , spotlight) => {
@@ -43,17 +67,6 @@ const Details = (props) => {
 
     //#endregion
 
-
-    //#region EDIT FUNCTIONS
-    const [ formValue , handleForm ] = useState(props.PRODUCT)
-    const [ edit, handleEdit ] = useState('')
-    const [ showImage, handleImagePv ] = useState(0)    
-
-    const handleSave = () => {
-        console.log('after save' , formValue)
-        handleEdit('')
-    }
-    //#endregion
 
     return (
         <div className='product-details'>
@@ -202,17 +215,27 @@ const Details = (props) => {
                  
             </div>
 
-            <strong className='left-text'> Informações Adicionais: </strong>
+            <strong className='left-text'> 
+                Informações de destaque: 
+                <FontAwesomeIcon icon={faPlus} 
+                                 onClick={() => handleForm({...formValue, aditional: [...aditional, {info_desc: ''}]  })}/>  </strong>
             <ul>
                 {
                     aditional && aditional.map((item, index) => {
-
-                        console.log('aditional: ' , item)
-
                         return (
                             <li key={index}> 
-                                {item.info_desc} 
-                                <FontAwesomeIcon icon={faEdit} />
+                                { edit === `aditional_${index}` 
+                                    ?  <input alt='' value={formValue && formValue.info_desc} 
+                                              onChange={(e) => handleForm({...formValue, aditional: {...aditional, [index]:{info_desc: e.target.value}}  })} /> 
+                                    :  item.info_desc
+                                }
+                                { edit === `aditional_${index}` 
+                                    ? <FontAwesomeIcon icon={faSave} onClick={(e) => handleSave(e)}/> 
+                                    : <>
+                                        <FontAwesomeIcon icon={faEdit} onClick={() => handleEdit(`aditional_${index}`)}/>  
+                                        {/* <FontAwesomeIcon icon={faTrash} onClick={(e) => handleDeleteAditional(e, index)}/>   */}
+                                      </>
+                                }  
                             </li>
                         )
                     })
@@ -224,8 +247,8 @@ const Details = (props) => {
 
             <strong className='left-text'> Categoria: {PRODUCT.categorie} </strong>
             <ul>
-                { subCats && subCats.map(item => (
-                    <li>{item}</li>
+                { subCats && subCats.map((item , i) => (
+                    <li key={i}>{item}</li>
                 ))}
             </ul>
 

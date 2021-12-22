@@ -8,7 +8,6 @@ import { deleteProcuct } from '../../web_config/actions/productActions'
 import  FastBar  from '../organism/fastBar/fastBar'
 import './style.scss'
 import ADD_CLIENT from './AddInfo'
-import EDIT_CLIENT from './EditInfo'
 import DETAILS from './Details'
 
 const Products = (props) => {
@@ -18,7 +17,6 @@ const Products = (props) => {
     const [ openDetails , showDetails ] = useState(false)
     const [ itemDetails , handleItems ] = useState(null)
     const [ filterValue , handleFilter ] = useState('')
-    const [ edit , handleEditfunction ] = useState()
 
 
     const handleDetails = (item) => {
@@ -31,10 +29,7 @@ const Products = (props) => {
         props.deleteProcuct(id)
     }
 
-    const handleEdit = (e, item) => {
-        e.preventDefault()
-        handleEditfunction(item)
-    }
+
 
 
     const UPDATE_LIST = PRODUCTS_DB && PRODUCTS_DB.filter((item) =>  item.name.toLowerCase().includes(filterValue.toLowerCase()) );
@@ -45,7 +40,6 @@ const Products = (props) => {
 
             { openDetails && <DETAILS PRODUCT={itemDetails} CLICK={() => showDetails(false)} /> }    
             { registerDialog && <ADD_CLIENT click={() => handleRegister(!registerDialog)}/> }
-            { edit && <EDIT_CLIENT EDIT={edit} close={() => handleEditfunction('')}/>  }
 
             <FastBar />
         
@@ -82,7 +76,7 @@ const Products = (props) => {
                                 <div className='COL_SIZE_LARGE'> {item.categorie} </div>
                                 <div className='COL_SIZE_LARGE'> 
                                     <div className='btn-red' onClick={() => handleDetails(item)}> <FontAwesomeIcon icon={faEye} /> </div> 
-                                    <div className='btn-red' onClick={(e) => handleEdit(e , item)}> <FontAwesomeIcon icon={faEdit} /> </div> 
+                                    <div className='btn-red' onClick={() => handleDetails(item)}> <FontAwesomeIcon icon={faEdit} /> </div> 
                                     <div className='btn-red' onClick={(e) => handleDelete(e , id)}> <FontAwesomeIcon icon={faTrash} /> </div> 
                                 
                                 </div>

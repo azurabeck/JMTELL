@@ -136,7 +136,11 @@
             }
         }
 
-        .left-text { text-align: left; max-width: 350px; width: 350px; margin-bottom: 10px; display: flex; }
+        .left-text { text-align: left; max-width: 350px; width: 350px; margin-bottom: 10px; display: flex;}
+        strong.left-text {
+            align-items: center;
+            justify-content: space-between; margin-top: 50px; 
+        }
 
         .tag-group { 
             display: flex; flex-direction: row; flex-wrap: wrap;
