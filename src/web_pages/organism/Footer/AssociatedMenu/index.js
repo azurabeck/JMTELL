@@ -38,7 +38,7 @@ const AssociatedMenu = () => {
                                     <WHATSAPP />
                                 </a>
                                 <BUTTON_STROKE
-                                        TEXT='ACESSE O BLOCK'
+                                        TEXT='ACESSE O BLOG'
                                         WIDTH='125px'
                                         HEIGHT='40PX'
                                         FONT_SIZE='12px'

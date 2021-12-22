@@ -16,7 +16,7 @@ const Product_bar = (props) => {
         return (
         <div className='product-bar'> 
                 <div className='product-buttons'>
-                    <div className='title'> Product <FontAwesomeIcon icon={faArrowRight} /> </div>
+                    <div className='title'> Produtos <FontAwesomeIcon icon={faArrowRight} /> </div>
                     <div className='button-area'>
                         <div className='bar-button'>
                             <COMBO_BOX TEXT='CATEGORIAS' SIDEBAR_DATA={SIDEBAR_DATA} SCREEN='produtos' />

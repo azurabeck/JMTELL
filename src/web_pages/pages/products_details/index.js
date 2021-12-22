@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useEffect} from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
@@ -10,7 +10,9 @@ const ProductList = (props) => {
 
     
     const PRODUCTS_DATA = props.products
-
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    });
     
     return (
         <>

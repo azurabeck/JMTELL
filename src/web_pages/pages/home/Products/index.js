@@ -82,7 +82,7 @@ const Header = (props) => {
                                         WIDTH='160px'
                                         HEIGHT='35px'
                                         BTN_TYPE={3}
-                                        TO='/products'/>
+                                        TO={'/produtos/' + item.id}/>
                                 </div>
 
                                 { index === 0 &&
