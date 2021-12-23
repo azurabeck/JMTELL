@@ -29,15 +29,12 @@ const ComboBoxCat = (props) => {
         let filterSubCat 
 
         if(current_sub.subCategories.includes(item)) {
-            console.log('normal')
             filterSubCat = current_sub.subCategories.filter(sub => sub !== item)
 
         } else if( current_sub.subCategories.map(current => current.sub_name).includes(item.sub_name) ){
-            console.log('situação 2')
             filterSubCat = current_sub.subCategories.map(current => current).filter(sub => sub.sub_name !== item.sub_name )
 
         } else {
-            console.log('ja era')
             filterSubCat = [...current_sub.subCategories, item]
         }
  
