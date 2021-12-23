@@ -22,14 +22,16 @@ export const createProcuct = (product) => {
     }
 }
 
-export const updateProcuct = (product) => {
+export const updateProcuct = (product , categorie) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         //make async call to database
         const firestore = getFirestore();
 
+        console.log('na action', product)
+
         firestore.collection('products').doc(product.id).update({
             ...product , 
-            spotlight: product.spotlight, 
+            ...categorie ,
             time: new Date() 
         })
        

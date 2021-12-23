@@ -6,7 +6,7 @@ import ReactQuill from 'react-quill'
 import parse from 'html-react-parser'
 import 'react-quill/dist/quill.snow.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight, faEdit, faPlus, faSave, faTimes, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faChevronRight, faEdit, faPlus, faSave, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { updateProcuct , deleteProcuct } from '../../../web_config/actions/productActions'
 import './style.scss'
 import ComboBoxCat from '../ComboBoxCat'
@@ -14,34 +14,16 @@ import ComboBoxCat from '../ComboBoxCat'
 const Details = (props) => {
 
     //#region EDIT FUNCTIONS
-    const [ formValue , handleForm ] = useState(props.PRODUCT)
+    const [ formValue , handleForm ] = useState({ ...props.PRODUCT })
     const [ edit, handleEdit ] = useState('')
     const [ showImage, handleImagePv ] = useState(0)     
 
 
     const handleSave = () => {
-        console.log('after save' , formValue)
+        props.updateProcuct(formValue , props.PRODUCT_CATEGORIE)
         handleEdit('')
     }
 
-    useEffect(() => {
-        handleForm({...props.PRODUCT, ...props.PRODUCT_CATEGORIE})
-
-
-    }, [props])
-
-    console.log(formValue)
-
-    // const handleDeleteAditional = (e, i) => {
-    //     e.preventDefault()
-    //     const getAdionatal = formValue.aditional   
-    //     const newValue = getAdionatal.filter(item => item.Object(i))
-
-    //     console.log('value', newValue)
-        
-    //     handleForm({ ...formValue, aditional: newValue }) 
-    //     console.log(formValue)
-    // }
 
     //#endregion
 
@@ -200,8 +182,8 @@ const Details = (props) => {
             <div className='product-name'>
                 { edit === 'name' ?
                     <div className='input-group'> 
-                        <input alt='' value={PRODUCT.name} onChange={(e) => handleForm({...formValue, name: e.target.value})} />
-                    </div> : <strong> {PRODUCT.name} </strong>
+                        <input alt='' value={formValue.name} onChange={(e) => handleForm({...formValue, name: e.target.value})} />
+                    </div> : <strong> {formValue.name} </strong>
                 }
                 { edit === 'name' ? <FontAwesomeIcon icon={faSave} onClick={(e) => handleSave(e)}/> 
                                     : <FontAwesomeIcon icon={faEdit} onClick={() => handleEdit('name')}/>  }
@@ -258,7 +240,7 @@ const Details = (props) => {
             { spotlightState === false && <div className='spotlight-off' onClick={(e) => handleSubmit(e, !spotlightState)}>Destacar</div> }
             {/* SPOTLIGHT END */}
 
-            <ComboBoxCat />
+            <ComboBoxCat onClick={(e) => handleSave(e)} initialCat={props.PRODUCT.categorie} initialSub={props.PRODUCT.subCategories} />
 
             <div className='remove-btn' onClick={(e) => handleDelete(e)}>Deletar Produto</div>
             
@@ -303,7 +285,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 return {
-    updateProcuct: (product) => dispatch(updateProcuct(product)),
+    updateProcuct: (product , categorie) => dispatch(updateProcuct(product , categorie)),
     deleteProcuct: (product) => dispatch(deleteProcuct(product))
 }
 }
