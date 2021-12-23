@@ -24,6 +24,14 @@ const Details = (props) => {
         handleEdit('')
     }
 
+    useEffect(() => {
+        handleForm({...props.PRODUCT, ...props.PRODUCT_CATEGORIE})
+
+
+    }, [props])
+
+    console.log(formValue)
+
     // const handleDeleteAditional = (e, i) => {
     //     e.preventDefault()
     //     const getAdionatal = formValue.aditional   
@@ -41,10 +49,10 @@ const Details = (props) => {
 
     const { PRODUCT , CLICK } = props
     const [ spotlightState , addSpotlight ] = useState(PRODUCT.spotlight)
-    const subCats = []
+    // const subCats = []
 
-    const category = PRODUCT.category
-    const details = PRODUCT.details
+    // const category = PRODUCT.category
+    // const details = PRODUCT.details
     const aditional = formValue.aditional ? formValue.aditional : PRODUCT.aditional
     const id = PRODUCT.id
     
@@ -60,15 +68,14 @@ const Details = (props) => {
         CLICK()
     }
 
-    Object.keys(PRODUCT).forEach(key => {
-        if (PRODUCT[key] === true) {
-            if(key !== 'spotlight') subCats.push(key)
-        }
-    });
+    // Object.keys(PRODUCT).forEach(key => {
+    //     if (PRODUCT[key] === true) {
+    //         if(key !== 'spotlight') subCats.push(key)
+    //     }
+    // });
 
     //#endregion
 
-    console.log(props.PRODUCT_CATEGORIE)
 
     return (
         <div className='product-details'>
@@ -251,18 +258,7 @@ const Details = (props) => {
             { spotlightState === false && <div className='spotlight-off' onClick={(e) => handleSubmit(e, !spotlightState)}>Destacar</div> }
             {/* SPOTLIGHT END */}
 
-
-
-
-            <strong className='left-text'> Categoria: {PRODUCT.categorie} <FontAwesomeIcon icon={faPlus} /></strong>
-
             <ComboBoxCat />
-
-            <ul>
-                { subCats && subCats.map((item , i) => (
-                    <li key={i}>{item}</li>
-                ))}
-            </ul>
 
             <div className='remove-btn' onClick={(e) => handleDelete(e)}>Deletar Produto</div>
             

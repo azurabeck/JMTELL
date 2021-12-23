@@ -6,6 +6,7 @@ import './style.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown, faChevronUp, faSave } from '@fortawesome/free-solid-svg-icons'
 import { setProductCategorie } from '../../../web_config/actions/productActions'
+import { forEach } from 'lodash'
 
 
 const ComboBoxCat = (props) => {
@@ -21,11 +22,13 @@ const ComboBoxCat = (props) => {
     })
 
     const updateCatClient = (item) => {
-        let filterCat = current_sub.categorie.includes(item.categorie) 
-                                ? [...current_sub.categorie] : [...current_sub.categorie, item.categorie]
         const filterSubCat = current_sub.subCategories.includes(item) 
                                 ? current_sub.subCategories.filter(sub => sub !== item)
                                 :  [...current_sub.subCategories, item]
+ 
+        const checkSub = filterSubCat.map(item => item.categorie)
+        let filterCat = [...new Set(checkSub)];
+
 
         handleOptionSub({
             categorie: filterCat,
