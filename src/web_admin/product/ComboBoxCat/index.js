@@ -14,16 +14,32 @@ const ComboBoxCat = (props) => {
     const { initialCat , initialSub } = props
 
     const [ open, handleComboBoxDisplay ] = useState(false)
-    const [ current , handleOption ] = useState('')
     const [ current_sub , handleOptionSub ] = useState({
         categorie: initialCat ? initialCat : [],
         subCategories: initialSub ? initialSub : []
     })
 
+    const handleSave = (e) => {
+        e.preventDefault()
+        props.onClick()
+        handleComboBoxDisplay(false)
+    }
+
     const updateCatClient = (item) => {
-        const filterSubCat = current_sub.subCategories.includes(item) 
-                                ? current_sub.subCategories.filter(sub => sub !== item)
-                                :  [...current_sub.subCategories, item]
+        let filterSubCat 
+
+        if(current_sub.subCategories.includes(item)) {
+            console.log('normal')
+            filterSubCat = current_sub.subCategories.filter(sub => sub !== item)
+
+        } else if( current_sub.subCategories.map(current => current.sub_name).includes(item.sub_name) ){
+            console.log('situação 2')
+            filterSubCat = current_sub.subCategories.map(current => current).filter(sub => sub.sub_name !== item.sub_name )
+
+        } else {
+            console.log('ja era')
+            filterSubCat = [...current_sub.subCategories, item]
+        }
  
         const checkSub = filterSubCat.map(item => item.categorie)
         let filterCat = [...new Set(checkSub)];
@@ -41,16 +57,16 @@ const ComboBoxCat = (props) => {
     return (
         <div className='combo-box-cat'>
             <div className='combo-box-active' onClick={() => handleComboBoxDisplay(!open)}> 
-                {current ? current : 'Selecione a categoria:'} <FontAwesomeIcon icon={open ? faChevronUp : faChevronDown}/> 
+                {current_sub.categorie ? current_sub.categorie : 'Selecione a categoria:'} <FontAwesomeIcon icon={open ? faChevronUp : faChevronDown}/> 
             </div>
 
             {
                 open && <div className='combo-box-container'>
-                    <div className='btn-area' onClick={props.onClick}> Clique para salvar a seleção <FontAwesomeIcon icon={ faSave }/> </div>
+                    <div className='btn-area' onClick={(e) => handleSave(e)}> Clique para salvar a seleção <FontAwesomeIcon icon={ faSave }/> </div>
                     {
                         CATEGORIES && CATEGORIES.map((item , i) => (            
                             <>               
-                            <div key={i} className={`combo-box-option ${current && 'active'}`} onClick={() => handleOption('optionValue')}>
+                            <div key={i} className={`combo-box-option ${current_sub.current_sub && 'active'}`} >
                                 {item.name}
                             </div>                            
                             
