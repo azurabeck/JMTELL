@@ -207,32 +207,23 @@ const Details = (props) => {
             </div>
 
             {/* ADTIONAL INFO */}
-                <strong className='left-text'> 
-                    Informações de destaque: 
-                    <FontAwesomeIcon icon={faPlus} onClick={() => handleForm({...formValue, aditional: [...aditional, {info_desc: ''}]  })}/>  
-                </strong>
-                <ul>
-                    {
-                        aditional && aditional.map((item, index) => {
-                            return (
-                                <li key={index}> 
-                                    { edit === `aditional_${index}` 
-                                        ?  <input alt='' value={formValue && formValue.info_desc} 
-                                                onChange={(e) => handleForm({...formValue, aditional: {...aditional, [index]:{info_desc: e.target.value}}  })} /> 
-                                        :  item.info_desc
-                                    }
-                                    { edit === `aditional_${index}` 
-                                        ? <FontAwesomeIcon icon={faSave} onClick={(e) => handleSave(e)}/> 
-                                        : <>
-                                            <FontAwesomeIcon icon={faEdit} onClick={() => handleEdit(`aditional_${index}`)}/>  
-                                            {/* <FontAwesomeIcon icon={faTrash} onClick={(e) => handleDeleteAditional(e, index)}/>   */}
-                                        </>
-                                    }  
-                                </li>
-                            )
-                        })
-                    }
-                </ul>   
+                <strong className='left-text'>  Informações de destaque:   </strong>
+                <div className='rich-text-area'>
+                { edit === 'info_desc' ? 
+                        <ReactQuill 
+                            className='materialize-text-area' 
+                            modules={props.SPOT_INFO}
+                            formats={props.SPOT_INFO}
+                            id='content' 
+                            onChange={(e) => handleForm({...formValue, info_desc: e})} 
+                            value={formValue.info_desc}/>   
+                        : formValue.info_desc  ? parse(formValue.info_desc ) : ''
+                    }   
+                    { edit === 'info_desc' ? <FontAwesomeIcon icon={faSave} onClick={(e) => handleSave(e)}/> 
+                                        : <FontAwesomeIcon icon={faEdit} onClick={() => handleEdit('info_desc')}/>  }      
+
+                </div>                            
+
             {/* ADITIONAL INFO END */}
 
             {/* SPOTLIGH */}
@@ -246,6 +237,18 @@ const Details = (props) => {
             
         </div>
     )
+}
+
+const SPOT_INFO = Details.modules = {
+    toolbar: [    
+        [{'header' : '1'}, {'header' : '2'}, {'font' : []}]  ,
+        [{'size' : []}]  ,
+        ['bold' , 'italic' , 'underline' , 'strike' , 'bloquote']  ,
+        [{'list' : 'ordered'} , {'list' : 'bullet'}]  ,
+        ['link']  ,
+        ['clean'] ,
+        ['code-block']
+    ]
 }
 
 Details.modules = {
