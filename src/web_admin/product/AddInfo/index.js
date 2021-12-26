@@ -5,75 +5,32 @@ import { compose } from 'redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import './style.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
-
+import { faChevronRight, faTimes, faSave } from '@fortawesome/free-solid-svg-icons'
+import parse from 'html-react-parser'
+import ReactQuill from 'react-quill'
+import ComboBoxCat from '../ComboBoxCat'
 
 const AddClient = ( props ) => {
 
-    const CATEGORIES = props.categorie
     const click = props.click
     const [ formData, getForm ] = useState({
         name: '',
         description: '',
-        details: [{ detail_name: "", detail_info : ""}],
-        aditional: [{ info_desc: "" }],       
-        model: '',
+        info_desc: '',
         img: '',
+        img_1: '',
+        img_2: '',
+        img_3: '',
         spotlight: false,
-        categorie: ''
+        categorie: '',
+        subCategories: '',
     })
-    const [formValues, setFormValues] = useState([{detail_name: "", detail_desc: ""}])
-    const [formInfoValues, setInfoFormValues] = useState([{ info_desc: ""}])
-    const [formCatValues, setCatFormValues] = useState([])
+    const [edit, handleEdit] = useState('image_0')
 
-    let handleDetailsChange = (i, e) => {
-        let newFormValues = [...formValues];
-        newFormValues[i][e.target.name] = e.target.value;
-        setFormValues(newFormValues);
-        getForm({...formData, details: formValues })
-     }
-     let handleInfoChange = (i, e) => {
-        let newFormValues = [...formInfoValues];
-        newFormValues[i][e.target.name] = e.target.value;
-        setInfoFormValues(newFormValues);
-        getForm({...formData, aditional: formInfoValues })
-     }
-     let handleCatChange = (i, e ) => {
-        const categorie = e.target[e.target.selectedIndex].getAttribute("name")
-        getForm({...formData, [e.target.value]: true , categorie: categorie })
-     }
-
-        
-    let addDetailsFormFields = () => {
-        setFormValues([...formValues,{detail_name: "", detail_desc: "" }])
-     }
-     let addInfoFormFields = () => {
-        setInfoFormValues([...formInfoValues, { info_desc: "" }])
-     }
-     let addCatFormFields = () => {
-        setCatFormValues([...formCatValues , {} ])
-     }
-
-
-     let removeDetailsFormFields = (i) => {
-        let newFormValues = [...formValues];
-        newFormValues.splice(i, 1);
-        setFormValues(newFormValues)
-    }
-    let removeInfoFormFields = (i) => {
-        let newFormValues = [...formInfoValues];
-        newFormValues.splice(i, 1);
-        setInfoFormValues(newFormValues)
-    }
-    let removeCatFormFields = (i) => {
-        let newFormValues = [...formCatValues];
-        newFormValues.splice(i, 1);
-        setCatFormValues(newFormValues)
-    }
 
     const handleSubmit = (e) => {       
         e.preventDefault()        
-        props.createProcuct(formData)
+        props.createProcuct(formData , props.PRODUCT_CATEGORIE)
         props.click()
     }
 
@@ -85,85 +42,110 @@ const AddClient = ( props ) => {
                 <form className='contact-form-group' onSubmit={(e) => handleSubmit(e)}>
                         
                         <input placeholder='Nome' required onChange={(e) => getForm({...formData, name: e.target.value })} ></input>
-                        <textarea placeholder='Descrição do produto' required onChange={(e) => getForm({...formData, description: e.target.value})}></textarea>
-                        <input placeholder='Modelo / Marca' required onChange={(e) => getForm({...formData, model: e.target.value})}></input>
-                        <input placeholder='Link da imagem' required onChange={(e) => getForm({...formData, img: e.target.value })} ></input>
-
                         <div className='checkbox-group'>
                             <input type="checkbox" checked={formData.spotlight}  onChange={e => getForm({...formData, spotlight: !formData.spotlight })} />
                             <label>Destacar Produto</label>
                         </div>
 
-                        <div className='details-group'>
-                            <div className='title'> Detalhes Tecnicos  <div className='add-details'  onClick={() => addDetailsFormFields()}>Adicionar</div> </div>   
-                            {formValues.map((element, index) => (
-                                    <div className='details-field'>
-                                        <input className='detail_name' name='detail_name' placeholder='Nome'onChange={e => handleDetailsChange(index , e)} />
-                                        <input className='detail_desc' name='detail_desc' placeholder='Descrição'  onChange={e => handleDetailsChange(index, e)} />
 
+                        <div className='image'> 
 
-                                        {
-                                            index ? 
-                                            <button type="button"  className="button remove" onClick={() => removeDetailsFormFields(index)}>x</button> 
-                                            : null
-                                        }
-                                    </div>
-                                ))
+                            <div className='button-edit-group'> Adicionar Imagem:  
+                                <div className={edit === 'image_0' && 'active'} onClick={() => handleEdit('image_0')}> 1</div>
+                                <div className={edit === 'image_1' && 'active'} onClick={() => handleEdit('image_1')}> 2</div>
+                                <div className={edit === 'image_2' && 'active'} onClick={() => handleEdit('image_2')}> 3</div>
+                                <div className={edit === 'image_3' && 'active'} onClick={() => handleEdit('image_3')}> 4</div>
+                            </div>      
+
+                            { edit === 'image_0' &&
+                                <ReactQuill 
+                                className='materialize-text-area' 
+                                modules={imageModule}
+                                formats={imageModule}
+                                id='content' 
+                                onChange={(e) => getForm({
+                                    ...formData, 
+                                    img: e.replace('<p>','')
+                                            .replace('</p>', '')                                     
+                                })} 
+                                value={formData && formData.img}/>  
                             }
-                        </div>                
+
+                            { edit === 'image_1' &&
+                                <ReactQuill 
+                                className='materialize-text-area' 
+                                modules={imageModule}
+                                formats={imageModule}
+                                id='content' 
+                                onChange={(e) => getForm({
+                                    ...formData, 
+                                    img_1: e.replace('<p>','')
+                                            .replace('</p>', '')                                     
+                                })} 
+                                value={formData && formData.img_1}/>  
+                            }
+                            { edit === 'image_2' &&
+                                <ReactQuill 
+                                className='materialize-text-area' 
+                                modules={imageModule}
+                                formats={imageModule}
+                                id='content' 
+                                onChange={(e) => getForm({
+                                    ...formData, 
+                                    img_2: e.replace('<p>','')
+                                            .replace('</p>', '')                                     
+                                })} 
+                                value={formData && formData.img_2}/>  
+                            }
+                            { edit === 'image_3' &&
+                                <ReactQuill 
+                                className='materialize-text-area' 
+                                modules={imageModule}
+                                formats={imageModule}
+                                id='content' 
+                                onChange={(e) => getForm({
+                                    ...formData, 
+                                    img_3: e.replace('<p>','')
+                                            .replace('</p>', '')                                     
+                                })} 
+                                value={formData && formData.img_3}/>   
+                            }
+
+                            <div className='obs'>
+                                Atenção, utilize o upload da imagem, ou o link. Nunca utilize os dois ao mesmo tempo. 
+                            </div>
+
+                        </div>           
+
+
+                        <strong className='left-text'>  Informações de destaque:   </strong>
+                         <div className='rich-text-area'>
+                       
+                                <ReactQuill 
+                                    className='materialize-text-area' 
+                                    modules={props.SPOT_INFO}
+                                    formats={props.SPOT_INFO}
+                                    id='content' 
+                                    onChange={(e) => getForm({...formData, info_desc: e})} 
+                                    value={formData.info_desc && formData.info_desc}/>   
+                            
+
+                        </div>   
+
                         
+                        <strong className='left-text'> Detalhes do produto:</strong> 
+                        <div className='rich-text-area'>       
+                            <ReactQuill 
+                                className='materialize-text-area' 
+                                modules={props.moduleDefault}
+                                formats={props.formatDefault}
+                                id='content' 
+                                onChange={(e) => getForm({...formData, description: e})} 
+                                value={formData.description}/>  
+                        </div> 
+                        
+                        <ComboBoxCat onClick={(e) => handleSubmit(e)} initialCat='Selecione a Categoria' initialSub={null} />
 
-                        <div className='details-group'>
-                            <div className='title'> Informações Adicionais  <div className='add-details'  onClick={() => addInfoFormFields()}>Adicionar</div> </div>   
-                            {formInfoValues.map((element, index) => (
-                                    <div className='details-field'>
-                                        <input className='cat_desc' name='info_desc' placeholder='Descrição'  onChange={e => handleInfoChange(index, e)} />
-
-
-                                        {
-                                            index ? 
-                                            <button type="button"  className="button remove" onClick={() => removeInfoFormFields(index)}>x</button> 
-                                            : null
-                                        }
-                                    </div>
-                                ))
-                            }
-                        </div>
-
-                            <div className='details-group'>
-                            <div className='title'> Categorias <div className='add-details'  onClick={() => addCatFormFields()}>Adicionar</div> </div>   
-                            {formCatValues.map((element, index) => {
-                                            
-                                return(
-                                    <div className='details-field'>                              
-                                            <select name='cat_desc' placeholder='Nome' onChange={(e) => handleCatChange(index,  e )}>
-                                                {
-                                                    CATEGORIES && CATEGORIES.map((item, index) => {
-                                                        return (
-                                                            <>
-                                                            <option selected disabled key={index}>{item.name}</option>
-                                                            {
-                                                                item.subcategorie && item.subcategorie.map((subcat, index) => {
-                                                                    return (                                                                    
-                                                                    <option value={subcat.tag} key={index} name={subcat.categorie}>{subcat.sub_name}</option>
-                                                                )})
-
-                                                            }
-                                                            </>
-                                                        )
-                                                    })
-                                                }
-                                            </select>
-
-                                        {
-                                            index ? 
-                                            <button type="button" className="button remove" onClick={() => removeCatFormFields(index)}>x</button> 
-                                            : null
-                                        }
-                                    </div>
-                                )})
-                            }
-                        </div>                 
 
                         <div className='btn-area'> <button className='btn-orange-square' type='submit'>Registrar Produto</button> </div>
                         
@@ -175,10 +157,49 @@ const AddClient = ( props ) => {
     )
 }
 
+export const SPOT_INFO = AddClient.modules = {
+    toolbar: [    
+        [{'header' : '1'}, {'header' : '2'}, {'font' : []}]  ,
+        [{'size' : []}]  ,
+        ['bold' , 'italic' , 'underline' , 'strike' , 'bloquote']  ,
+        [{'list' : 'ordered'} , {'list' : 'bullet'}]  ,
+        ['link']  ,
+        ['clean'] ,
+        ['code-block']
+    ]
+}
+
+export const moduleDefault = AddClient.modules = {
+    toolbar: [    
+      [{'header' : '1'}, {'header' : '2'}, {'font' : []}]  ,
+      [{'size' : []}]  ,
+      ['bold' , 'italic' , 'underline' , 'strike' , 'bloquote']  ,
+      [{'list' : 'ordered'} , {'list' : 'bullet'}]  ,
+      ['link', 'image', 'video']  ,
+      ['clean'] ,
+      ['code-block']
+    ]
+  }
+  
+  export const formatDefault =  AddClient.formats = [
+    'header', 'font', 'size' , 
+    'bold' , 'italic' , 'underline' , 'strike' , 'blockquote' ,
+    'list' , 'bullet' ,
+    'link' , 'image' , 'video' , 'code-block'
+  ]
+
+
+export const imageModule = AddClient.modules = {
+    toolbar: [    
+      ['image']  ,
+    ]
+}
+
 const mapStateToProps = (state) => {
     return {        
         categorie: state.firestore.ordered.categories,
-        PRODUCT_SENT: state.product.PRODUCT_SENT
+        PRODUCT_SENT: state.product.PRODUCT_SENT,
+        PRODUCT_CATEGORIE: state.product.productCategorie
     }
 }
 

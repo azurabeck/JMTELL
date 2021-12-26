@@ -31,11 +31,6 @@ const Details = (props) => {
 
     const { PRODUCT , CLICK } = props
     const [ spotlightState , addSpotlight ] = useState(PRODUCT.spotlight)
-    // const subCats = []
-
-    // const category = PRODUCT.category
-    // const details = PRODUCT.details
-    const aditional = formValue.aditional ? formValue.aditional : PRODUCT.aditional
     const id = PRODUCT.id
     
     const handleSubmit = (e , spotlight) => {
@@ -239,18 +234,6 @@ const Details = (props) => {
     )
 }
 
-const SPOT_INFO = Details.modules = {
-    toolbar: [    
-        [{'header' : '1'}, {'header' : '2'}, {'font' : []}]  ,
-        [{'size' : []}]  ,
-        ['bold' , 'italic' , 'underline' , 'strike' , 'bloquote']  ,
-        [{'list' : 'ordered'} , {'list' : 'bullet'}]  ,
-        ['link']  ,
-        ['clean'] ,
-        ['code-block']
-    ]
-}
-
 Details.modules = {
     toolbar: [    
       [{'header' : '1'}, {'header' : '2'}, {'font' : []}]  ,
@@ -270,6 +253,17 @@ Details.modules = {
     'link' , 'image' , 'video' , 'code-block'
   ]
 
+export const SPOT_INFO = Details.modules = {
+    toolbar: [    
+        [{'header' : '1'}, {'header' : '2'}, {'font' : []}]  ,
+        [{'size' : []}]  ,
+        ['bold' , 'italic' , 'underline' , 'strike' , 'bloquote']  ,
+        [{'list' : 'ordered'} , {'list' : 'bullet'}]  ,
+        ['link']  ,
+        ['clean'] ,
+        ['code-block']
+    ]
+}
 
 export const imageModule = Details.modules = {
     toolbar: [    

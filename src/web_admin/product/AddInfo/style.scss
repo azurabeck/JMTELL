@@ -41,6 +41,88 @@
                 justify-content: center;
                 align-items: center;
 
+           
+                .image {
+                    display: flex;
+                    flex-direction: column;
+                    background: #fff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 20px;
+                    width: calc(100% - 50px);
+                    font-size: 12px;
+                    margin-top: 20px;
+        
+                    img { width: 100%; height: 100%; object-fit: contain; }
+
+                    .button-edit-group {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        margin-bottom: 20px;
+                        width: 100%;
+        
+                        svg { 
+                            font-size: 12px;
+                            &:hover {
+                                border-color: #6100ff;
+                                color: #6100ff;
+                                cursor: pointer;
+                            }                    
+                        }
+        
+                        div { 
+                            border: 1px solid #707070;
+                            color: #707070;
+                            padding: 3px 5px;
+                            border-radius: 4px;
+                            margin: 0 5px;
+                            font-size: 10px;
+                            width: 40px;
+                            text-align: center;
+                                    
+                            &:hover {
+                                border-color: #6100ff;
+                                color: #6100ff;
+                                cursor: pointer;
+                            }                            
+                        }
+                        .active {
+                            border: 2px solid #6100ff;
+                            color: #6100ff;
+                        }
+                    }
+                    .obs {
+                        color: #e91e63;
+                        margin-top: 10px;
+                        margin-bottom: 30px;
+                    }
+                            
+                    svg { 
+                        color: #3d3d3d; 
+                        font-size: 18px; 
+                        &:hover {
+                            color: #6100ff;
+                            cursor: pointer;
+                        }
+                    }
+        
+                    .ql-container.ql-snow { 
+                        width: 350px;
+                        height: 100px;
+                    }
+                    .ql-toolbar.ql-snow {
+                        text-align: center;
+                        padding: 0;
+                    }
+                    .ql-editor {
+                        width: 250px;
+                        height: 100px;
+                    }       
+                    
+                }
+
 
                 input , textarea {
                     background: #efefef;
@@ -88,8 +170,7 @@
                 }
 
                 .btn-area { 
-                    position: relative;
-                    width: 400px;
+
                     .btn-orange-square { 
 
                         display: flex; 
@@ -99,7 +180,9 @@
                         font-weight: 400;
                         text-transform: uppercase;
                         font-size: 16px;
-                        width: 100%; height: 100px;
+                        width: 400px;
+                        height: 70px;
+                        margin-top: 50px;
                     
                         &:hover {
                             cursor: pointer;
@@ -108,6 +191,16 @@
                         }
                     
                     }
+                }
+
+                
+                .left-text {                    
+                    width: calc(100% - 50px);
+                }
+
+                .rich-text-area { 
+                    width: calc(100% - 50px);
+                    margin-bottom: 50px;
                 }
 
         }
