@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
 import React , {useState} from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
@@ -63,7 +64,11 @@ const Contact = (props) => {
                 <div className='phone-numbers'>
                     <PHONE />  
                     <div className='phone-number-group'>
-                        <a href='tel:+5521-3351-1211'><span className='bullet'/>  (21) 3351-1211</a>                     
+                        <a href='tel:+5521-3351-1211'><span className='bullet'/>  (21) 3351-1211</a>           
+                        <a href='tel:+5521-3217-4589' target='_blank' rel="noreferrer" ><span className='bullet'/> (21)-3217-4589</a>
+                        <a href='tel:+5521-3251-2797' target='_blank' rel="noreferrer" ><span className='bullet'/> (21)-3251-2797</a>
+                        <a href='tel:+5521-3251-2069' target='_blank' rel="noreferrer" ><span className='bullet'/> (21)-3251-2069</a>
+                        <a href='tel:+5521-3281-9349' target='_blank' rel="noreferrer" ><span className='bullet'/> (21)-3281-9349</a>       
                     </div>
                 </div>
 

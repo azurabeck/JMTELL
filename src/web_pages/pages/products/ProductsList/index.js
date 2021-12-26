@@ -21,17 +21,22 @@ const ProductList = (props) => {
     const TEXT = props.text
     const TAG = FILTER.filterCategorie
     const FILTER_TYPE = FILTER.filterByCat
-    const TAG_LOWER = TAG && TAG.toLowerCase()
     let PRODUCT_FILTERED
 
     switch(FILTER_TYPE) {
         case 0: 
             // SUBCAT
-            PRODUCT_FILTERED = PRODUCTS_DATA && PRODUCTS_DATA.filter(item => item[TAG] )
+            const filterProd = PRODUCTS_DATA && PRODUCTS_DATA.filter(item => item.subCategories) 
+            const check = filterProd.map(item => item.subCategories.map(checkTag => checkTag.tag.includes(TAG)))
+            let showProduct = check.toString().includes(true) ? true : false
+        
+            PRODUCT_FILTERED = PRODUCTS_DATA && PRODUCTS_DATA.filter(item => item.subCategories && showProduct ? item : item[TAG] )
             break;
         case 1:
             // CATEGORIE
-            PRODUCT_FILTERED =  PRODUCTS_DATA && PRODUCTS_DATA.filter(item => item.categorie === TAG_LOWER)
+            PRODUCT_FILTERED =  PRODUCTS_DATA && PRODUCTS_DATA.filter( 
+                item => item.categorie.includes(TAG.replace(' ', '')) ? item.categorie.includes(TAG.replace(' ', '')) : item.categorie.includes(TAG)                
+            )
             break;
         case 2:
             // SPOTLIGHT
