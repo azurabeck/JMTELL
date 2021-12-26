@@ -67,11 +67,11 @@ const ProductList = (props) => {
                 { DATA && DATA.map((item, index) => {
 
                     return (
-                        <div class="product" key={index}>
-                            <img class="product-img" src={item.img ? item.img : DEFAULT}/>
-                            <div class="product-title">{item.name ? item.name : '-' }</div>
-                            <div class="product-desc">{item.model ? item.model : '-' }</div>
-                            <Link to={'/produtos/' + item.id} class="btn-products-screen"><a class="btn-stroke" href="/products">
+                        <div className="product" key={index}>
+                            <img className="product-img" src={item.img ? item.img : DEFAULT}/>
+                            <div className="product-title">{item.name ? item.name : '-' }</div>
+                            <div className="product-desc">{item.model ? item.model : '-' }</div>
+                            <Link to={'/produtos/' + item.id} className="btn-products-screen"><a className="btn-stroke" href="/products">
                             { PRODUCT_PT ? PRODUCT_PT[1] : 'Saiba mais' } </a></Link>      
                             { index === 0 && 
                                             <EditorContent  HAS_VALUE={PRODUCT_PT && PRODUCT_PT[1]} IS_EDITING={IS_EDITING} OPEN_EDITOR={OPEN_EDITOR} 
