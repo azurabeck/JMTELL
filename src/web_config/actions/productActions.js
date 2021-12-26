@@ -1,6 +1,6 @@
 import data from './data.json'
 
-export const createProcuct = (product) => {
+export const createProcuct = (product, categorie) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         //make async call to database
         const firestore = getFirestore();
@@ -8,8 +8,9 @@ export const createProcuct = (product) => {
 
         firestore.collection('products').add({
             ...product , 
+            ...categorie ,
+            time: new Date() ,
             spotlight: product.spotlight, 
-            time: new Date() 
         })
        
         
@@ -26,8 +27,6 @@ export const updateProcuct = (product , categorie) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         //make async call to database
         const firestore = getFirestore();
-
-        console.log('na action', product)
 
         firestore.collection('products').doc(product.id).update({
             ...product , 

@@ -5,7 +5,7 @@ import { compose } from 'redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import './style.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight, faTimes, faSave } from '@fortawesome/free-solid-svg-icons'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import parse from 'html-react-parser'
 import ReactQuill from 'react-quill'
 import ComboBoxCat from '../ComboBoxCat'
@@ -144,7 +144,7 @@ const AddClient = ( props ) => {
                                 value={formData.description}/>  
                         </div> 
                         
-                        <ComboBoxCat onClick={(e) => handleSubmit(e)} initialCat='Selecione a Categoria' initialSub={null} />
+                        <ComboBoxCat onClick={null} initialCat='Selecione a Categoria' initialSub={null} />
 
 
                         <div className='btn-area'> <button className='btn-orange-square' type='submit'>Registrar Produto</button> </div>
@@ -206,7 +206,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createProcuct: (product) => dispatch(createProcuct(product))
+        createProcuct: (product, categorie) => dispatch(createProcuct(product, categorie))
     }
 }
 

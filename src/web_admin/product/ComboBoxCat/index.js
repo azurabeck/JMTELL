@@ -53,13 +53,16 @@ const ComboBoxCat = (props) => {
 
     return (
         <div className='combo-box-cat'>
+
+            
             <div className='combo-box-active' onClick={() => handleComboBoxDisplay(!open)}> 
                 {current_sub.categorie ? current_sub.categorie : 'Selecione a categoria:'} <FontAwesomeIcon icon={open ? faChevronUp : faChevronDown}/> 
             </div>
+           
 
             {
                 open && <div className='combo-box-container'>
-                    <div className='btn-area' onClick={(e) => handleSave(e)}> Clique para salvar a seleção <FontAwesomeIcon icon={ faSave }/> </div>
+                    { props.onClick && <div className='btn-area' onClick={(e) => handleSave(e)}> Clique para salvar a seleção <FontAwesomeIcon icon={ faSave }/> </div> }
                     {
                         CATEGORIES && CATEGORIES.map((item , i) => (            
                             <>               
