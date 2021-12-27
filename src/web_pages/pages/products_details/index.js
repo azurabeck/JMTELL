@@ -37,6 +37,7 @@ const ProductList = (props) => {
                                 <div className='product-main-details-desc'>
                                     <div className="pmd-name">{item.name ? item.name : '-' }</div>
                                     <div className="pmd-divisor"></div>
+                                    <div className="pmd-title">Detalhes do produto</div>
                                     <div className="pmd-desc">{item.info_desc ?  parse(item.info_desc) : '-' }</div>
                                 </div>
                             </div>  
@@ -90,7 +91,6 @@ const mapDispatchToProps = (dispatch) => {
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect([
-        { collection: 'products' }
-        
+        { collection: 'products' }        
     ])
 )(ProductList)

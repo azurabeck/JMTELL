@@ -29,8 +29,9 @@ import CATEOGORIES from './web_admin/categories'
 import PROVIDERS from './web_admin/providers'
 import TEXT from './web_admin/text'
 import CARROSSEL from './web_admin/carrossel'
-import NETWORK from './web_admin/network';
+import NETWORK from './web_admin/network'
 import EMPLOYEES from './web_admin/employees'
+import PHONE from './web_admin/phone'
 
 
 function Routes() {
@@ -67,6 +68,7 @@ function Routes() {
                     <Route exact path='/admin/produtos-antigos' component={OLD_PRODUCTS}></Route>
                     <Route exact path='/admin/redes-sociais' component={NETWORK}></Route>
                     <Route exact path='/admin/funcionarios' component={EMPLOYEES}></Route>
+                    <Route exact path='/admin/phone' component={PHONE}></Route>
 
 
                 </Switch>

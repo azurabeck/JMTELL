@@ -14,7 +14,15 @@ export const MenuData = [
         iconClosed: null,
         iconOpened: null,
         externalLink: false,
-    },    
+    },  
+    {
+        title: 'Telefone Fixo',
+        path: '/admin/phone',
+        blockItem: true,
+        iconClosed: null,
+        iconOpened: null,
+        externalLink: false,
+    },   
     {
         title: 'Categorias',
         path: '/admin/categorias',
@@ -78,5 +86,13 @@ export const MenuData = [
         iconClosed: null,
         iconOpened: null,
         externalLink: false,
+    },
+    {
+        title: 'Firebase',
+        path: 'https://console.firebase.google.com/project/jmtell/overview',
+        blockItem: true,
+        iconClosed: null,
+        iconOpened: null,
+        externalLink: true,
     }
 ]

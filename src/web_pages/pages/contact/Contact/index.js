@@ -12,6 +12,7 @@ import { WHATSAPP , PHONE } from '../../../atoms/SVG/_index'
 const Contact = (props) => {
 
     const EMPLOYEES = props.employees 
+    const PHONE_DB = props.phone 
     const CONTACT_PT = props.contact && props.contact[0]
     const IS_EDITING = props.IS_EDITING
     const OPEN_EDITOR = props.OPEN_EDITOR
@@ -64,11 +65,17 @@ const Contact = (props) => {
                 <div className='phone-numbers'>
                     <PHONE />  
                     <div className='phone-number-group'>
-                        <a href='tel:+5521-3351-1211'><span className='bullet'/>  (21) 3351-1211</a>           
-                        <a href='tel:+5521-3217-4589' target='_blank' rel="noreferrer" ><span className='bullet'/> (21)-3217-4589</a>
-                        <a href='tel:+5521-3251-2797' target='_blank' rel="noreferrer" ><span className='bullet'/> (21)-3251-2797</a>
-                        <a href='tel:+5521-3251-2069' target='_blank' rel="noreferrer" ><span className='bullet'/> (21)-3251-2069</a>
-                        <a href='tel:+5521-3281-9349' target='_blank' rel="noreferrer" ><span className='bullet'/> (21)-3281-9349</a>       
+                        {
+                            PHONE_DB && PHONE_DB.map((ph, index) => {
+                                
+                                const ph_filter = ph.phone.replace(/[\(\)\-\s]+/g, '')
+                                return (                                
+                                    <a  key={index} target='_blank' href={`tel:+55${ph_filter}`} rel="noreferrer">
+                                        <span className='bullet'/> {ph.name && ph.name + ' - '}  {ph.phone}
+                                    </a>
+                                )
+                            })
+                        }    
                     </div>
                 </div>
 
@@ -84,6 +91,7 @@ const mapStateToProps = (state) => {
         posts: state.firestore.ordered.posts,
         contact: state.firestore.ordered.contact_pt,
         employees: state.firestore.ordered.employees,
+        phone: state.firestore.ordered.phone,
         text: state.text.textCollection
     }
 }
@@ -102,6 +110,7 @@ const mapDispatchToProps = (dispatch) => {
     firestoreConnect([
         { collection: 'posts' , orderBy: ["date", "desc"] } ,
         { collection: 'contact_pt' }  ,
-        { collection: 'employees' }             
+        { collection: 'employees' }   ,          
+        { collection: 'phone' }             
     ])
 )(Contact)
