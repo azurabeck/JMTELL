@@ -122,3 +122,63 @@ export const deletePhone = (phone) => {
 }
 
 
+// CATALOG
+
+export const addCatalog = (catalog) => {
+
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        //make async call to database
+        const firestore = getFirestore();
+
+        firestore.collection('catalog').add({
+            ...catalog
+        }).then(function(docRef) {
+            firestore.collection('catalog').doc(docRef.id).update({
+                id: docRef.id,
+            })
+        })
+               
+        .then(() => {
+            dispatch({ type: 'CATALOG_ADD', catalog })
+        }).catch((err) => {
+            dispatch({type: 'CATALOG_ADD_ERROR', err})
+        })
+        
+    }
+}
+
+
+export const updateCatalog = (catalog) => {
+
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        //make async call to database
+        const firestore = getFirestore();
+
+        firestore.collection('catalog').doc(catalog.id).update({
+            ...catalog
+        })
+        .then(() => {
+            dispatch({ type: 'CATALOG_UPDATE', catalog })
+        }).catch((err) => {
+            dispatch({type: 'CATALOG_UPDATE_ERROR', err})
+        })
+        
+    }
+}
+
+export const deleteCatalog = (catalog) => {
+
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        //make async call to database
+        const firestore = getFirestore();
+
+        firestore.collection('catalog').doc(catalog).delete()
+        .then(() => {
+            dispatch({ type: 'CATALOG_DELETE', catalog })
+        }).catch((err) => {
+            dispatch({type: 'CATALOG_DELETE_ERROR', err})
+        })
+        
+    }
+}
+

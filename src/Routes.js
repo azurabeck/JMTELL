@@ -32,6 +32,7 @@ import CARROSSEL from './web_admin/carrossel'
 import NETWORK from './web_admin/network'
 import EMPLOYEES from './web_admin/employees'
 import PHONE from './web_admin/phone'
+import CATALOG from './web_admin/catalog'
 
 
 function Routes() {
@@ -69,6 +70,7 @@ function Routes() {
                     <Route exact path='/admin/redes-sociais' component={NETWORK}></Route>
                     <Route exact path='/admin/funcionarios' component={EMPLOYEES}></Route>
                     <Route exact path='/admin/phone' component={PHONE}></Route>
+                    <Route exact path='/admin/catalogs' component={CATALOG}></Route>
 
 
                 </Switch>

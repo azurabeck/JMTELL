@@ -54,6 +54,32 @@ const employeesReducer = (state = initState, action) => {
                 ...state, Error: null, MSG_SENT: true
             }
 
+        // CATALOG
+        case 'CATALOG_ADD': 
+            return {
+                ...state, Error: 'Login failed' , MSG_SENT: false 
+            }
+        case 'CATALOG_ADD_ERROR':
+            return {
+                ...state, Error: null, MSG_SENT: true
+            }
+        case 'CATALOG_UPDATE': 
+            return {
+                ...state, Error: 'Login failed' , MSG_SENT: false 
+            }
+        case 'CATALOG_UPDATE_ERROR':
+            return {
+                ...state, Error: null, MSG_SENT: true
+            }
+        case 'CATALOG_DELETE': 
+            return {
+                ...state, Error: 'Login failed' , MSG_SENT: false 
+            }
+        case 'CATALOG_DELETE_ERROR':
+            return {
+                ...state, Error: null, MSG_SENT: true
+            }
+
         default:
             return state
     }

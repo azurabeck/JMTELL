@@ -56,6 +56,14 @@ export const MenuData = [
         externalLink: false,
     },
     {
+        title: 'Catálogos',
+        path: '/admin/catalogs',
+        blockItem: true,
+        iconClosed: null,
+        iconOpened: null,
+        externalLink: false,
+    },
+    {
         title: 'Blog',
         path: '/admin/blog',
         blockItem: true,

@@ -9,7 +9,7 @@
         .product-list {             
             display: flex; flex-direction: row;
             align-items: center; justify-content: flex-start;
-            margin-top: 20px; margin-bottom: 80px;
+            margin-top: 20px; margin-bottom: 20px;
             flex-wrap: wrap;
 
             .product { 
@@ -33,6 +33,116 @@
                        .btn-stroke { width: 145px; height: 30px; }
                  }
     
+            }
+        }
+    }
+
+    .pagination {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 1496px;
+        max-width: calc(100% - 60px);
+        margin: 0 auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+        .pagination-group {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+
+            .prev-btn {
+                color: #7C7C7C;
+                margin: 0 20px;
+            }
+
+            .pag-btn {
+                width: 40px;
+                height: 40px;
+                border: 1px solid #7C7C7C;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 5px;
+                color: #7C7C7C;
+
+                &:hover {
+                    border-color: #FAA916;
+                    color: #FAA916;
+                    cursor: pointer;
+                }
+
+                &.active {
+                    border-color: #FAA916;
+                    color: #FAA916;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .catalog {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: calc(100% - 88px);
+        margin: 0 auto;
+        border-top: 1px solid #ddd;
+        padding-top: 80px;
+        margin-bottom: 80px;
+
+        .catalog-text {
+            width: 550px;
+            font-family: Poppins;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 15px;
+            color: #5A4747;
+
+            .link-style {
+                color: #3b8cb4;
+
+                &:hover {
+                    color: #076696;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .btn-orange {
+            border-radius: 0;
+            width: 400px;
+            height: 35px;
+            font-size: 14px;
+        }
+    }
+
+    .catalog-list {
+        display: flex;
+        flex-direction: column;
+        width: 600px;
+        border-top: 1px solid #ddd;
+        margin-left: 45px;
+        margin-top: -40px;
+        margin-bottom: 40px;
+
+        a {
+            padding: 5px 10px;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            color: #838383;
+            font-size: 15px;
+
+            &:hover {
+                cursor: pointer;
+                color: #3b8cb4;
+
+                svg { 
+                    color: #3b8cb4;
+                }
             }
         }
     }
