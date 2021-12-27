@@ -69,7 +69,7 @@ export const MenuData = [
         blockItem: true,
         iconClosed: null,
         iconOpened: null,
-        externalLink: true,
+        externalLink: false,
     },
     {
         title: 'Carrossel',
@@ -77,7 +77,7 @@ export const MenuData = [
         blockItem: true,
         iconClosed: null,
         iconOpened: null,
-        externalLink: true,
+        externalLink: false,
     },
     {
         title: 'Redes Sociais',

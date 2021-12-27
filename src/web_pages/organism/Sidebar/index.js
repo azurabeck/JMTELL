@@ -10,19 +10,22 @@ import './style.scss';
 import LOGO_WHITE  from '../../atoms/logo_white.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faPowerOff , faHouseUser } from '@fortawesome/free-solid-svg-icons';
+import { useHistory } from 'react-router-dom';
 
 const Sidebar = (props) => {
     
-    const ADMIN_LOGGED = props.auth
     const [ MENU_DATA ] = useState(MenuData)
-    const [ PATH_ACTIVE , setActive] = useState('/admin/clientes')
-    const path = window.location.pathname
-
-    
+    const [ PATH_ACTIVE , setActive] = useState('/admin/clientes')    
+    const history = useHistory()
 
     const handleSignOut = (e) => {
         e.preventDefault();
         props.signOut()
+    }
+
+    const handleRedirect = () => {
+        history.push('/')
+        window.location.reload();
     }
 
     return (
@@ -34,7 +37,7 @@ const Sidebar = (props) => {
 
             <div className='logged-area'>
                <span> Você esta logado! </span>
-                <Link to='/' ><FontAwesomeIcon icon={faHouseUser} /></Link>
+                <div onClick={() => handleRedirect()} ><FontAwesomeIcon icon={faHouseUser} /></div>
                 <FontAwesomeIcon icon={faPowerOff}  onClick={(e) => handleSignOut(e)}/>
             </div>
 
@@ -44,8 +47,13 @@ const Sidebar = (props) => {
                             
                             { MENU_DATA && MENU_DATA.map((route, index) => (
                                 <div className={PATH_ACTIVE === route.path ? 'button active' : 'button'}> 
-                                    <Link to={route.path} key={index} onClick={() => setActive(route.path)} >{route.title}</Link>
-                                    <FontAwesomeIcon icon={faChevronRight} />
+
+                                    {route.externalLink ? 
+                                    // eslint-disable-next-line jsx-a11y/anchor-has-content
+                                    <a href={route.path} key={index} target={'_blank'} rel="noreferrer">{route.title}</a>
+                                    : <> <Link to={route.path} key={index} onClick={() => setActive(route.path)} >{route.title}</Link>
+                                    <FontAwesomeIcon icon={faChevronRight} /> </>
+                                    }      
                                 </div>
                             )) }
                             
