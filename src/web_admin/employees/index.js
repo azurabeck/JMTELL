@@ -7,9 +7,16 @@ import './style.scss'
 import  FastBar  from '../organism/fastBar/fastBar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faSave, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { useHistory } from 'react-router-dom'
 
 const Employees = (props) => {
 
+    const history = useHistory()
+    const { auth } = props
+    if(!auth.uid){ 
+        history.push('/admin')
+        window.location.reload()
+    }
 
     const EMPLOYEES = props.employees
     const [ isEditing, handleEdit ] = useState('')
@@ -96,6 +103,8 @@ const Employees = (props) => {
 
 const mapStateToProps = (state) => {
     return {
+        authError: state.auth.authError,
+        auth: state.firebase.auth,
         employees: state.firestore.ordered.employees
     }
   }

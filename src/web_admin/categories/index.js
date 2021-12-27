@@ -9,8 +9,17 @@ import './style.scss'
 import ADD_CLIENT from './AddInfo'
 import  FastBar  from '../organism/fastBar/fastBar'
 import  { camelCase } from 'lodash'
+import { useHistory } from 'react-router-dom'
 
 const Categories = (props) => {
+
+    const history = useHistory()
+    const { auth } = props
+    if(!auth.uid){ 
+        history.push('/admin')
+        window.location.reload()
+    }
+
 
     const CATEGORIE_DB = props.categorie
     
@@ -127,6 +136,8 @@ const Categories = (props) => {
 
 const mapStateToProps = (state) => {
     return {
+        authError: state.auth.authError,
+        auth: state.firebase.auth,
        categorie: state.firestore.ordered.categories
     }
   }

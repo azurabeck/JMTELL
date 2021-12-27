@@ -7,8 +7,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { deleteProcuct  } from '../../web_config/actions/productActions'
 import './style.scss'
 import  FastBar  from '../organism/fastBar/fastBar'
+import { useHistory } from 'react-router-dom'
 
 const OldProducts = (props) => {
+
+    const history = useHistory()
+    const { auth } = props
+    if(!auth.uid){ 
+        history.push('/admin')
+        window.location.reload()
+    }
+
 
     const PRODUCTS_DB = props.products
     const [ filterValue , handleFilter ] = useState('')
@@ -68,7 +77,9 @@ const OldProducts = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    return {
+    return {      
+       authError: state.auth.authError,
+       auth: state.firebase.auth,
        products: state.firestore.ordered.oldProducts
     }
   }

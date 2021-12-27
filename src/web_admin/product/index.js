@@ -9,8 +9,16 @@ import  FastBar  from '../organism/fastBar/fastBar'
 import './style.scss'
 import ADD_CLIENT from './AddInfo'
 import DETAILS from './Details'
+import { useHistory } from 'react-router-dom'
 
 const Products = (props) => {
+
+    const history = useHistory()
+    const { auth } = props
+    if(!auth.uid){ 
+        history.push('/admin')
+        window.location.reload()
+    }
 
     const PRODUCTS_DB = props.products
     const [ registerDialog , handleRegister ] = useState(false)
@@ -93,6 +101,8 @@ const Products = (props) => {
 
 const mapStateToProps = (state) => {
     return {
+        authError: state.auth.authError,
+        auth: state.firebase.auth,
        products: state.firestore.ordered.products
     }
   }

@@ -11,10 +11,20 @@ import PRODUCT from '../../web_pages/templates/products'
 import COMPANY from '../../web_pages/templates/company'
 import CONTACT from '../../web_pages/templates/contact'
 import BLOG from '../../web_pages/templates/blog'
+import { useHistory } from 'react-router-dom'
 
-const Text = () => {
+const Text = (props) => {
 
     const [textEdition , handleTextEdtion] = useState()
+
+    
+    const history = useHistory()
+    const { auth } = props
+    if(!auth.uid){ 
+        history.push('/admin')
+        window.location.reload()
+    }
+
 
     return (
         <div className='text-admin'>   
@@ -52,6 +62,8 @@ const Text = () => {
 
 const mapStateToProps = (state) => {
     return {
+        authError: state.auth.authError,
+        auth: state.firebase.auth,
        products: state.firestore.ordered.products
     }
   }

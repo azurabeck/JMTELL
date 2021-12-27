@@ -8,7 +8,16 @@ import { updateNetwork } from '../../web_config/actions/networkActions'
 import { FACE_SQUARE , INSTA_SQUARE, LINK_SQUARE, PINT_SQUARE, TWIIT_SQUARE, YOU_SQUARE } from '../../web_pages/atoms/SVG/_index'
 import './style.scss'
 import  FastBar  from '../organism/fastBar/fastBar'
+import { useHistory } from 'react-router-dom'
+
 const Networks = (props) => {
+
+    const history = useHistory()
+    const { auth } = props
+    if(!auth.uid){ 
+        history.push('/admin')
+        window.location.reload()
+    }
 
 
     const NETWORK = props.network
@@ -98,6 +107,8 @@ const Networks = (props) => {
 
 const mapStateToProps = (state) => {
     return {
+        authError: state.auth.authError,
+        auth: state.firebase.auth,
         network: state.firestore.ordered.network
     }
   }

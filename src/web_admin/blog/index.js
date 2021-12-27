@@ -1,4 +1,4 @@
-import { faCaretRight, faMailBulk, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faCaretRight, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Link } from 'react-router-dom'
@@ -7,10 +7,19 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import './style.scss'
 import  FastBar  from '../organism/fastBar/fastBar'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Blog = (props) => {
 
     const POSTS_DB = props.posts
+
+    const history = useHistory()
+    const { auth } = props
+    if(!auth.uid){ 
+        history.push('/admin')
+        window.location.reload()
+    }
+
 
     return (
         <div className='blog'>      
@@ -57,7 +66,9 @@ const Blog = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    return {
+    return {      
+        authError: state.auth.authError,
+        auth: state.firebase.auth,
         posts: state.firestore.ordered.posts
     }
   }

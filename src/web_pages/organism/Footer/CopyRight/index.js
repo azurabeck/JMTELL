@@ -21,8 +21,8 @@ const CopyRight = (props) => {
 
                 <div className='social-networks'>
                     { ADMIN_LOGGED && <div className='logout-admin' onClick={(e) => handleSignOut(e)}> DESLIGAR ADMIN </div> }
-                    { ADMIN_LOGGED &&  <Link className='logout-admin' to='/admin'> Painel -> </Link> }
-                    { !ADMIN_LOGGED && <Link className='logout-admin' to='/admin'> LOGAR ADMIN </Link> }
+                    { ADMIN_LOGGED &&  <a className='logout-admin' href='/admin/clientes'> Painel -> </a> }
+                    { !ADMIN_LOGGED && <a className='logout-admin' href='/admin'> LOGAR ADMIN </a> }
                 </div>
                 Copyright © 2021 - Todos os Direitos Reservados - JMTELL  
         </div>

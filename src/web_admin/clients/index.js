@@ -1,4 +1,4 @@
-import { faCaretRight, faMailBulk, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faCaretRight, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { connect } from 'react-redux'
@@ -9,7 +9,17 @@ import ADD_CLIENT from './AddInfo'
 import DETAILS from './Details'
 import { updateClient } from '../../web_config/actions/clientActions';
 import  FastBar  from '../organism/fastBar/fastBar'
+import { useHistory } from 'react-router-dom'
+
 const Clients = (props) => {
+
+
+    const history = useHistory()
+    const { auth } = props
+    if(!auth.uid){ 
+        history.push('/admin')
+        window.location.reload()
+    }
 
     const CLIENTS_DB = props.clients
     const [ registerDialog , handleRegister ] = useState(false)
@@ -78,6 +88,8 @@ const Clients = (props) => {
 
 const mapStateToProps = (state) => {
     return {
+      authError: state.auth.authError,
+      auth: state.firebase.auth,
       clients: state.firestore.ordered.clients
     }
 }

@@ -1,4 +1,4 @@
-import { faCheck, faMailBulk } from '@fortawesome/free-solid-svg-icons';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { connect } from 'react-redux'
@@ -8,8 +8,18 @@ import { updateCarrossel } from '../../web_config/actions/carrosselActions'
 import './style.scss'
 import  FastBar  from '../organism/fastBar/fastBar'
 import HOME_HEADER from '../../web_pages/pages/home/Header'
+import { useHistory } from 'react-router-dom'
 
 const Carrossel = (props) => {
+
+    
+    const history = useHistory()
+    const { auth } = props
+    if(!auth.uid){ 
+        history.push('/admin')
+        window.location.reload()
+    }
+
 
     const CARROSSEL_DB = props.carrossel
 
@@ -94,7 +104,9 @@ const Carrossel = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    return {
+    return {      
+        authError: state.auth.authError,
+        auth: state.firebase.auth,
         carrossel: state.firestore.ordered.carrossel
     }
   }
