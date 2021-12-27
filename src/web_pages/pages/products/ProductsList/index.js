@@ -121,7 +121,7 @@ const ProductList = (props) => {
                 <div className='catalog-text' onClick={() => showCatalogList(!catalogList)}>
                         Faça o download do nosso catálogo 
                         <span className='link-style'> clicando aqui</span> , 
-                        ou entre em contato e nós te apresentamos
+                        ou entre em contato conosco para maiores informações
                 </div> 
                 <Link to='/contato' className='btn-orange'>Entrar em contato</Link>                  
             </div>
