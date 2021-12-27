@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React , { useEffect, useState } from 'react'
+import React , { useState , useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload } from '@fortawesome/free-solid-svg-icons'
 import { createText , updateField } from '../../../../web_config/actions/textActions'
@@ -26,6 +26,16 @@ const ProductList = (props) => {
     const FILTER_TYPE = FILTER.filterByCat
     let PRODUCT_FILTERED
 
+    const [catalogList , showCatalogList] = useState(false)
+    const [ pagination, handlePag ] = useState({
+        current: 1,
+        ipp: 24, //itens per page
+        ti: PRODUCTS_DATA && PRODUCTS_DATA.length, //total itens 
+        sifv: 0, //slice initial first value
+        sisv: 24 //slice initial second value
+    })
+    const [pagenumber, handleSlice] = useState(PRODUCTS_DATA && Math.ceil(PRODUCTS_DATA.length / 24))
+
 
     switch(FILTER_TYPE) {
         case 0: 
@@ -40,11 +50,11 @@ const ProductList = (props) => {
             // CATEGORIE
             PRODUCT_FILTERED =  PRODUCTS_DATA && PRODUCTS_DATA.filter( 
                 item => item.categorie.includes(TAG.replace(' ', '')) ? item.categorie.includes(TAG.replace(' ', '')) : item.categorie.includes(TAG)                
-            )
+            )            
             break;
         case 2:
             // SPOTLIGHT
-            PRODUCT_FILTERED =  PRODUCTS_DATA && PRODUCTS_DATA.filter(item => item.spotlight )
+            PRODUCT_FILTERED =  PRODUCTS_DATA && PRODUCTS_DATA.filter(item => item.spotlight )            
             break;
         case 3:
             // SEARCH
@@ -57,30 +67,23 @@ const ProductList = (props) => {
         default: 
     }
 
-
     let DATA = PRODUCT_FILTERED ? PRODUCT_FILTERED : PRODUCTS_DATA
-    const [catalogList , showCatalogList] = useState(false)
-    const [ pagination, handlePag ] = useState({
-        current: 1,
-        ipp: 24, //itens per page
-        ti: DATA && DATA.length, //total itens 
-        tp:  DATA && Math.ceil( DATA.length / 24 ),
-        sifv: 0, //slice initial first value
-        sisv: 24 //slice initial second value
-    })
-
+    
     const handleCurrent = (e, current) => {
         const mult = current + 1
         handlePag({ ...pagination , sifv: current * pagination.ipp , sisv: pagination.ipp * mult , current: mult})
     }
 
     useEffect(() => {
-        DATA && handlePag({
-            ...pagination,
-            ti: DATA && DATA.length, //total itens 
-            tp:  DATA && Math.ceil( DATA.length / 24 ),
-        })
-    }, [DATA, pagination])
+
+        const totalPage = DATA && Math.ceil(DATA.length / 24)
+
+        if(DATA) {
+            handleSlice(totalPage)
+        }
+        
+    }, [DATA]);
+
     
     return (
         <>
@@ -112,14 +115,15 @@ const ProductList = (props) => {
             </div>
             <div className='pagination'>
                 <div className='pagination-group'>
-                    {/* <div className='prev-btn'><FontAwesomeIcon icon={faLongArrowAltLeft} /> Anterior</div> */}
-                    { pagination.tp > 1 &&
-                        Array.apply(null, { length: pagination.tp }).map((e, i) => (
+                    { pagenumber > 1 &&
+                        Array.apply(null, { length: pagenumber }).map((e, i) => (
                             <div className={`pag-btn ${pagination.current === i + 1 ? 'active' : null}`} onClick={(e) => handleCurrent(e, i)}> {i + 1} </div>
                         ))
                     }
                 </div>    
             </div>
+
+            {/* CATALOG */}
             <div className='catalog'>
                 <div className='catalog-text' onClick={() => showCatalogList(!catalogList)}>
                         Faça o download do nosso catálogo 
