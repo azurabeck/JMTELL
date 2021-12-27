@@ -84,6 +84,12 @@
                     background-color: #e0e2e3;
                 }
 
+                .phone {
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    width: 500px;
+                }
+
                 .employees-action-group {
                     display: flex;
                     align-items: center;
