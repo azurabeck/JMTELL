@@ -44,13 +44,15 @@ function Routes({ history }) {
         window.scrollTo(0, 0)
     })
     
+    console.log(local)
+
     return (
         <>
      
-            { local !== "/admin" &&  <Navbar route={local}/> }
-            { local === "/admin/" &&  <Sidebar/> }
+            { local.includes("/admin") === false && <Navbar route={local}/> }
+            { local.includes("/admin")  && local !== '/admin' &&  <Sidebar/> }
 
-            <div className={ local !== "/admin" ? 'content' : 'content-admin'}>
+            <div className={ local.includes("/admin") === false ? 'content' : 'content-admin'}>
                 <Switch>
                     <Route exact path='/' component={Home}></Route>
                     <Route exact path='/empresa' component={Company}></Route>
@@ -80,7 +82,7 @@ function Routes({ history }) {
 
                 </Switch>
             </div>
-            { local !== "/admin"  &&  <Footer/> }
+            { local.includes("/admin") === false  &&  <Footer/> }
 
         </>
     )

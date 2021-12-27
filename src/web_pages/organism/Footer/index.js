@@ -12,7 +12,7 @@ const Footer = () => {
             <img alt='' src={ LOGO_WHITE } />
             <div className='slogan'>Distribuindo soluções em tecnologia</div>
 
-            <FastMenu />
+            {/* <FastMenu /> */}
             <AssociatedMenu />
             <CopyRight />
 

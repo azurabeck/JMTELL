@@ -1,26 +1,31 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
-import { Link } from "react-router-dom";
 import './style.scss';
+import { connect } from 'react-redux'
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
 
 import { EMAIL , WHATSAPP } from '../../../atoms/SVG/_index'
 import BUTTON_STROKE from '../../../atoms/BUTTON_STROKE'
 
-const AssociatedMenu = () => {
+const AssociatedMenu = (props) => {
+
+    const CATALOG = props.catalog
+
     return (
         
         <div className='associated-menu'>
 
              <div className='link-group'>                
                 <div className='group'>                        
-                    <div className='title'>Distribuídores autorizados</div>
+                    <div className='title'>Catálago dos produtos</div>
                     <div className='group-columns'>
                         <div className='column'>
-                            <a href='#' target='_blank' rel="noreferrer">     Intelbras   </a>
-                            <a href='#' target='_blank' rel="noreferrer">     MCM  </a>
-                            <a href='#' target='_blank' rel="noreferrer">     Kian    </a>
-                            <a href='#' target='_blank' rel="noreferrer">     Nice    </a>
-                            <a href='#' target='_blank' rel="noreferrer">     Fran    </a>
+                            {
+                                CATALOG && CATALOG.map((item, i) => (
+                                    <a key={i} href={item.link} target='_blank' rel="noreferrer">   {item.name} </a>
+                                ))
+                            }
                         </div>
                     </div>
                 </div>   
@@ -53,4 +58,15 @@ const AssociatedMenu = () => {
     )
 }
 
-export default AssociatedMenu
+const mapStateToProps = (state) => {
+    return {      
+        catalog: state.firestore.ordered.catalog
+    }
+  }
+  
+export default compose(
+    connect(mapStateToProps, null),
+    firestoreConnect([
+        { collection: 'catalog' }
+    ])
+)(AssociatedMenu)
