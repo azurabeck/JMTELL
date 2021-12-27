@@ -41,6 +41,7 @@ function Routes({ history }) {
 
     history.listen((location, action) => {
         handlePath(location.pathname)
+        window.scrollTo(0, 0)
     })
     
     return (

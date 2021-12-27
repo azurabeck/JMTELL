@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React , { useState } from 'react'
+import React , { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload } from '@fortawesome/free-solid-svg-icons'
 import { createText , updateField } from '../../../../web_config/actions/textActions'
@@ -32,7 +32,7 @@ const ProductList = (props) => {
             // SUBCAT
             const filterProd = PRODUCTS_DATA && PRODUCTS_DATA.filter(item => item.subCategories) 
             const check = filterProd.map(item => item.subCategories.map(checkTag => checkTag.tag.includes(TAG)))
-            let showProduct = check.toString().includes(true) ? true : false
+            let showProduct = check.includes(true) ? true : false
         
             PRODUCT_FILTERED = PRODUCTS_DATA && PRODUCTS_DATA.filter(item => item.subCategories && showProduct ? item : item[TAG] )
             break;
@@ -59,7 +59,7 @@ const ProductList = (props) => {
 
 
     let DATA = PRODUCT_FILTERED ? PRODUCT_FILTERED : PRODUCTS_DATA
-
+    const [catalogList , showCatalogList] = useState(false)
     const [ pagination, handlePag ] = useState({
         current: 1,
         ipp: 24, //itens per page
@@ -67,18 +67,21 @@ const ProductList = (props) => {
         tp:  DATA && Math.ceil( DATA.length / 24 ),
         sifv: 0, //slice initial first value
         sisv: 24 //slice initial second value
-
     })
 
-    const [catalogList , showCatalogList] = useState(false)
-
     const handleCurrent = (e, current) => {
-
         const mult = current + 1
-
         handlePag({ ...pagination , sifv: current * pagination.ipp , sisv: pagination.ipp * mult , current: mult})
     }
 
+    useEffect(() => {
+        DATA && handlePag({
+            ...pagination,
+            ti: DATA && DATA.length, //total itens 
+            tp:  DATA && Math.ceil( DATA.length / 24 ),
+        })
+    }, [DATA, pagination])
+    
     return (
         <>
             <div className='products-list-area'>
@@ -103,14 +106,14 @@ const ProductList = (props) => {
                                 }                      
                             </div>  
                             )
-                        })            
+                        })    
                     }
                 </div>
             </div>
             <div className='pagination'>
                 <div className='pagination-group'>
                     {/* <div className='prev-btn'><FontAwesomeIcon icon={faLongArrowAltLeft} /> Anterior</div> */}
-                    {
+                    { pagination.tp > 1 &&
                         Array.apply(null, { length: pagination.tp }).map((e, i) => (
                             <div className={`pag-btn ${pagination.current === i + 1 ? 'active' : null}`} onClick={(e) => handleCurrent(e, i)}> {i + 1} </div>
                         ))

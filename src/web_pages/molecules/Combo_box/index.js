@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
@@ -13,10 +13,8 @@ const Combo_box = (props) => {
     const [ boxStatus, handleBox ] = useState(false)
     
 
-    const handleFilterDispatch = (e , filter) => {
-        e.preventDefault()
+    const handleFilterDispatch = (filter) => {
         props.filterCategorie({filterByCat: 1, filterCategorie: filter})
-        return <Redirect to='/produtos' />
     }
 
   
@@ -26,7 +24,7 @@ const Combo_box = (props) => {
                 { boxStatus && <div className='box-transparent'>
                     <div className='box'>
                         { categories && categories.map((item, index) => (
-                            <div className='button' key={index} onClick={(e) => handleFilterDispatch(e , item.name)} > {item.name} </div>
+                            <Link to='/produtos' className='button' key={index} onClick={() => handleFilterDispatch(item.name)} > {item.name} </Link>
                         )) }
                     </div>
                 </div>
