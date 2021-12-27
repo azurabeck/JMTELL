@@ -9,17 +9,9 @@ import ADD_CLIENT from './AddInfo'
 import DETAILS from './Details'
 import { updateClient } from '../../web_config/actions/clientActions';
 import  FastBar  from '../organism/fastBar/fastBar'
-import { useHistory } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 const Clients = (props) => {
-
-
-    const history = useHistory()
-    const { auth } = props
-    if(!auth.uid){ 
-        history.push('/admin')
-        window.location.reload()
-    }
 
     const CLIENTS_DB = props.clients
     const [ registerDialog , handleRegister ] = useState(false)
@@ -31,6 +23,12 @@ const Clients = (props) => {
         props.updateClient(item)
     }
  
+
+    const { auth } = props
+    if(!auth.uid){ 
+        return <Redirect to='/admin' />
+    }
+
     return (
         <div className='clients'>
 

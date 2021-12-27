@@ -2,25 +2,22 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { faMailBulk, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { deleteProcuct  } from '../../web_config/actions/productActions'
 import './style.scss'
 import  FastBar  from '../organism/fastBar/fastBar'
-import { useHistory } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 const OldProducts = (props) => {
 
-    const history = useHistory()
-    const { auth } = props
-    if(!auth.uid){ 
-        history.push('/admin')
-        window.location.reload()
-    }
-
-
     const PRODUCTS_DB = props.products
     const [ filterValue , handleFilter ] = useState('')
+
+    const { auth } = props
+    if(!auth.uid){ 
+        return <Redirect to='/admin' />
+    }
 
     const handleDelete = (e, id) => {
         e.preventDefault()

@@ -1,5 +1,3 @@
-import { faCaretRight, faMailBulk, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
@@ -11,18 +9,16 @@ import PRODUCT from '../../web_pages/templates/products'
 import COMPANY from '../../web_pages/templates/company'
 import CONTACT from '../../web_pages/templates/contact'
 import BLOG from '../../web_pages/templates/blog'
-import { useHistory } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 const Text = (props) => {
 
     const [textEdition , handleTextEdtion] = useState()
 
     
-    const history = useHistory()
     const { auth } = props
     if(!auth.uid){ 
-        history.push('/admin')
-        window.location.reload()
+        return <Redirect to='/admin' />
     }
 
 

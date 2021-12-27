@@ -1,6 +1,6 @@
 import React , {useEffect} from 'react'
 import { connect } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import parse from 'html-react-parser'
@@ -13,7 +13,6 @@ const ProductList = (props) => {
     
     const PRODUCTS_DATA = props.products
     const ALL_PRODUCT_DB = props.allProducts
-    const history = useHistory();
     useEffect(() => {
         window.scrollTo(0, 0)
     });
@@ -23,7 +22,7 @@ const ProductList = (props) => {
     const handleFilterDispatch = (e , filter) => {
         e.preventDefault()
         props.filterCategorie({filterByCat: 1, filterCategorie: PRODUCTS_DATA && PRODUCTS_DATA[0].categorie[0]})
-        history.push('/produtos')
+        return <Redirect to='/produtos' />
     }
 
     return (

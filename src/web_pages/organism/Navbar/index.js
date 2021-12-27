@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
@@ -12,14 +12,21 @@ import './style.scss';
 
 import LOGO_BLUE  from '../../atoms/logo_blue.svg'
 
+
 const Navbar = (props) => {
 
     const [ MOB_MENU_OPEN , handleMenu ] = useState(false)
     const [ MENU_DATA ] = useState(MenuData)
     const NETWORK = props.network
 
-    const path = window.location.pathname
+    const [ path, handlePath] = useState(window.location.pathname)
 
+    useEffect(() => {
+        if(props.route) {
+            handlePath(props.route)
+        }
+    }, [props.route])
+   
     return (
         <>
         <div className='navbar'>

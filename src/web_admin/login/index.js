@@ -1,6 +1,6 @@
 import React , {useState} from 'react';
 import { connect } from 'react-redux'
-import { useHistory , Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { signIn } from '../../web_config/actions/authActions'
 
 import './style.scss'
@@ -9,8 +9,6 @@ import LOGO from '../../web_pages/atoms/logo_blue.svg'
 const Login = (props) => {
 
     const [ formStatus , handleForm ] = useState( { email: '' , password: '' } )
-    const history = useHistory();
-    
     const handleSubmit = (e) => { 
         e.preventDefault()
         props.signIn(formStatus);
@@ -18,8 +16,7 @@ const Login = (props) => {
     
     const { authError, auth } = props
     if(auth.uid){ 
-        history.push('/admin/clientes')
-        window.location.reload()
+        return <Redirect to='/admin/clientes' />
     }
 
 

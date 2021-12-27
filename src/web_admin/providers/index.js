@@ -1,5 +1,3 @@
-import { faMailBulk, faTrash , faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
@@ -8,20 +6,20 @@ import { deleteProvider } from '../../web_config/actions/providerActions'
 import './style.scss'
 import ADD_CLIENT from './AddInfo'
 import  FastBar  from '../organism/fastBar/fastBar'
-import { useHistory } from 'react-router-dom'
+import { faTrash , faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Redirect } from 'react-router-dom'
 
 const Providers = (props) => {
 
-    const history = useHistory()
-    const { auth } = props
-    if(!auth.uid){ 
-        history.push('/admin')
-        window.location.reload()
-    }
-
-
     const PROVIDER_DB = props.provider
     const [ registerDialog , handleRegister ] = useState({open: false , editing: false})
+    
+    const { auth } = props
+    if(!auth.uid){ 
+        return <Redirect to='/admin' />
+    }
+
 
     return (
         <div className='providers'>      

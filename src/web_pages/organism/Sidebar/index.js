@@ -10,22 +10,18 @@ import './style.scss';
 import LOGO_WHITE  from '../../atoms/logo_white.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faPowerOff , faHouseUser } from '@fortawesome/free-solid-svg-icons';
-import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 const Sidebar = (props) => {
     
     const [ MENU_DATA ] = useState(MenuData)
     const [ PATH_ACTIVE , setActive] = useState('/admin/clientes')    
-    const history = useHistory()
+    
 
     const handleSignOut = (e) => {
         e.preventDefault();
         props.signOut()
-    }
-
-    const handleRedirect = () => {
-        history.push('/')
-        window.location.reload();
+        return <Redirect to='/' />
     }
 
     return (
@@ -37,7 +33,7 @@ const Sidebar = (props) => {
 
             <div className='logged-area'>
                <span> Você esta logado! </span>
-                <div onClick={() => handleRedirect()} ><FontAwesomeIcon icon={faHouseUser} /></div>
+                <Link to='/'><FontAwesomeIcon icon={faHouseUser} /></Link>
                 <FontAwesomeIcon icon={faPowerOff}  onClick={(e) => handleSignOut(e)}/>
             </div>
 

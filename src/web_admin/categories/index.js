@@ -9,17 +9,9 @@ import './style.scss'
 import ADD_CLIENT from './AddInfo'
 import  FastBar  from '../organism/fastBar/fastBar'
 import  { camelCase } from 'lodash'
-import { useHistory } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 const Categories = (props) => {
-
-    const history = useHistory()
-    const { auth } = props
-    if(!auth.uid){ 
-        history.push('/admin')
-        window.location.reload()
-    }
-
 
     const CATEGORIE_DB = props.categorie
     
@@ -34,6 +26,10 @@ const Categories = (props) => {
     const [ inputValue , changeInput ] = useState('')
     const [ catActive , getCatInfo ] = useState()
 
+    const { auth } = props
+    if(!auth.uid){ 
+        return <Redirect to='/admin' />
+    }
 
      const handleAddSub = () => {
 

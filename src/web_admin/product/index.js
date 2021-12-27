@@ -9,23 +9,20 @@ import  FastBar  from '../organism/fastBar/fastBar'
 import './style.scss'
 import ADD_CLIENT from './AddInfo'
 import DETAILS from './Details'
-import { useHistory } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 const Products = (props) => {
-
-    const history = useHistory()
-    const { auth } = props
-    if(!auth.uid){ 
-        history.push('/admin')
-        window.location.reload()
-    }
-
+    
     const PRODUCTS_DB = props.products
     const [ registerDialog , handleRegister ] = useState(false)
     const [ openDetails , showDetails ] = useState(false)
     const [ itemDetails , handleItems ] = useState(null)
     const [ filterValue , handleFilter ] = useState('')
 
+    const { auth } = props
+    if(!auth.uid){ 
+        return <Redirect to='/admin' />
+    }
 
     const handleDetails = (item) => {
         handleItems(item)    

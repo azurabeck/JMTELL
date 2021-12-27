@@ -1,6 +1,7 @@
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
@@ -8,17 +9,9 @@ import { updateCarrossel } from '../../web_config/actions/carrosselActions'
 import './style.scss'
 import  FastBar  from '../organism/fastBar/fastBar'
 import HOME_HEADER from '../../web_pages/pages/home/Header'
-import { useHistory } from 'react-router-dom'
 
 const Carrossel = (props) => {
 
-    
-    const history = useHistory()
-    const { auth } = props
-    if(!auth.uid){ 
-        history.push('/admin')
-        window.location.reload()
-    }
 
 
     const CARROSSEL_DB = props.carrossel
@@ -28,6 +21,8 @@ const Carrossel = (props) => {
         img_1: CARROSSEL_DB && CARROSSEL_DB[1] && CARROSSEL_DB[1].image,
         img_2: CARROSSEL_DB && CARROSSEL_DB[2] && CARROSSEL_DB[2].image,
     })
+    
+
 
     const [ success, changeToIcon ] = useState('')
 
@@ -38,7 +33,11 @@ const Carrossel = (props) => {
         setTimeout(() => changeToIcon(''), 1000);
     }
 
-
+    const { auth } = props
+    if(!auth.uid){ 
+        return <Redirect to='/admin' />
+    }
+    
     return (
         <div className='carrossel-admin'>   
             <FastBar />       

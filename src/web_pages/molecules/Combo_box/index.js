@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
@@ -11,12 +11,12 @@ const Combo_box = (props) => {
 
     const { TEXT , categories } = props
     const [ boxStatus, handleBox ] = useState(false)
-    const history = useHistory();
+    
 
     const handleFilterDispatch = (e , filter) => {
         e.preventDefault()
         props.filterCategorie({filterByCat: 1, filterCategorie: filter})
-        history.push('/produtos')
+        return <Redirect to='/produtos' />
     }
 
   

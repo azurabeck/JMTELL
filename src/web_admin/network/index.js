@@ -1,4 +1,4 @@
-import { faEdit, faMailBulk, faSave } from '@fortawesome/free-solid-svg-icons';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { connect } from 'react-redux'
@@ -8,22 +8,19 @@ import { updateNetwork } from '../../web_config/actions/networkActions'
 import { FACE_SQUARE , INSTA_SQUARE, LINK_SQUARE, PINT_SQUARE, TWIIT_SQUARE, YOU_SQUARE } from '../../web_pages/atoms/SVG/_index'
 import './style.scss'
 import  FastBar  from '../organism/fastBar/fastBar'
-import { useHistory } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 const Networks = (props) => {
-
-    const history = useHistory()
-    const { auth } = props
-    if(!auth.uid){ 
-        history.push('/admin')
-        window.location.reload()
-    }
-
 
     const NETWORK = props.network
     const [ editUrl , handleUrl ] = useState('')
     const [ formUrl , handleChange ] = useState()
-    
+
+    const { auth } = props
+    if(!auth.uid){ 
+        return <Redirect to='/admin' />
+    }
+
     const openInput = (e , item) => {
         e.preventDefault()    
         const open = item

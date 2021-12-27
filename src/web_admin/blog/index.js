@@ -1,23 +1,20 @@
 import { faCaretRight, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link , Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import './style.scss'
 import  FastBar  from '../organism/fastBar/fastBar'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Blog = (props) => {
 
     const POSTS_DB = props.posts
 
-    const history = useHistory()
     const { auth } = props
     if(!auth.uid){ 
-        history.push('/admin')
-        window.location.reload()
+        return <Redirect to='/admin' />
     }
 
 

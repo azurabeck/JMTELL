@@ -21,7 +21,9 @@ const Product_bar = (props) => {
                         <div className='bar-button'>
                             <COMBO_BOX TEXT='CATEGORIAS' SIDEBAR_DATA={SIDEBAR_DATA} SCREEN='produtos' />
                         </div> 
-                        <div className='bar-button'><div className='button' onClick={() => props.filterCategorie({filterByCat: 2, filterCategorie: ''})}>DESTAQUES</div></div>      
+                        <div className='bar-button'>
+                            <div className='button' onClick={() => props.filterCategorie({filterByCat: 2, filterCategorie: ''})}>DESTAQUES</div>
+                        </div>      
                     </div>
                 </div>
 

@@ -1,5 +1,6 @@
-import React from 'react'
+import React , { useState } from 'react'
 import { Switch, Route } from 'react-router-dom';
+import { withRouter } from "react-router"
 
 // IMPORT ORGANISM
 import Navbar from './web_pages/organism/Navbar'
@@ -34,18 +35,21 @@ import EMPLOYEES from './web_admin/employees'
 import PHONE from './web_admin/phone'
 import CATALOG from './web_admin/catalog'
 
+function Routes({ history }) {
 
-function Routes() {
+    const [ local , handlePath ] = useState(window.location.pathname)
 
-    const location = window.location.pathname
-
+    history.listen((location, action) => {
+        handlePath(location.pathname)
+    })
+    
     return (
         <>
      
-            { location.indexOf("/admin") !== 0 &&  <Navbar/> }
-            { location.indexOf("/admin/") === 0 &&  <Sidebar/> }
+            { local !== "/admin" &&  <Navbar route={local}/> }
+            { local === "/admin/" &&  <Sidebar/> }
 
-            <div className={ location.indexOf("/admin") !== 0 ? 'content' : 'content-admin'}>
+            <div className={ local !== "/admin" ? 'content' : 'content-admin'}>
                 <Switch>
                     <Route exact path='/' component={Home}></Route>
                     <Route exact path='/empresa' component={Company}></Route>
@@ -75,11 +79,11 @@ function Routes() {
 
                 </Switch>
             </div>
-            { location.indexOf("/admin") !== 0 &&  <Footer/> }
+            { local !== "/admin"  &&  <Footer/> }
 
         </>
     )
 }
 
-export default Routes
+export default withRouter(Routes)
 

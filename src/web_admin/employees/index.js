@@ -7,16 +7,9 @@ import './style.scss'
 import  FastBar  from '../organism/fastBar/fastBar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faSave, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { useHistory } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 const Employees = (props) => {
-
-    const history = useHistory()
-    const { auth } = props
-    if(!auth.uid){ 
-        history.push('/admin')
-        window.location.reload()
-    }
 
     const EMPLOYEES = props.employees
     const [ isEditing, handleEdit ] = useState('')
@@ -24,7 +17,11 @@ const Employees = (props) => {
         name: '',
         phone: ''
     })
-    
+
+    const { auth } = props
+    if(!auth.uid){ 
+        return <Redirect to='/admin' />
+    }
 
     const handleAdd = (e) => {
         e.preventDefault()
