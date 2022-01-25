@@ -64,6 +64,7 @@ const Products = (props) => {
                     <div className='COL_SIZE_SMALL'> </div>  
                     <div className='COL_SIZE_LARGE'> Nome do Produto </div>    
                     <div className='COL_SIZE_LARGE'> Categoria </div>     
+                    <div className='COL_SIZE_LARGE'> SubCategoria </div>     
                     <div className='COL_SIZE_LARGE'>  </div>              
 
                 </div>
@@ -79,6 +80,17 @@ const Products = (props) => {
                                 <div className='COL_SIZE_SMALL'> {item.spotlight ? <FontAwesomeIcon icon={faStar} /> : ''} </div>
                                 <div className='COL_SIZE_LARGE'> {item.name} </div>
                                 <div className='COL_SIZE_LARGE'> {item.categorie} </div>
+                                <div className='COL_SIZE_LARGE'> 
+                                    {
+                                        item.subCategories.map((subitem, i, row) => {
+                                            if (i + 1 === row.length) {
+                                            return subitem.sub_name
+                                            } else {
+                                            return subitem.sub_name + ' | '
+                                            }
+                                        })
+                                    }
+                                </div>
                                 <div className='COL_SIZE_LARGE'> 
                                     <div className='btn-red' onClick={() => handleDetails(item)}> <FontAwesomeIcon icon={faEye} /> </div> 
                                     <div className='btn-red' onClick={() => handleDetails(item)}> <FontAwesomeIcon icon={faEdit} /> </div> 
