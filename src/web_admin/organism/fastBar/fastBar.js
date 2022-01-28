@@ -14,14 +14,32 @@ const FastBar = (props) => {
     const FILTER =  CLIENTS_DB && CLIENTS_DB.filter(item => item.read === false)
     const filterLenght =  FILTER && FILTER.length
 
+    const email = [...new Set(CLIENTS_DB && CLIENTS_DB.map(item => item.email))];
+
     if ( filterLenght === 0 ) {
-       return <Link className='fast-bar' to='/admin/clientes'> <FontAwesomeIcon icon={faMailBulk} /> sem novas mensagens </Link>
+       return (
+       <div className='fast-bar-row'>
+            Clientes Registrados: {email.length} | 
+            <Link className='fast-bar' to='/admin/clientes'> <FontAwesomeIcon icon={faMailBulk} /> sem novas mensagens </Link>
+       </div> )
     } else if ( filterLenght === 1) {
-       return <Link className='fast-bar active' to='/admin/clientes'> <FontAwesomeIcon icon={faMailBulk} /> 1 nova mensagem </Link>
+       return ( 
+        <div className='fast-bar-row'>
+             Clientes Registrados: {email.length} |
+            <Link className='fast-bar active' to='/admin/clientes'> <FontAwesomeIcon icon={faMailBulk} /> 1 nova mensagem </Link> 
+        </div> )
     } else if ( filterLenght > 1) {
-        return <Link className='fast-bar active' to='/admin/clientes'> <FontAwesomeIcon icon={faMailBulk} /> {filterLenght} Mensagens não lida </Link>
+        return ( 
+        <div className='fast-bar-row'>
+            Clientes Registrados: {email.length} |
+            <Link className='fast-bar active' to='/admin/clientes'> <FontAwesomeIcon icon={faMailBulk} /> {filterLenght} Mensagens não lida </Link> 
+        </div> )
     } else {
-        return <Link className='fast-bar' to='/admin/clientes'> <FontAwesomeIcon icon={faMailBulk} /> sem novas mensagens </Link>
+        return ( 
+        <div className='fast-bar-row'>
+            Clientes Registrados: {email.length} |
+            <Link className='fast-bar' to='/admin/clientes'> <FontAwesomeIcon icon={faMailBulk} /> sem novas mensagens </Link> 
+        </div> )
     }
 }
 

@@ -29,6 +29,16 @@ const Clients = (props) => {
         return <Redirect to='/admin' />
     }
 
+    const handleCopy = () => {
+            const email = [...new Set(CLIENTS_DB && CLIENTS_DB.map(item => item.email))];
+            var textField = document.createElement('textarea')
+            textField.innerText = email
+            document.body.appendChild(textField)
+            textField.select()
+            document.execCommand('copy')
+            textField.remove()          
+    }
+   
     return (
         <div className='clients'>
 
@@ -37,11 +47,12 @@ const Clients = (props) => {
             { openDetails && <DETAILS item={clientDetails} click={() => openDetailsFunc(!openDetails)}/> }
 
 
-
             <FastBar />   
         
             <div className='title'> Clientes  <div className='button-orange' 
                                                     onClick={() => handleRegister(!registerDialog)}> REGISTRAR NOVO CLIENT </div> 
+                                               <div className='button-orange' 
+                                                    onClick={() => handleCopy()}> COPIE TODOS OS EMAILS</div> 
             </div>
 
             <div className='table'>
