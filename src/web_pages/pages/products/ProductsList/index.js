@@ -40,11 +40,11 @@ const ProductList = (props) => {
     switch(FILTER_TYPE) {
         case 0: 
             // SUBCAT
-            const filterProd = PRODUCTS_DATA && PRODUCTS_DATA.filter(item => item.subCategories) 
-            const check = filterProd.map(item => item.subCategories.map(checkTag => checkTag.tag.includes(TAG)))
-            let showProduct = check.includes(true) ? true : false
-        
-            PRODUCT_FILTERED = PRODUCTS_DATA && PRODUCTS_DATA.filter(item => item.subCategories && showProduct ? item : item[TAG] )
+            const check = PRODUCTS_DATA.filter(item => {
+                return item.subCategories.map( checkTag => checkTag.tag.includes(TAG) ).includes(true) ? item : null 
+            })
+
+           PRODUCT_FILTERED = check
             break;
         case 1:
             // CATEGORIE
