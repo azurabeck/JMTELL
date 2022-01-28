@@ -9,6 +9,7 @@ export const createClient = (client) => {
             telephone: client.telephone,
             return_type: client.returnType,
             read: false,
+            createdAt: new Date(), 
             msg: { text: client.msg, subject: client.client_subject, time: new Date() }
         })
         .then(function(docRef) {

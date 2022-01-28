@@ -112,6 +112,6 @@ const mapDispatchToProps = (dispatch) => {
 export default compose(
     connect(mapStateToProps , mapDispatchToProps),
     firestoreConnect([
-        { collection: 'clients' }
+        { collection: 'clients' ,  orderBy: ["createdAt", "desc"] }
     ])
 )(Clients)
