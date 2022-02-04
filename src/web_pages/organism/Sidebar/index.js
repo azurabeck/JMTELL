@@ -42,12 +42,12 @@ const Sidebar = (props) => {
                         <div className='mob-side-menu'>
                             
                             { MENU_DATA && MENU_DATA.map((route, index) => (
-                                <div className={PATH_ACTIVE === route.path ? 'button active' : 'button'}> 
+                                <div key={index} className={PATH_ACTIVE === route.path ? 'button active' : 'button'}> 
 
                                     {route.externalLink ? 
                                     // eslint-disable-next-line jsx-a11y/anchor-has-content
-                                    <a href={route.path} key={index} target={'_blank'} rel="noreferrer">{route.title}</a>
-                                    : <> <Link to={route.path} key={index} onClick={() => setActive(route.path)} >{route.title}</Link>
+                                    <a href={route.path} target={'_blank'} rel="noreferrer">{route.title}</a>
+                                    : <> <Link to={route.path} onClick={() => setActive(route.path)} >{route.title}</Link>
                                     <FontAwesomeIcon icon={faChevronRight} /> </>
                                     }      
                                 </div>

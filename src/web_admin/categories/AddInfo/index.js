@@ -1,5 +1,5 @@
 import React , { useState } from 'react'
-import { createCategorie , updateCategorie } from '../../../web_config/actions/categoriesAction'
+import { createCategorie } from '../../../web_config/actions/categoriesAction'
 
 import { connect } from 'react-redux'
 import  { camelCase } from 'lodash'

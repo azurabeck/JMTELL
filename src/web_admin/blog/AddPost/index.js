@@ -1,4 +1,4 @@
-import React , { useState , useEffect } from 'react'
+import React , { useState } from 'react'
 import { createPost , editPost , deletePost} from '../../../web_config/actions/postActions'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
