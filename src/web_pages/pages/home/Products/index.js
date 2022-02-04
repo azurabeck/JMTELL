@@ -75,7 +75,7 @@ const Header = (props) => {
                             <div className='product'>
                                 <div className='product-img' > <img alt='' src={item.img}/> </div>
                                 <div className='product-title'>{item.name}</div>
-                                <div className='product-desc'>{item.model}</div>
+                                <div className='product-desc'>{item.categorie}</div>
                                 <div className='btn'>
                                     <ButtonStroke 
                                         TEXT={ HOME_PT ? HOME_PT[6] : 'Saiba mais' }

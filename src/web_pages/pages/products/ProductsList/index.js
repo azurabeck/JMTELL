@@ -100,7 +100,7 @@ const ProductList = (props) => {
                             <div className="product" key={index}>
                                 <img className="product-img" src={item.img ? item.img : DEFAULT}/>
                                 <div className="product-title">{item.name ? item.name : '-' }</div>
-                                <div className="product-desc">{item.model ? item.model : '-' }</div>
+                                <div className="product-desc">{ item.categorie ? item.categorie : '-' }</div>
                                 <Link to={'/produtos/' + item.id} className="btn-products-screen"><a className="btn-stroke" href="/products">
                                 { PRODUCT_PT ? PRODUCT_PT[1] : 'Saiba mais' } </a></Link>      
                                 { index === 0 && 
