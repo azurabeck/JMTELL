@@ -40,7 +40,7 @@
         img { width: 220px; margin-bottom: 34px; }
         .title { 
                 margin-bottom: 120px;
-                max-width: 650px; 
+                max-width: 535px; 
                 font-weight: 600; font-size: 36px;        
                 color: #FFFFFF; text-align: center;
         }
@@ -48,14 +48,14 @@
 }
 
 @media screen and (max-width: '860px') {
-    .home .header .title { max-width: calc(100% - 40px); }
+    .home .header .title { max-width: calc(100% - 70px); }
 
 }
 
 
 @media screen and (max-width: 450px) {
     .home .header img { width: 175px; }
-    .home .header .title { max-width: calc(100% - 40px); font-size: 18px; }
+    .home .header .title { max-width: calc(100% - 70px); font-size: 18px; }
     .home .header .btn-orange { max-width: calc(100% - 20px); }
     .home .header .btn-orange {
         max-width: calc(100% - 20px);
