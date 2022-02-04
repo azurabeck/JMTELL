@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { BrowserRouter } from 'react-router-dom'
+import { Router  } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import HttpsRedirect from 'react-https-redirect';
@@ -30,7 +30,7 @@ store.firebaseAuthIsReady.then(() => {
      ReactDOM.render( 
           <HttpsRedirect>
                <Provider store={store}>
-                         <BrowserRouter history={history}><Routes /></BrowserRouter>
+                         <Router  history={history}><Routes /></Router >
                </Provider>
           </HttpsRedirect>, document.getElementById('root'));
 })
