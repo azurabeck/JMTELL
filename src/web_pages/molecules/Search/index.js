@@ -9,9 +9,15 @@ const Search = (props) => {
 
     const [ SEARCH_CONTENT , setSearchContent ] = useState()
 
+    const handleChange = (e, value) => {
+        e.preventDefault();
+        setSearchContent(value)
+        props.filterCategorie({filterByCat: 3, filterCategorie: value})
+    }
+
     return (
         <div className='search'>
-            <input placeholder='Digite e clique na lupa para pesquisar pelo nome' onChange={(e) => setSearchContent(e.target.value)}></input>
+            <input placeholder='Digite e clique na lupa para pesquisar pelo nome' onChange={(e) => handleChange(e, e.target.value)}></input>
             <div className='button-search' onClick={() => props.filterCategorie({filterByCat: 3, filterCategorie: SEARCH_CONTENT})} >
                 <FontAwesomeIcon icon={faSearch}/>
             </div>

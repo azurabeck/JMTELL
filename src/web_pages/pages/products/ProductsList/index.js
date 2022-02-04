@@ -58,7 +58,7 @@ const ProductList = (props) => {
             break;
         case 3:
             // SEARCH
-            PRODUCT_FILTERED = TAG && PRODUCTS_DATA && PRODUCTS_DATA.filter(item => item.name === TAG)
+            PRODUCT_FILTERED = TAG && PRODUCTS_DATA && PRODUCTS_DATA.filter(item => item.name.toLowerCase().includes(TAG.toLowerCase()))
             break;
         case 4:
             // TODOS
