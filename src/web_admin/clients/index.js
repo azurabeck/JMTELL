@@ -2,7 +2,6 @@ import { faCaretRight, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { connect } from 'react-redux'
-import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import './style.scss'
 import ADD_CLIENT from './AddInfo'
@@ -10,10 +9,13 @@ import DETAILS from './Details'
 import { updateClient } from '../../web_config/actions/clientActions';
 import  FastBar  from '../organism/fastBar/fastBar'
 import { Redirect } from 'react-router-dom'
+import moment from 'moment'
+import _ from 'lodash'
 
 const Clients = (props) => {
 
     const CLIENTS_DB = props.clients
+    const CLIENTS_BY_DATA = _.orderBy(CLIENTS_DB, 'createdAt' , 'desc')
     const [ registerDialog , handleRegister ] = useState(false)
     const [ openDetails , openDetailsFunc ] = useState(false)
     const [ clientDetails , clientDetailsFun ] = useState()
@@ -67,18 +69,20 @@ const Clients = (props) => {
                     <div className='COL_SIZE_LARGE'> Nome </div>
                     <div className='COL_SIZE_LARGE'> Email </div>
                     <div className='COL_SIZE_LARGE'> Telefone </div>
+                    <div className='COL_SIZE_LARGE'> Data </div>
                     <div className='COL_SIZE_LARGE'> Mais detalhes </div>                
                 </div>
 
                 <div className='table-body'>
                 {
-                    CLIENTS_DB && CLIENTS_DB.map((item, index) => {
+                    CLIENTS_BY_DATA && CLIENTS_BY_DATA.map((item, index) => {
                         return (
 
                             <div className={`table-row ${item.read ? '' : 'bold'}`} key={index} onClick={() => handleDetails(item)}> 
                                 <div className='COL_SIZE_LARGE'> {item.name} </div>
                                 <div className='COL_SIZE_LARGE'> {item.email} </div>
                                 <div className='COL_SIZE_LARGE'> {item.telephone} </div>
+                                <div className='COL_SIZE_LARGE'> {moment(item.createdAt.toDate().toDateString()).format('DD/MM/YYYY')} </div>
                                 <div className='COL_SIZE_LARGE'> <FontAwesomeIcon icon={faCaretRight} /> </div>                
                             </div>
                             
@@ -110,8 +114,5 @@ const mapDispatchToProps = (dispatch) => {
 }
   
 export default compose(
-    connect(mapStateToProps , mapDispatchToProps),
-    firestoreConnect([
-        { collection: 'clients' ,  orderBy: ["createdAt", "desc"] }
-    ])
+    connect(mapStateToProps , mapDispatchToProps)
 )(Clients)
