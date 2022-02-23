@@ -1,55 +1,49 @@
-import React, { Component } from "react";
-import Slider from "react-slick";
+import { useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCaretRight , faCaretLeft } from '@fortawesome/free-solid-svg-icons'
+import './swipe.scss'
 
-export default class SwipeToSlide extends Component {
-  render() {
-    const settings = {
-      className: "center",
-      infinite: true,
-      centerPadding: "60px",
-      slidesToShow: 5,
-      swipeToSlide: true,
-      sliderToScroll: 5,
-      // afterChange: function(index) {
-      //   console.log(
-      //     `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
-      //   );
-      // }
-    };
+const SwipeToSlide = ({ data }) => {
+  
+  const carousel = useRef(null);
 
-    const DATA = this.props.data
+  const handleLeftClick = (e) => {
+    e.preventDefault();
+    carousel.current.scrollLeft -= carousel.current.offsetWidth;
+  };
 
-    return (
-        <Slider>
-            <div data-slick='{
-              "slidesToShow": 4, 
-              "slidesToScroll": 4,  
-            }'>
-                    {
-                        DATA && DATA.map((item, index) => {
-                            return (
-                                <div className='product' key={index}>
-                                    <div className='product-img' > <img alt='' src={item.img}/> </div>
-                                    <div className='product-title'>{item.name}</div>
-                                    <div className='product-desc'>{item.categorie}</div>
-                                    {/* <div className='btn'>
-                                        <ButtonStroke 
-                                            TEXT={ HOME_PT ? HOME_PT[6] : 'Saiba mais' }
-                                            WIDTH='160px'
-                                            HEIGHT='35px'
-                                            BTN_TYPE={3}
-                                            TO={'/produtos/' + item.id}/>
-                                    </div> */}
+  const handleRightClick = (e) => {
+    e.preventDefault();
+    carousel.current.scrollLeft += carousel.current.offsetWidth;
+  };
 
-                                    {/* { index === 0 &&
-                                    <EditorContent  HAS_VALUE={HOME_PT && HOME_PT[6]} IS_EDITING={IS_EDITING} OPEN_EDITOR={OPEN_EDITOR} 
-                                    CHANGE_INPUT={(e) => props.updateField({...TEXT , 6: e.target.value})}/> } */}
-                                </div>
-                            )
-                        })
-                    }
+  if (!data || !data.length) return null;
+
+  return (
+    <div className="container">
+      <div className="carousel" ref={carousel}>
+        {data.map((item) => {
+          const { id, name, price, img } = item;
+          return (
+            <div className="item" key={id}>
+              <div className="image">
+                <img src={img} alt={name} />
+              </div>
+              <div className="info">
+                <span className="name">{name}</span>
+                <span className="oldPrice">U$ tes</span>
+                <span className="price">U$ {price}</span>
+              </div>
             </div>
-        </Slider>
-    );
-  }
+          );
+        })}
+      </div>
+      <div className="buttons">
+        <FontAwesomeIcon icon={faCaretLeft}  onClick={handleRightClick} />
+        <FontAwesomeIcon icon={faCaretRight} onClick={handleLeftClick} />
+      </div>
+    </div>
+  );
 }
+
+export default SwipeToSlide;
