@@ -54,12 +54,24 @@
 }
 
 @media screen and (max-width: 860px) {
+    .company .team { margin-bottom: 20px !important; }
     .company .team .team-img { display: none !important; }
     .company .team .team-img img.team-img { display: none !important; }
-    .company .team .team-text { width: 100% !important; }
-    .company .team .team-text .group { margin: 0 auto !important; }
+    .company .team .team-text { width: 100% !important; height: auto; }
+    .company .team .team-text .group { margin: 0 auto !important;}
+    .company .team .team-text .group .title {font-size: 26px !important; margin-bottom: 20px; }
+    .company .team .team-text .group .desc {font-size: 16px !important; }
     .company .clients .group , .company .budget .desc  { max-width: calc(100% - 30px) !important; }
     .company .budget .btn-orange {  max-width: calc(100% - 30px) !important; }
+
+    .company .clients .title { font-size: 26px !important; margin-bottom: 15px; text-align: center; }
+    .company .clients .group .desc { font-size: 16px !important; }
+    .company .clients .group { margin-bottom: 50px !important; }
+    .company .clients .group, .company .budget .desc { max-width: 100% !important; }
+
+    .company .budget { height: auto; margin-top: 0; padding: 20px; }
+    .company .clients .group, .company .budget .desc { margin-bottom: 50px; font-size: 16px; text-align: center; } 
+    .company .budget .btn-orange { max-width: 100%;  font-size: 16px !important; text-align: center; }
 }
 
 @media screen and (max-width: 700px) {
@@ -68,5 +80,4 @@
         .what-we-do { margin-bottom: 40px; }
         svg { height: 70px !important; margin-bottom: 10px;} }
         
-    .company .budget .btn-orange {  font-size: 22px !important; }
 }

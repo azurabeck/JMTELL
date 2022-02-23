@@ -81,6 +81,11 @@
     .home .contact .form-area img.bussiness-man-img {  opacity: 0.4;   }
 }
 
+@media screen and (max-width: '860px') {
+    .home .contact { margin-top: 55px; }
+    .home .contact .title { font-size: 26px; }
+}
+
 @media screen and (max-width: '750px') {
     .home .contact .form-area form {  max-width: calc(100% - 30px) !important; width: 100%;
     

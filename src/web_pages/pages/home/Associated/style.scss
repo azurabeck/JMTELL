@@ -71,11 +71,6 @@
 }
 
 @media screen and (max-width: '860px') {
-    .home .associated .desc { max-width: calc(100% - 40px); }
-}
-
-@media screen and (max-width: '600px') {
-    .home .associated .title { font-size: 25px; }
-    .home .associated .desc { font-size: 22px; }
+    .home .associated { display: none !important; }
 }
 

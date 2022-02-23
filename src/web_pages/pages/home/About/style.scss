@@ -32,10 +32,12 @@
 
 
 @media screen and (max-width: '860px') {
+    .home .about { margin-top: 55px; }
     .home .about .desc { max-width: calc(100% - 40px); }
+    .home .about .line { width: 85px; height: 5px; }
 }
 
 @media screen and (max-width: '600px') {
-    .home .about .title { font-size: 35px; }
-    .home .about .desc { font-size: 22px; }
+    .home .about .title { font-size: 26px; }
+    .home .about .desc { font-size: 15px; }
 }
