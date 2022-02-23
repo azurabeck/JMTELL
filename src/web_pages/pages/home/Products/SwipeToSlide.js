@@ -21,27 +21,24 @@ const SwipeToSlide = ({ data }) => {
 
   return (
     <div className="container">
+      <div className="buttons"> <FontAwesomeIcon icon={faCaretLeft}  onClick={handleLeftClick} /> </div>
       <div className="carousel" ref={carousel}>
-        {data.map((item) => {
-          const { id, name, price, img } = item;
+        {data.map((item, i) => {
+          const { categorie, name, img } = item;
           return (
-            <div className="item" key={id}>
-              <div className="image">
+            <div className="product" key={i}>
+              <div className="product-image">
                 <img src={img} alt={name} />
               </div>
-              <div className="info">
-                <span className="name">{name}</span>
-                <span className="oldPrice">U$ tes</span>
-                <span className="price">U$ {price}</span>
+              <div className="product-info">
+                <span className="product-title">{name}</span>
+                <span className="product-desc">{categorie}</span>
               </div>
             </div>
           );
         })}
       </div>
-      <div className="buttons">
-        <FontAwesomeIcon icon={faCaretLeft}  onClick={handleRightClick} />
-        <FontAwesomeIcon icon={faCaretRight} onClick={handleLeftClick} />
-      </div>
+      <div className="buttons"> <FontAwesomeIcon icon={faCaretRight} onClick={handleRightClick} /> </div>
     </div>
   );
 }
