@@ -5,3 +5,7 @@
 }
 
 body { background-color: #FBFAFA; }
+
+@media screen and (max-width: 850px) {
+    .contact .contact-content { margin-top: 10px !important; }
+}
