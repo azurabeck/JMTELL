@@ -54,7 +54,7 @@ const Spotlight = (props) => {
         <>
             {
                 SPOTLIGHT &&  <div className='products-spotlight-area'>
-                    { PRODUCT_PT ? PRODUCT_PT[2] : 'Produtos em Destaque' }
+                    <div className='spt-title'>{ PRODUCT_PT ? PRODUCT_PT[2] : 'Produtos em Destaque' }</div> 
                     <EditorContent  HAS_VALUE={PRODUCT_PT && PRODUCT_PT[2]} IS_EDITING={IS_EDITING} OPEN_EDITOR={OPEN_EDITOR} 
                                    CHANGE_INPUT={(e) => props.updateField({...TEXT , 2: e.target.value})}/>
                     

@@ -137,7 +137,7 @@ const ProductList = (props) => {
                     CATALOG_DATA && CATALOG_DATA.map((item, i) => (
                         <a href={item.link} target='_blank' key={i} rel="noreferrer">
                             {item.name}
-                            <FontAwesomeIcon icon={faDownload} />    
+                            { item.link.includes('#') ? null : <FontAwesomeIcon icon={faDownload} />  }    
                         </a>
                     ))
                 }

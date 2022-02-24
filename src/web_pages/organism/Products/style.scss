@@ -8,6 +8,8 @@
     background-color: #2C3A41; color: #FFFFFF; 
     top: 80px; z-index: 2;
 
+    .spt-title { display: flex; }
+
     .product-buttons { display: flex; align-items: center;
         .title { display: flex; align-items: center; color: #fff !important; margin: 0 !important; font-size: 16px !important;  svg { margin-right: 40px; margin-left: 40px; } }
         .button-area {
@@ -34,5 +36,9 @@
 }
 
 @media screen and (max-width: 850px) {
-    .product-bar {  width: calc(100% - 40px) !important;  padding: 0 20px !important;}
+    .product-bar {  width: calc(100% - 40px) !important;  padding: 0 20px !important;}    
+    .product-bar .product-buttons .button-area .bar-button { font-size: 13px; }
+    .spt-title { display: none; }
+
+    .products-list-area { font-size: 16px !important; margin-top: 10px !important; }
 }

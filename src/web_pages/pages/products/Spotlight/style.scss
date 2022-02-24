@@ -26,7 +26,7 @@
                 width: 500px; height: 100%;
                 background-repeat: no-repeat !important;
                 background-size: cover !important;
-                img { max-height: 85%; object-fit: contain; margin: 0 auto; max-width: 200px;}
+                img { max-height: 85%; object-fit: contain; margin: 0 auto; max-width: 200px; mix-blend-mode: multiply; }
             }
 
             svg { position: absolute; right: 8px; color: #2e3e00;
@@ -37,3 +37,10 @@
 
 }
 
+
+
+
+@media screen and (max-width: 850px) {
+    .products .products-content .products-area { padding-top: 30px !important; }
+    .products-spotlight { width: 100% !important; }
+}

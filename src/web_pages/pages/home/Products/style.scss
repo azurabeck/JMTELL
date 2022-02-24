@@ -59,7 +59,7 @@
 }
 
 @media screen and (max-width: '860px') {
-    .home .products { margin-top: 55px; }
+    .home .products { margin-top: 55px;  background-color: #bfcbcd4a !important; }
     .home .products .desc { max-width: calc(100% - 40px); }
     .home .products .products-spotlight .product { flex: 0 0 80%;  }
     .home .products .products-spotlight .arrow:last-child {
