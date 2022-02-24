@@ -28,7 +28,7 @@ const Contact = (props) => {
     return (
             
             <div className='contact'>
-                { !IS_EDITING && <PRODUCT_BAR  /> }                
+                { !IS_EDITING && <PRODUCT_BAR hideSearch={true}  /> }                
                 <EditorAction IS_EDITING={IS_EDITING} CLICK_EDIT={() => handleEditor(!openEditor)} CLICK_SAVE={(e) => handleSubmitText(e)} />    
 
                 <div className='contact-content'>

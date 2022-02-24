@@ -18,6 +18,8 @@ const Product_bar = (props) => {
     }
 
     const SIDEBAR_DATA = props.categories
+    const hideSearch = props.hideSearch
+
         return (
         <div className='product-bar'> 
                 <div className='product-buttons'>
@@ -32,7 +34,8 @@ const Product_bar = (props) => {
                     </div>
                 </div>
 
-                <SEARCH />
+                { hideSearch ? null :  <SEARCH /> }
+               
         
          </div>
     )
