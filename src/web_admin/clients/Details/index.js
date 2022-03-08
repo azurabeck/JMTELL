@@ -49,6 +49,40 @@ const ClientDetails = ( props ) => {
                     <div className='left'> Telephone </div>
                     <div className='right'>{item.telephone}</div>
                  </div>
+                 {
+                    item.state && item.city ? 
+                        <div className='group'> 
+                            <div className='left'> Localização </div>
+                            <div className='right'>{item.state} / {item.city}</div>
+                        </div>
+                    : null 
+                 }
+                 {
+                   item.projectType ? 
+                        <div className='group'> 
+                            <div className='left'> CNPJ </div>
+                            <div className='right'>{item.cnpj} </div>
+                        </div>
+                    : null
+                }
+                {
+                    item.projectType ? 
+                        <div className='group'> 
+                            <div className='left'> Tipo do projeto </div>
+                            <div className='right'>{item.projectType} </div>
+                        </div>
+                    : null 
+                }
+
+                {
+                    item.subject ? 
+                        <div className='group'> 
+                            <div className='left'> Tipo do projeto </div>
+                            <div className='right'>{item.subject} </div>
+                        </div>
+                    : null 
+                }
+
 
                  <div className='group'> 
                     <div className='left'> Tipo de retorno </div>

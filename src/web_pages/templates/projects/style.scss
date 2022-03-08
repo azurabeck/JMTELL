@@ -1,0 +1,16 @@
+.project {  
+    .project-content {
+        padding-top: 80px;
+        padding-bottom: 50px;
+        background-image: url(../../../images/bg_projects.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+}
+
+body { background-color: #FBFAFA; }
+
+@media screen and (max-width: 850px) {
+    .contact .project-content { margin-top: 10px !important; }
+}

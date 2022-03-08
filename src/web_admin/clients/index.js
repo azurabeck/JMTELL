@@ -68,9 +68,10 @@ const Clients = (props) => {
                 <div className='table-header'>
                     <div className='COL_SIZE_LARGE'> Nome </div>
                     <div className='COL_SIZE_LARGE'> Email </div>
-                    <div className='COL_SIZE_LARGE'> Telefone </div>
-                    <div className='COL_SIZE_LARGE'> Data </div>
-                    <div className='COL_SIZE_LARGE'> Mais detalhes </div>                
+                    <div className='COL_SIZE_MEDIUM'> Telefone </div>
+                    <div className='COL_SIZE_MEDIUM'> Data </div>
+                    <div className='COL_SIZE_LARGE'> Cadastro através de: </div>
+                    <div className='COL_SIZE_SMALL'> Outros </div>                
                 </div>
 
                 <div className='table-body'>
@@ -81,9 +82,10 @@ const Clients = (props) => {
                             <div className={`table-row ${item.read ? '' : 'bold'}`} key={index} onClick={() => handleDetails(item)}> 
                                 <div className='COL_SIZE_LARGE'> {item.name} </div>
                                 <div className='COL_SIZE_LARGE'> {item.email} </div>
-                                <div className='COL_SIZE_LARGE'> {item.telephone} </div>
-                                <div className='COL_SIZE_LARGE'> {moment(item.createdAt.toDate().toDateString()).format('DD/MM/YYYY')} </div>
-                                <div className='COL_SIZE_LARGE'> <FontAwesomeIcon icon={faCaretRight} /> </div>                
+                                <div className='COL_SIZE_MEDIUM'> {item.telephone} </div>
+                                <div className='COL_SIZE_MEDIUM'> {moment(item.createdAt.toDate().toDateString()).format('DD/MM/YYYY')} </div>
+                               <div className='COL_SIZE_LARGE'> {item.subject === 'Projeto' ? 'PROJETO' : item.msg.subject} </div>
+                                <div className='COL_SIZE_SMALL'> <FontAwesomeIcon icon={faCaretRight} /> </div>                
                             </div>
                             
                         )

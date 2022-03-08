@@ -10,6 +10,11 @@ export const createClient = (client) => {
             return_type: client.returnType,
             read: false,
             createdAt: new Date(), 
+            cnpj: client.cnpj ? client.cnpj : null,
+            state: client.state ? client.state : null,
+            city: client.city ? client.city : null,
+            projectType: client.projectType ? client.projectType : null,
+            subject: client.client_subject === 'Solicitação de projeto' ? 'Projeto' : 'Contato',
             msg: { text: client.msg, subject: client.client_subject, time: new Date() }
         })
         .then(function(docRef) {

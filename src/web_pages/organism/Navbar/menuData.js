@@ -24,6 +24,14 @@ export const MenuData = [
         externalLink: false,
     },
     {
+        title: 'Projetos',
+        path: '/projetos',
+        blockItem: true,
+        iconClosed: null,
+        iconOpened: null,
+        externalLink: false,
+    },
+    {
         title: 'Treinamentos',
         path: 'https://www.sympla.com.br/produtor/jmtell',
         blockItem: true,

@@ -13,6 +13,7 @@ import Home from './web_pages/templates/home'
 import Company from './web_pages/templates/company'
 import Contact from './web_pages/templates/contact'
 import Products from './web_pages/templates/products'
+import Projects from './web_pages/templates/projects'
 import ProductsDetails from './web_pages/templates/products_details'
 import Blog from './web_pages/templates/blog'
 import Post from './web_pages/templates/post'
@@ -61,6 +62,7 @@ function Routes({ history }) {
                     <Route exact path='/produtos/:id' component={ProductsDetails}></Route>
                     <Route exact path='/blog' component={Blog}></Route>
                     <Route exact path='/blog/:id' component={Post}></Route>
+                    <Route exact path='/projetos' component={Projects}></Route>
 
                     {/* ADMIN AREA */}
                     <Route exact path='/admin' component={LOGIN}></Route>

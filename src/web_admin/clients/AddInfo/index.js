@@ -34,7 +34,11 @@ const AddClient = ( props ) => {
                         
                         <input placeholder='Nome e Sobrenome' required onChange={(e) => getForm({...formData, name: e.target.value , client_subject: 'Registrado pelo Admin'})} ></input>
                         <input placeholder='Telefone' required onChange={(e) => getForm({...formData, telephone: e.target.value})}></input>
-                        <input placeholder='Email' required onChange={(e) => getForm({...formData, email: e.target.value})}></input>                      
+                        <input placeholder='Email' required onChange={(e) => getForm({...formData, email: e.target.value})}></input>       
+                        <input placeholder='Estado' required onChange={(e) => getForm({...formData, state: e.target.value})}></input>     
+                        <input placeholder='Cidade' required onChange={(e) => getForm({...formData, city: e.target.value})}></input>       
+                        <input placeholder='CNPJ' required onChange={(e) => getForm({...formData, cnpj: e.target.value})}></input>  
+                        <input placeholder='Tipo de Projeto' required onChange={(e) => getForm({...formData, projectType: e.target.value})}></input> 
                         
                         <div className='group-3-title'>  Preferência de contato: </div>
                         <div className='group-3'>
