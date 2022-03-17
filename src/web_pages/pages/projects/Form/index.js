@@ -42,7 +42,7 @@ const Form = (props) => {
             {
                 !MSG_SENT &&
                 <div className='form-title'>
-                    <div className='title'> Transforme seus projetos projetos em realidade! </div>
+                    <div className='title'> Transforme seus projetos em realidade! </div>
                     <div className='desc'> Fale com um profissional para saber mais sobre o registro de projetos. </div>
                 </div>
             }

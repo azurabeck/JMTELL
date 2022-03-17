@@ -32,7 +32,7 @@ const Clients = (props) => {
     }
 
     const handleCopy = () => {
-            const email = [...new Set(CLIENTS_DB && CLIENTS_DB.map(item => item.email))];
+            const email = [...new Set(CLIENTS_DB && CLIENTS_DB.map(item => ' ' + item.email + ' '))];
             var textField = document.createElement('textarea')
             textField.innerText = email
             document.body.appendChild(textField)
