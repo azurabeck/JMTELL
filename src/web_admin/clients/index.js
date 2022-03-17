@@ -84,7 +84,7 @@ const Clients = (props) => {
                                 <div className='COL_SIZE_LARGE'> {item.email} </div>
                                 <div className='COL_SIZE_MEDIUM'> {item.telephone} </div>
                                 <div className='COL_SIZE_MEDIUM'> {moment(item.createdAt.toDate().toDateString()).format('DD/MM/YYYY')} </div>
-                               <div className='COL_SIZE_LARGE'> {item.subject === 'Projeto' ? 'PROJETO' : item.msg.subject} </div>
+                                <div className='COL_SIZE_LARGE'> {item.subject === 'Projeto' ? 'PROJETO' : item.msg.subject} </div>
                                 <div className='COL_SIZE_SMALL'> <FontAwesomeIcon icon={faCaretRight} /> </div>                
                             </div>
                             
