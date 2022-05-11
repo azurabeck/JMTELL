@@ -35,7 +35,7 @@ const AssociatedMenu = (props) => {
                         <div className='group-columns'>
                             <div className='column'>
                             <div className='desc'> R. Barão de Melgaço, 880, Cordovil, Rio de Janeiro – RJ 21250-320
-                                <a href="mailto:contato@jmtell.com.br"> contato@jmtell.com.br </a> - (21) 3351-1211 </div>
+                                <a href="mailto:sac@jmtell.com.br"> sac@jmtell.com.br </a> - (21) 3351-1211 - (21) 3351-8297 </div>
                             </div>
                             <div className='column row'>  
                                 <a href="mailto:contato@jmtell.com.br"> <EMAIL /> </a>
