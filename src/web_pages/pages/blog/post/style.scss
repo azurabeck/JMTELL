@@ -56,3 +56,16 @@
         }
     }
 }
+
+@media screen and (max-width: '900px') {
+    .post-header .post-title { 
+        font-size: 30px !important;
+    }
+}
+
+
+@media screen and (max-width: '600px') {
+    .post-header .post-title { 
+        font-size: 26px !important;
+    }
+}

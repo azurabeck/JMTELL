@@ -2,9 +2,68 @@
     .blog-content {
         max-width: 1920px;
         margin: 0 auto;
-        margin-top: 130px;
+        margin-top: 50px;
         padding: 95px 70px;
         padding-top: 40px;
     }
 
+}
+
+
+@media screen and (max-width: '900px') {
+    .blog { 
+        .blog-content {
+            padding: 45px 70px;
+            padding-top: 20px;
+
+            .spotlight { 
+                grid-column-gap: 2px !important;
+                grid-row-gap: 2px !important; 
+            }
+        
+        }   
+        
+        .post-list-group .blog-menu { 
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: '750px') {
+    .blog { 
+        .blog-content {
+            padding: 5px 10px;
+            .spotlight .spotlight-title {
+                font-size: 10px;
+            }
+        }
+
+        .post-list-group .post-item .post-item-details .post-item-title {
+            font-size: 16px;
+        }
+        .post-list-group .post-item .post-item-details .post-item-author {
+            font-size: 9px;
+        }
+        .post-list-group .post-item .post-item-details .post-item-desc {
+            font-size: 12px;
+        }
+    }    
+}
+
+@media screen and (max-width: '600px') {
+    .blog { 
+        .blog-content {
+            .spotlight { display: flex;
+                .div0 {
+                    display: flex;
+                    width: 100%;
+                    height: 325px;
+
+                }
+            }
+            .spotlight .div1, .spotlight .div2 {
+                display: none;
+            }
+        }
+    }
 }

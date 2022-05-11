@@ -64,7 +64,7 @@
 }
 
 
-@media screen and (min-width: '860px') {
+@media screen and (min-width: '965px') {
       .navbar {  width: calc(100% - 140px); padding: 0 70px; 
             .nav-bar { display: none !important; }
       
@@ -78,6 +78,8 @@
   
              a:hover { color: #FAA916; cursor: pointer; }
              a.active { font-weight: 500; color: #000; border-bottom: 2px solid #FAA916; }   
+
+             .logo { margin-left: 0; }
       
       }
 

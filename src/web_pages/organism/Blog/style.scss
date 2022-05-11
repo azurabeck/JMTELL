@@ -19,3 +19,20 @@
         }
     }
 }
+
+
+@media screen and (max-width: '900px') {
+    .blog-bar { 
+        width: calc(100% - 40px);
+        padding: 0 20px;
+       .button-area {
+           .search {
+               display: none;
+           }
+
+           .network {
+               margin-right: 0 !important;
+           }
+       }
+    }
+}
