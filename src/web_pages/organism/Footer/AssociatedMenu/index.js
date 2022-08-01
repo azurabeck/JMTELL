@@ -39,7 +39,7 @@ const AssociatedMenu = (props) => {
                             </div>
                             <div className='column row'>  
                                 <a href="mailto:sac@jmtell.com.br"> <EMAIL /> </a>
-                                <a href='https://whatsa.me/552133511211' target='_blank' rel="noreferrer" >
+                                <a href='https://api.whatsapp.com/send?l=pt_br&phone=552133511211' target='_blank' rel="noreferrer" >
                                     <WHATSAPP />
                                 </a>
                                 <BUTTON_STROKE
